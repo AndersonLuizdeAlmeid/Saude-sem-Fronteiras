@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SaudeSemFronteiras.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2b8504688919a307262f689d99cccd2db11d3c6a")]
 [assembly: System.Reflection.AssemblyProductAttribute("SaudeSemFronteiras.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SaudeSemFronteiras.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

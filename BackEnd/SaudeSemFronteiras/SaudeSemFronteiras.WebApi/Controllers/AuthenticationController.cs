@@ -1,5 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SaudeSemFronteiras.Application.Authentications.Commands;
+using SaudeSemFronteiras.WebApi.Authorizations;
+
 
 namespace SaudeSemFronteiras.WebApi.Controllers;
 
