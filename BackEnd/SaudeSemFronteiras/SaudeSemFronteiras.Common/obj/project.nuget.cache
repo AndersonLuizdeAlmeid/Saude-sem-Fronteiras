@@ -1,15 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "r1PClFmUtF8tF+Lr4iXxfJeJslrx8BwZxVg+jKH3RJX5XO9P557wscHnoO1fYU9Q822yk5mnXyNiET7IrNmUFQ==",
+  "dgSpecHash": "+1EeBEqs0yimMkWslkS6foxCQRA4DOffHJJh85GYRauOeyCM3QIkyS+7HwzCorCyTCqxMR1zfxZAOS8bzk5S5Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Micro\\Desktop\\TCC\\saude-sem-fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras.Common\\SaudeSemFronteiras.Common.csproj",
+  "projectFilePath": "C:\\Users\\Public\\Desktop\\Saude-sem-Fronteiras-main\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras.Common\\SaudeSemFronteiras.Common.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Micro\\.nuget\\packages\\csharpfunctionalextensions\\2.42.0\\csharpfunctionalextensions.2.42.0.nupkg.sha512",
-    "C:\\Users\\Micro\\.nuget\\packages\\mediatr\\12.2.0\\mediatr.12.2.0.nupkg.sha512",
-    "C:\\Users\\Micro\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
-    "C:\\Users\\Micro\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
-    "C:\\Users\\Micro\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.0\\microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
-    "C:\\Users\\Micro\\.nuget\\packages\\npgsql\\8.0.3\\npgsql.8.0.3.nupkg.sha512"
+    "C:\\Users\\Usuario\\.nuget\\packages\\csharpfunctionalextensions\\2.42.0\\csharpfunctionalextensions.2.42.0.nupkg.sha512",
+    "C:\\Users\\Usuario\\.nuget\\packages\\mediatr\\12.2.0\\mediatr.12.2.0.nupkg.sha512",
+    "C:\\Users\\Usuario\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.0\\microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\Usuario\\.nuget\\packages\\npgsql\\8.0.3\\npgsql.8.0.3.nupkg.sha512"
   ],
   "logs": []
 }
