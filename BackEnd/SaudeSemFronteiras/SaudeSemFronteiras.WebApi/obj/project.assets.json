@@ -1831,19 +1831,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Usuario\\.nuget\\packages\\": {}
+    "C:\\Users\\Micro\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Public\\Desktop\\Saude-sem-Fronteiras-main\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras.WebApi\\SaudeSemFronteiras.WebApi.csproj",
+      "projectUniqueName": "C:\\Users\\Micro\\Desktop\\Projeto final\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras.WebApi\\SaudeSemFronteiras.WebApi.csproj",
       "projectName": "SaudeSemFronteiras.WebApi",
-      "projectPath": "C:\\Users\\Public\\Desktop\\Saude-sem-Fronteiras-main\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras.WebApi\\SaudeSemFronteiras.WebApi.csproj",
-      "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Public\\Desktop\\Saude-sem-Fronteiras-main\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras.WebApi\\obj\\",
+      "projectPath": "C:\\Users\\Micro\\Desktop\\Projeto final\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras.WebApi\\SaudeSemFronteiras.WebApi.csproj",
+      "packagesPath": "C:\\Users\\Micro\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Micro\\Desktop\\Projeto final\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras.WebApi\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Micro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1857,11 +1862,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Public\\Desktop\\Saude-sem-Fronteiras-main\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras.Common\\SaudeSemFronteiras.Common.csproj": {
-              "projectPath": "C:\\Users\\Public\\Desktop\\Saude-sem-Fronteiras-main\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras.Common\\SaudeSemFronteiras.Common.csproj"
+            "C:\\Users\\Micro\\Desktop\\Projeto final\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras.Common\\SaudeSemFronteiras.Common.csproj": {
+              "projectPath": "C:\\Users\\Micro\\Desktop\\Projeto final\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras.Common\\SaudeSemFronteiras.Common.csproj"
             },
-            "C:\\Users\\Public\\Desktop\\Saude-sem-Fronteiras-main\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras\\SaudeSemFronteiras.Application.csproj": {
-              "projectPath": "C:\\Users\\Public\\Desktop\\Saude-sem-Fronteiras-main\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras\\SaudeSemFronteiras.Application.csproj"
+            "C:\\Users\\Micro\\Desktop\\Projeto final\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras\\SaudeSemFronteiras.Application.csproj": {
+              "projectPath": "C:\\Users\\Micro\\Desktop\\Projeto final\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras\\SaudeSemFronteiras.Application.csproj"
             }
           }
         }
@@ -1870,6 +1875,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -1920,7 +1930,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -21,7 +21,7 @@ public class AuthenticationsHandler(ICredentialsQueries _credentialsQueries, IUs
         var credentials = await _credentialsQueries.GetByEmailAndPassword(request.Email, request.Password, cancellationToken);
         
         
-        var user = await _userQueries
+        //var user = await _userQueries
         if (user == null)
             return Result.Failure<string>("Email ou senha incorreto.");
 

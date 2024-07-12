@@ -20,7 +20,7 @@ public class UsersController(IMediator _mediator, IUserQueries _usersQueries) : 
     }
 
     [HttpPost]
-    [Authorization]
+    //[Authorization]
     public async Task<IActionResult> CreateUser([FromBody] CreateUserCommand command, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(command, cancellationToken);
