@@ -11,4 +11,18 @@ public class ChangeUserCommand : IRequest<Result>
     public DateTime DateBirth { get; set; }
     public string Language { get; set; } = string.Empty;
     public bool IsActive { get; set; }
+
+    public Result Validation()
+    {
+        if (string.IsNullOrEmpty(Name))
+            return Result.Failure("Nome não pode ser nulo");
+        if (string.IsNullOrEmpty(CPF))
+            return Result.Failure("CPF não pode ser nulo");
+        if (string.IsNullOrEmpty(MotherName))
+            return Result.Failure("Nome da mãe não pode ser nulo");
+        if (string.IsNullOrEmpty(Language))
+            return Result.Failure("Linguagem não pode ser nulo");
+
+        return Result.Success();
+    }
 }

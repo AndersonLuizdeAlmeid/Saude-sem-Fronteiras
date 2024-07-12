@@ -9,3 +9,6 @@ C:\Users\Micro\Desktop\TCC\saude-sem-fronteiras\BackEnd\SaudeSemFronteiras\Saude
 C:\Users\Micro\Desktop\TCC\saude-sem-fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Common\obj\Debug\net8.0\refint\SaudeSemFronteiras.Common.dll
 C:\Users\Micro\Desktop\TCC\saude-sem-fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Common\obj\Debug\net8.0\SaudeSemFronteiras.Common.pdb
 C:\Users\Micro\Desktop\TCC\saude-sem-fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Common\obj\Debug\net8.0\ref\SaudeSemFronteiras.Common.dll
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Common\obj\Debug\net8.0\SaudeSemFronteiras.Common.dll
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Common\obj\Debug\net8.0\refint\SaudeSemFronteiras.Common.dll
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Common\obj\Debug\net8.0\SaudeSemFronteiras.Common.pdb

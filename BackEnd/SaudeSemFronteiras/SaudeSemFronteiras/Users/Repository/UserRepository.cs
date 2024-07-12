@@ -12,6 +12,7 @@ public class UserRepository(IDatabaseFactory LocalDatabase) : IUserRepository
                            cpf as CPF, 
                            mother_name as MotherName,
                            date_birth as DateBirth,
+                           date_of_creation as DateOfCreation,
                            language as Language,
                            is_active as IsActive
                       from users
@@ -23,8 +24,8 @@ public class UserRepository(IDatabaseFactory LocalDatabase) : IUserRepository
 
     public async Task Insert(User user, CancellationToken cancellationToken)
     {
-        var sql = @"insert into users(name, cpf, mother_name, date_birth, language, is_active) 
-                    values (@Name, @CPF, @MotherName, @DateBirth, @Language, @IsActive)";
+        var sql = @"insert into users(name, cpf, mother_name, date_birth, date_of_creation, language, is_active) 
+                    values (@Name, @CPF, @MotherName, @DateBirth, @Language, @DateOfCreation, @IsActive)";
 
         var command = new CommandDefinition(sql, user, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         await LocalDatabase.Connection.ExecuteAsync(command);

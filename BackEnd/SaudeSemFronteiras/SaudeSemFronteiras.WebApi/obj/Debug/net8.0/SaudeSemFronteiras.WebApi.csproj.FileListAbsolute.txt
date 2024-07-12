@@ -4,3 +4,10 @@ C:\Users\Micro\Desktop\TCC\saude-sem-fronteiras\BackEnd\SaudeSemFronteiras\Saude
 C:\Users\Micro\Desktop\TCC\saude-sem-fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.WebApi\obj\Debug\net8.0\SaudeSemFronteiras.WebApi.AssemblyInfo.cs
 C:\Users\Micro\Desktop\TCC\saude-sem-fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.WebApi\obj\Debug\net8.0\SaudeSemFronteiras.WebApi.csproj.CoreCompileInputs.cache
 C:\Users\Micro\Desktop\TCC\saude-sem-fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.WebApi\obj\Debug\net8.0\SaudeSemFronteiras.WebApi.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.WebApi\obj\Debug\net8.0\SaudeSemFronteiras.WebApi.csproj.AssemblyReference.cache
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.WebApi\obj\Debug\net8.0\SaudeSemFronteiras.WebApi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.WebApi\obj\Debug\net8.0\SaudeSemFronteiras.WebApi.AssemblyInfoInputs.cache
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.WebApi\obj\Debug\net8.0\SaudeSemFronteiras.WebApi.AssemblyInfo.cs
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.WebApi\obj\Debug\net8.0\SaudeSemFronteiras.WebApi.csproj.CoreCompileInputs.cache
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.WebApi\obj\Debug\net8.0\SaudeSemFronteiras.WebApi.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.WebApi\obj\Debug\net8.0\SaudeSemFronteiras.WebApi.sourcelink.json

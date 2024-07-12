@@ -665,7 +665,8 @@
         "dependencies": {
           "CSharpFunctionalExtensions": "2.42.0",
           "MediatR": "12.2.0",
-          "Npgsql": "8.0.3"
+          "Npgsql": "8.0.3",
+          "SaudeSemFronteiras.Application": "1.0.0"
         },
         "compile": {
           "bin/placeholder/SaudeSemFronteiras.Common.dll": {}
