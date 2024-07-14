@@ -12,3 +12,16 @@ C:\Users\Micro\Desktop\TCC\saude-sem-fronteiras\BackEnd\SaudeSemFronteiras\Saude
 C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras\obj\Debug\net8.0\SaudeSemFronteiras.Application.dll
 C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras\obj\Debug\net8.0\refint\SaudeSemFronteiras.Application.dll
 C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras\obj\Debug\net8.0\SaudeSemFronteiras.Application.pdb
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras\obj\Debug\net8.0\SaudeSemFronteiras.Application.csproj.AssemblyReference.cache
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras\obj\Debug\net8.0\SaudeSemFronteiras.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras\obj\Debug\net8.0\SaudeSemFronteiras.Application.AssemblyInfoInputs.cache
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras\obj\Debug\net8.0\SaudeSemFronteiras.Application.AssemblyInfo.cs
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras\obj\Debug\net8.0\SaudeSemFronteiras.Application.csproj.CoreCompileInputs.cache
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras\obj\Debug\net8.0\SaudeSemFronteiras.Application.sourcelink.json
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras\bin\Debug\net8.0\SaudeSemFronteiras.Application.deps.json
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras\bin\Debug\net8.0\SaudeSemFronteiras.Application.dll
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras\bin\Debug\net8.0\SaudeSemFronteiras.Application.pdb
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras\bin\Debug\net8.0\SaudeSemFronteiras.Common.dll
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras\bin\Debug\net8.0\SaudeSemFronteiras.Common.pdb
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras\obj\Debug\net8.0\SaudeSem.05BE003C.Up2Date
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras\obj\Debug\net8.0\ref\SaudeSemFronteiras.Application.dll

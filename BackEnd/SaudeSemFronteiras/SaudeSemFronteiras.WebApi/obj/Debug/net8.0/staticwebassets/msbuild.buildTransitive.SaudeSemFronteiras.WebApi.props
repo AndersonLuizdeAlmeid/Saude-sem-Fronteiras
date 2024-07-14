@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\SaudeSemFronteiras.WebApi.props" />
+</Project>

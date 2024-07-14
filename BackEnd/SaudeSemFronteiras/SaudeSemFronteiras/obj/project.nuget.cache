@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "v8XOY80uOrivp0xthEeiZNERZMNN0Dk5V+oUgrxwIqEI6pfXjxhcRD5n1qmDk2NhFqOXD17j1E6yf35iyPPgEw==",
-  "success": false,
+  "dgSpecHash": "6hoACfy7+ic=",
+  "success": true,
   "projectFilePath": "C:\\Users\\Micro\\Desktop\\Projeto final\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras\\SaudeSemFronteiras.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Micro\\.nuget\\packages\\csharpfunctionalextensions\\2.42.0\\csharpfunctionalextensions.2.42.0.nupkg.sha512",
@@ -17,15 +17,5 @@
     "C:\\Users\\Micro\\.nuget\\packages\\npgsql\\8.0.3\\npgsql.8.0.3.nupkg.sha512",
     "C:\\Users\\Micro\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.3.1\\system.identitymodel.tokens.jwt.7.3.1.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1108",
-      "level": "Error",
-      "message": "Ciclo detectado. \r\n  SaudeSemFronteiras.Application -> SaudeSemFronteiras.Common -> SaudeSemFronteiras.Application.",
-      "libraryId": "SaudeSemFronteiras.Application",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  "logs": []
 }

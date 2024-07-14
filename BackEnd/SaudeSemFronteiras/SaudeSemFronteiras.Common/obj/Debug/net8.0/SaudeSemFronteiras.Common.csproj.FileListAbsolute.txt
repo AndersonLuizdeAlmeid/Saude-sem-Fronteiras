@@ -12,3 +12,13 @@ C:\Users\Micro\Desktop\TCC\saude-sem-fronteiras\BackEnd\SaudeSemFronteiras\Saude
 C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Common\obj\Debug\net8.0\SaudeSemFronteiras.Common.dll
 C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Common\obj\Debug\net8.0\refint\SaudeSemFronteiras.Common.dll
 C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Common\obj\Debug\net8.0\SaudeSemFronteiras.Common.pdb
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Common\bin\Debug\net8.0\SaudeSemFronteiras.Common.deps.json
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Common\bin\Debug\net8.0\SaudeSemFronteiras.Common.dll
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Common\bin\Debug\net8.0\SaudeSemFronteiras.Common.pdb
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Common\obj\Debug\net8.0\SaudeSemFronteiras.Common.csproj.AssemblyReference.cache
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Common\obj\Debug\net8.0\SaudeSemFronteiras.Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Common\obj\Debug\net8.0\SaudeSemFronteiras.Common.AssemblyInfoInputs.cache
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Common\obj\Debug\net8.0\SaudeSemFronteiras.Common.AssemblyInfo.cs
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Common\obj\Debug\net8.0\SaudeSemFronteiras.Common.csproj.CoreCompileInputs.cache
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Common\obj\Debug\net8.0\SaudeSemFronteiras.Common.sourcelink.json
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Common\obj\Debug\net8.0\ref\SaudeSemFronteiras.Common.dll

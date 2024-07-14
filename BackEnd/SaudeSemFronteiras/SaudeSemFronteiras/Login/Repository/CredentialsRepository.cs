@@ -1,12 +1,11 @@
 ﻿using Dapper;
 using SaudeSemFronteiras.Application.Login.Domain;
-using SaudeSemFronteiras.Application.Users.Domain;
 using SaudeSemFronteiras.Common.Factory.Interfaces;
 
 namespace SaudeSemFronteiras.Application.Login.Repository;
 public class CredentialsRepository(IDatabaseFactory LocalDatabase) : ICredentialsRepository
 {
-    public async Task<Credentials?> GetByID(long iD, CancellationToken cancellationToken)
+    public async Task<Credentials?> GetById(long iD, CancellationToken cancellationToken)
     {
         var sql = @"select id as ID, 
                            email as Email, 

@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using Npgsql;
+using System.Data;
 
 namespace SaudeSemFronteiras.Common.Factory.Interfaces;
 public interface IDatabaseFactory
