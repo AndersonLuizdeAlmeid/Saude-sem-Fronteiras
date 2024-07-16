@@ -7,7 +7,7 @@ public class UserRepository(IDatabaseFactory LocalDatabase) : IUserRepository
 {
     public async Task<User?> GetByID(long iD, CancellationToken cancellationToken)
     {
-        var sql = @"select id as ID, 
+        var sql = @"select id as Id, 
                            name as Name, 
                            cpf as CPF, 
                            mother_name as MotherName,
@@ -40,7 +40,7 @@ public class UserRepository(IDatabaseFactory LocalDatabase) : IUserRepository
                            date_birth = @DateBirth,
                            language = @Language,
                            is_active = @IsActive
-                     where id = @ID";
+                     where id = @Id";
 
         var command = new CommandDefinition(sql, user, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         await LocalDatabase.Connection.ExecuteAsync(command);

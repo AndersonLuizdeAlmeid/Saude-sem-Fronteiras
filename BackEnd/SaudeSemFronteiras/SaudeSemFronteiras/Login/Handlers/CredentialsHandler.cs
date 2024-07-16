@@ -10,11 +10,12 @@ public class CredentialsHandler : IRequestHandler<CreateCredentialsCommand, Resu
                                   IRequestHandler<ChangeCredentialsCommand, Result>
 {
     private readonly ICredentialsRepository _credentialsRepository;
-    private readonly CredentialsQueries credentialsQueries;
+    private readonly CredentialsQueries _credentialsQueries;
 
-    public CredentialsHandler(ICredentialsRepository credentialsRepository)
+    public CredentialsHandler(ICredentialsRepository credentialsRepository, CredentialsQueries credentialsQueries)
     {
         _credentialsRepository = credentialsRepository;
+        _credentialsQueries = credentialsQueries;
     }
 
     public async Task<Result> Handle(CreateCredentialsCommand request, CancellationToken cancellationToken)
@@ -24,7 +25,7 @@ public class CredentialsHandler : IRequestHandler<CreateCredentialsCommand, Resu
         if (validationResult.IsFailure)
             return validationResult;
 
-        var validateEmail = credentialsQueries.GetIfEmailExists(request.Email, cancellationToken);
+        var validateEmail = _credentialsQueries.GetIfEmailExists(request.Email, cancellationToken);
         if (validateEmail.Result == 0)
             return Result.Failure("Email já existe");
 

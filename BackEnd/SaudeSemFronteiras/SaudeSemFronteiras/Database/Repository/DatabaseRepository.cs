@@ -42,4 +42,20 @@ public class DatabaseRepository : IDatabaseRepository
         await LocalDatabase.Connection.ExecuteAsync(sql, transaction: LocalDatabase.Transaction);
 
     }
+
+    public async Task CreateAddressesTable()
+    {
+        var sql = @"CREATE TABLE IF NOT EXISTS 
+                        Addresses (
+                            id BIGINT PRIMARY KEY,
+                            district VARCHAR(255) NOT NULL,
+                            street VARCHAR(255) NOT NULL,
+                            number VARCHAR(10) NOT NULL,
+                            complement VARCHAR(255),
+                            city_id BIGINT FOREIGN KEY
+                        )";
+
+        await LocalDatabase.Connection.ExecuteAsync(sql, transaction: LocalDatabase.Transaction);
+
+    }
 }

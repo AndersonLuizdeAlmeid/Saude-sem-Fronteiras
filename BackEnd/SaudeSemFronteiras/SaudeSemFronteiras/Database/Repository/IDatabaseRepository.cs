@@ -5,4 +5,5 @@ public interface IDatabaseRepository : ILocalDatabaseRepository
 {
     Task CreateLoginsTable();
     Task CreateUsersTable();
+    Task CreateAddressesTable();
 }
