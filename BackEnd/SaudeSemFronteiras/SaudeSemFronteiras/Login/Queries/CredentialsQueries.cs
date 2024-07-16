@@ -17,4 +17,14 @@ public class CredentialsQueries(IDatabaseFactory _databaseFactory) : ICredential
         var command = new CommandDefinition(sql, new { email, password }, transaction: _databaseFactory.Transaction, cancellationToken: cancellationToken);
         return await _databaseFactory.Connection.QueryFirstOrDefaultAsync<CredentialsDto>(command);
     }
+
+    public async Task<int> GetIfEmailExists(string email, CancellationToken cancellationToken)
+    {
+        var sql = @"SELECT count(id)
+                      FROM logins
+                     where email = @email";
+
+        var command = new CommandDefinition(sql, new { email }, transaction: _databaseFactory.Transaction, cancellationToken: cancellationToken);
+        return await _databaseFactory.Connection.QueryFirstOrDefaultAsync<int>(command);
+    }
 }

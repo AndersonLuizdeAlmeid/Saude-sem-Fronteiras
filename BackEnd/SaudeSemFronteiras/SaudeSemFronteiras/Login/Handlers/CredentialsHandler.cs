@@ -2,6 +2,7 @@
 using MediatR;
 using SaudeSemFronteiras.Application.Login.Commands;
 using SaudeSemFronteiras.Application.Login.Domain;
+using SaudeSemFronteiras.Application.Login.Queries;
 using SaudeSemFronteiras.Application.Login.Repository;
 
 namespace SaudeSemFronteiras.Application.Login.Handlers;
@@ -9,6 +10,7 @@ public class CredentialsHandler : IRequestHandler<CreateCredentialsCommand, Resu
                                   IRequestHandler<ChangeCredentialsCommand, Result>
 {
     private readonly ICredentialsRepository _credentialsRepository;
+    private readonly CredentialsQueries credentialsQueries;
 
     public CredentialsHandler(ICredentialsRepository credentialsRepository)
     {
@@ -21,6 +23,10 @@ public class CredentialsHandler : IRequestHandler<CreateCredentialsCommand, Resu
 
         if (validationResult.IsFailure)
             return validationResult;
+
+        var validateEmail = credentialsQueries.GetIfEmailExists(request.Email, cancellationToken);
+        if (validateEmail.Result == 0)
+            return Result.Failure("Email já existe");
 
         var credentials = Credentials.Create(request.Email, request.Password);
 
