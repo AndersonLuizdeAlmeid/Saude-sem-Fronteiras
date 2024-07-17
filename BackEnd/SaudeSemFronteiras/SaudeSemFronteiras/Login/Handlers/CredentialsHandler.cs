@@ -10,9 +10,9 @@ public class CredentialsHandler : IRequestHandler<CreateCredentialsCommand, Resu
                                   IRequestHandler<ChangeCredentialsCommand, Result>
 {
     private readonly ICredentialsRepository _credentialsRepository;
-    private readonly CredentialsQueries _credentialsQueries;
+    private readonly ICredentialsQueries _credentialsQueries;
 
-    public CredentialsHandler(ICredentialsRepository credentialsRepository, CredentialsQueries credentialsQueries)
+    public CredentialsHandler(ICredentialsRepository credentialsRepository, ICredentialsQueries credentialsQueries)
     {
         _credentialsRepository = credentialsRepository;
         _credentialsQueries = credentialsQueries;

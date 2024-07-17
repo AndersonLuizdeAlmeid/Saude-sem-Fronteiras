@@ -22,8 +22,8 @@ public class User
         IsActive = isActive;
     }
 
-    public static User Create(string name, string cpf, string motherName, DateTime dateBirth, DateTime dateOfCreation, string language) =>
-        new(0, name, cpf, motherName, dateBirth, DateTime.Now, language, true);
+    public static User Create(string name, string cpf, string motherName, DateTime dateBirth, DateTime dateOfCreation, string language, bool isActive) =>
+        new(0, name, cpf, motherName, dateBirth, DateTime.Now, language, isActive);
 
     public void Update(string name, string cpf, string motherName, DateTime dateBirth, string language, bool isActive)
     {

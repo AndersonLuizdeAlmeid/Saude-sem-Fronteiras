@@ -17,7 +17,7 @@ public class DatabaseRepository : IDatabaseRepository
     {
         var sql = @"CREATE TABLE IF NOT EXISTS 
                         Users (
-                            id BIGINT PRIMARY KEY,
+                            id SERIAL PRIMARY KEY NOT NULL,
                             name VARCHAR(255) NOT NULL,
                             cpf VARCHAR(14) NOT NULL,
                             mother_name VARCHAR(255) NOT NULL,
@@ -34,7 +34,7 @@ public class DatabaseRepository : IDatabaseRepository
     {
         var sql = @"CREATE TABLE IF NOT EXISTS 
                         Logins (
-                            id BIGINT PRIMARY KEY,
+                            id SERIAL PRIMARY KEY NOT NULL,
                             email VARCHAR(255) NOT NULL,
                             password VARCHAR(255) NOT NULL
                         )";
@@ -47,7 +47,7 @@ public class DatabaseRepository : IDatabaseRepository
     {
         var sql = @"CREATE TABLE IF NOT EXISTS 
                         Addresses (
-                            id BIGINT PRIMARY KEY,
+                            id SERIAL PRIMARY KEY NOT NULL,
                             district VARCHAR(255) NOT NULL,
                             street VARCHAR(255) NOT NULL,
                             number VARCHAR(10) NOT NULL,

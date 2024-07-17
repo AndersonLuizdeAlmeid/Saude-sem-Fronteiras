@@ -22,7 +22,7 @@ public class UserHandler : IRequestHandler<CreateUserCommand, Result>,
         if (validationResult.IsFailure)
             return validationResult;
 
-        var user = User.Create(request.Name, request.CPF, request.MotherName, request.DateBirth, DateTime.Now, request.Language);
+        var user = User.Create(request.Name, request.CPF, request.MotherName, request.DateBirth, DateTime.Now, request.Language, true);
 
         await _userRepository.Insert(user, cancellationToken);
 
