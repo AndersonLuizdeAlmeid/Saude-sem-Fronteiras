@@ -16,7 +16,7 @@ public class DatabaseRepository : IDatabaseRepository
     public async Task CreateUsersTable()
     {
         var sql = @"CREATE TABLE IF NOT EXISTS 
-                        Users (
+                        users (
                             id SERIAL PRIMARY KEY NOT NULL,
                             name VARCHAR(255) NOT NULL,
                             cpf VARCHAR(14) NOT NULL,
@@ -24,7 +24,7 @@ public class DatabaseRepository : IDatabaseRepository
                             date_birth TIMESTAMP NOT NULL,
                             date_of_creation TIMESTAMP NOT NULL,
                             language VARCHAR(50) NOT NULL,
-                            isActive BOOLEAN NOT NULL
+                            is_active BOOLEAN NOT NULL
                         )";
 
         await LocalDatabase.Connection.ExecuteAsync(sql, transaction: LocalDatabase.Transaction);
@@ -33,7 +33,7 @@ public class DatabaseRepository : IDatabaseRepository
     public async Task CreateLoginsTable()
     {
         var sql = @"CREATE TABLE IF NOT EXISTS 
-                        Logins (
+                        logins (
                             id SERIAL PRIMARY KEY NOT NULL,
                             email VARCHAR(255) NOT NULL,
                             password VARCHAR(255) NOT NULL
@@ -43,19 +43,56 @@ public class DatabaseRepository : IDatabaseRepository
 
     }
 
+    public async Task CreateCountriesTable()
+    {
+        var sql = @"CREATE TABLE IF NOT EXISTS 
+                        countries (
+                            id SERIAL PRIMARY KEY NOT NULL,
+                            description VARCHAR(255) NOT NULL
+                        )";
+
+        await LocalDatabase.Connection.ExecuteAsync(sql, transaction: LocalDatabase.Transaction);
+    }
+
+    public async Task CreateStatesTable()
+    {
+        var sql = @"CREATE TABLE IF NOT EXISTS 
+                        states (
+                            id SERIAL PRIMARY KEY NOT NULL,
+                            description VARCHAR(255) NOT NULL,
+                            country_id BIGINT,
+                            FOREIGN KEY (country_id) REFERENCES countries(id)
+                        )";
+
+        await LocalDatabase.Connection.ExecuteAsync(sql, transaction: LocalDatabase.Transaction);
+    }
+
+    public async Task CreateCitiesTable()
+    {
+        var sql = @"CREATE TABLE IF NOT EXISTS 
+                        cities (
+                            id SERIAL PRIMARY KEY NOT NULL,
+                            description VARCHAR(255) NOT NULL,
+                            state_id BIGINT,
+                            FOREIGN KEY (state_id) REFERENCES states(id)
+                        )";
+
+        await LocalDatabase.Connection.ExecuteAsync(sql, transaction: LocalDatabase.Transaction);
+    }
+
     public async Task CreateAddressesTable()
     {
         var sql = @"CREATE TABLE IF NOT EXISTS 
-                        Addresses (
+                        addresses (
                             id SERIAL PRIMARY KEY NOT NULL,
                             district VARCHAR(255) NOT NULL,
                             street VARCHAR(255) NOT NULL,
                             number VARCHAR(10) NOT NULL,
                             complement VARCHAR(255),
-                            city_id BIGINT FOREIGN KEY
+                            city_id BIGINT,
+                            FOREIGN KEY (city_id) REFERENCES cities(id)
                         )";
 
         await LocalDatabase.Connection.ExecuteAsync(sql, transaction: LocalDatabase.Transaction);
-
     }
 }
