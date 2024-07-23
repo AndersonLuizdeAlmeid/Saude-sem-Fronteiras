@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Micro\\Desktop\\Projeto final\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras.Common\\SaudeSemFronteiras.Common.csproj": {}
+    "C:\\Users\\jeana\\source\\repos\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras.Common\\SaudeSemFronteiras.Common.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Micro\\Desktop\\Projeto final\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras.Common\\SaudeSemFronteiras.Common.csproj": {
+    "C:\\Users\\jeana\\source\\repos\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras.Common\\SaudeSemFronteiras.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Micro\\Desktop\\Projeto final\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras.Common\\SaudeSemFronteiras.Common.csproj",
+        "projectUniqueName": "C:\\Users\\jeana\\source\\repos\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras.Common\\SaudeSemFronteiras.Common.csproj",
         "projectName": "SaudeSemFronteiras.Common",
-        "projectPath": "C:\\Users\\Micro\\Desktop\\Projeto final\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras.Common\\SaudeSemFronteiras.Common.csproj",
-        "packagesPath": "C:\\Users\\Micro\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Micro\\Desktop\\Projeto final\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras.Common\\obj\\",
+        "projectPath": "C:\\Users\\jeana\\source\\repos\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras.Common\\SaudeSemFronteiras.Common.csproj",
+        "packagesPath": "C:\\Users\\jeana\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jeana\\source\\repos\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras.Common\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Micro\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\jeana\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
