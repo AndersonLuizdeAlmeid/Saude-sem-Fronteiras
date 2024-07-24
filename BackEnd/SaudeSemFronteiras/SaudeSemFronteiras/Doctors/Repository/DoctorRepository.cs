@@ -11,8 +11,7 @@ public class DoctorRepository(IDatabaseFactory LocalDatabase) : IDoctorRepositor
                            registry_number as RegistryNumber, 
                            avaibality_hours as AvaibalityHours, 
                            consultation_price as ConsultationPrince,
-                           user_id as IdUser,
-                           appointment_id as IdAppointment
+                           user_id as IdUser
                       from doctors
                      where id = @iD";
 
@@ -21,8 +20,8 @@ public class DoctorRepository(IDatabaseFactory LocalDatabase) : IDoctorRepositor
     }
     public async Task Insert(Doctor doctor, CancellationToken cancellationToken)
     {
-        var sql = @"insert into doctors(registry_number, avaibality_hours, consultation_price, user_id, appointment_id) 
-                    values (@RegistryNumber, @AvaibalityHours, @ConsultationPrince, @IdUser, @IdAppointment)";
+        var sql = @"insert into doctors(registry_number, avaibality_hours, consultation_price, user_id) 
+                    values (@RegistryNumber, @AvaibalityHours, @ConsultationPrince, @IdUser)";
 
         var command = new CommandDefinition(sql, doctor, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         await LocalDatabase.Connection.ExecuteAsync(command);
@@ -34,8 +33,7 @@ public class DoctorRepository(IDatabaseFactory LocalDatabase) : IDoctorRepositor
                        set registry_number = @RegistryNumber, 
                            avaibality_hours = @AvaibalityHours, 
                            consultation_price = @ConsultationPrince,
-                           user_id = @IdUser,
-                           appointment_id = @IdAppointment
+                           user_id = @IdUser
                      where id = @Id";
 
         var command = new CommandDefinition(sql, doctor, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);

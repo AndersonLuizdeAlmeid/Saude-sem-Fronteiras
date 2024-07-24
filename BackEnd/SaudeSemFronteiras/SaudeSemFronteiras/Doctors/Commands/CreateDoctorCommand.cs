@@ -9,7 +9,6 @@ public class CreateDoctorCommand : IRequest<Result>
     public string AvaibalityHours { get; set; } = string.Empty;
     public decimal ConsultationPrince { get; set; }
     public long IdUser { get; set; }
-    public long IdAppointment { get; set; }
 
     public Result Validation()
     {
@@ -21,8 +20,6 @@ public class CreateDoctorCommand : IRequest<Result>
             return Result.Failure("Preço de consulta não pode ser nulo");
         if (IdUser.ToString().IsNullOrEmpty())
             return Result.Failure("Usuário não pode ser nulo");
-        if (IdAppointment.ToString().IsNullOrEmpty())
-            return Result.Failure("Código da consulta não pode ser nulo");
 
         return Result.Success();
     }
