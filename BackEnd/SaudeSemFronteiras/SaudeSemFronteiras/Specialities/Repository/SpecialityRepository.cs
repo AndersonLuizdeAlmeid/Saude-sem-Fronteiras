@@ -10,6 +10,7 @@ public class SpecialityRepository(IDatabaseFactory LocalDatabase) : ISpecialityR
         var sql = @"select id as Id, 
                            description as Description, 
                            is_active as IsActive,
+                           id_doctor as IdDoctor
                       from specialities
                      where id = @iD";
 
@@ -19,8 +20,8 @@ public class SpecialityRepository(IDatabaseFactory LocalDatabase) : ISpecialityR
 
     public async Task Insert(Speciality speciality, CancellationToken cancellationToken)
     {
-        var sql = @"insert into specialities(description, is_active) 
-                                 values (@Description, @IsActive)";
+        var sql = @"insert into specialities(description, is_active, id_doctor) 
+                                 values (@Description, @IsActive, @IdDoctor)";
         var command = new CommandDefinition(sql, speciality, transaction:  LocalDatabase.Transaction, cancellationToken: cancellationToken);
         await LocalDatabase.Connection.ExecuteAsync(command);
     }
@@ -29,7 +30,8 @@ public class SpecialityRepository(IDatabaseFactory LocalDatabase) : ISpecialityR
     {
         var sql = @"update specialities
                        set description = @Description, 
-                           is_active = @IsActive
+                           is_active = @IsActive,
+                           id_doctor = @IdDoctor
                      where id = @Id";
 
         var command = new CommandDefinition(sql, speciality, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
