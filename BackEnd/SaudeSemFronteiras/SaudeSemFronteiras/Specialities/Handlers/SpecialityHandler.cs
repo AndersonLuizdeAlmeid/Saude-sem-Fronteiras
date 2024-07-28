@@ -45,7 +45,4 @@ public class SpecialityHandler : IRequestHandler<CreateSpecialityCommand, Result
         
         return Result.Success();
     }
-
-
-
 }
