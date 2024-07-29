@@ -5,5 +5,5 @@ public interface IEmergencyRepository
 {
     Task<Emergency?> GetById(long iD, CancellationToken cancellationToken);
     Task Insert(Emergency emergency, CancellationToken cancellationToken);
-    Task Update(Emergency emergency, CancellationToken cancellationToken)
+    Task Update(Emergency emergency, CancellationToken cancellationToken);
 }

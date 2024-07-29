@@ -3,8 +3,6 @@ using MediatR;
 using SaudeSemFronteiras.Application.Scheduled.Commands;
 using SaudeSemFronteiras.Application.Scheduled.Domain;
 using SaudeSemFronteiras.Application.Scheduled.Repository;
-using SaudeSemFronteiras.Application.Specialities.Commands;
-using SaudeSemFronteiras.Application.Specialities.Domain;
 
 namespace SaudeSemFronteiras.Application.Scheduled.Handlers;
 public class ScheduleHandler : IRequestHandler<CreateScheduleCommand, Result>,
@@ -34,7 +32,7 @@ public class ScheduleHandler : IRequestHandler<CreateScheduleCommand, Result>,
     {
         var schedule = await _scheduleRepository.GetById(request.Id, cancellationToken);
         if (schedule == null)
-            return Result.Failure("Especialidade não encontrada");
+            return Result.Failure("Consulta agendada não encontrada");
 
         var validationResult = request.Validation();
 
