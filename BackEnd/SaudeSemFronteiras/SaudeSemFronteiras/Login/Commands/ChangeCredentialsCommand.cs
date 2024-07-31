@@ -1,5 +1,6 @@
 ﻿using CSharpFunctionalExtensions;
 using MediatR;
+using Microsoft.IdentityModel.Tokens;
 
 namespace SaudeSemFronteiras.Application.Login.Commands;
 public class ChangeCredentialsCommand : IRequest<Result>
@@ -9,6 +10,8 @@ public class ChangeCredentialsCommand : IRequest<Result>
     public string Password { get; set; } = string.Empty;
     public Result Validation()
     {
+        if (Id.ToString().IsNullOrEmpty())
+            return Result.Failure("Código do login não pode ser nulo");
         if (string.IsNullOrEmpty(Email))
             return Result.Failure("Email não pode ser nulo");
         if (string.IsNullOrEmpty(Password))

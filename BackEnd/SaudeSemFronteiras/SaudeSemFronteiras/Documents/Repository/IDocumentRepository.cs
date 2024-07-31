@@ -1,5 +1,4 @@
 ﻿using SaudeSemFronteiras.Application.Documents.Domain;
-using SaudeSemFronteiras.Application.Specialities.Domain;
 
 namespace SaudeSemFronteiras.Application.Documents.Repository;
 public interface IDocumentRepository

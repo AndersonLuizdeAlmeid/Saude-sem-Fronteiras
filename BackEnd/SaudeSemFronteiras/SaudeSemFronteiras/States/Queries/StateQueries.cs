@@ -11,7 +11,7 @@ public class StateQueries(IDatabaseFactory databaseFactory) :IStateQueries
     {
         var sql = @"SELECT id as ID, 
                            description as Description
-                      FROM countries ";
+                      FROM states ";
 
         var command = new CommandDefinition(sql, transaction: _databaseFactory.Transaction, cancellationToken: cancellationToken);
         return await _databaseFactory.Connection.QueryAsync<StateDto>(command);

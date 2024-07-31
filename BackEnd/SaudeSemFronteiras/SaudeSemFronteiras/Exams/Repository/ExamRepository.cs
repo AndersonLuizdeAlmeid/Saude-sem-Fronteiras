@@ -13,7 +13,8 @@ public class ExamRepository(IDatabaseFactory LocalDatabase) : IExamRepository
                            date_exam as DateExam,
                            local_exam as LocalExam,
                            results as Results,
-                           comments as Comments
+                           comments as Comments,
+                           document_id as DocumentId
                       from exams
                      where id = @iD";
 
@@ -23,8 +24,8 @@ public class ExamRepository(IDatabaseFactory LocalDatabase) : IExamRepository
 
     public async Task Insert(Exam exam, CancellationToken cancellationToken)
     {
-        var sql = @"insert into exams(title, description, date_exam, local_exam, results, comments) 
-                              values (@Title, @Description, @DateExam, @LocalExam, @Results, @Comments)";
+        var sql = @"insert into exams(title, description, date_exam, local_exam, results, comments, document_id) 
+                              values (@Title, @Description, @DateExam, @LocalExam, @Results, @Comments, @DocumentId)";
         var command = new CommandDefinition(sql, exam, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         await LocalDatabase.Connection.ExecuteAsync(command);
     }
@@ -37,7 +38,8 @@ public class ExamRepository(IDatabaseFactory LocalDatabase) : IExamRepository
                            date_exam = @DateExam,
                            local_exam = @LocalExam,
                            results = @Results,
-                           comments = @Comments
+                           comments = @Comments,
+                           document_id = @DocumentId
                      where id = @Id";
 
         var command = new CommandDefinition(sql, exam, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);

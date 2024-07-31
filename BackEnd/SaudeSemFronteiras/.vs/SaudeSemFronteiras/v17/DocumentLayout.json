@@ -1,16 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\jeana\\source\\repos\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{D8D39A77-28EA-48FC-AAE3-AB05D23C82EF}|SaudeSemFronteiras\\SaudeSemFronteiras.Application.csproj|c:\\users\\jeana\\source\\repos\\saude-sem-fronteiras\\backend\\saudesemfronteiras\\saudesemfronteiras\\chat\\queries\\chatqueries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D8D39A77-28EA-48FC-AAE3-AB05D23C82EF}|SaudeSemFronteiras\\SaudeSemFronteiras.Application.csproj|solutionrelative:saudesemfronteiras\\chat\\queries\\chatqueries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D8D39A77-28EA-48FC-AAE3-AB05D23C82EF}|SaudeSemFronteiras\\SaudeSemFronteiras.Application.csproj|c:\\users\\jeana\\source\\repos\\saude-sem-fronteiras\\backend\\saudesemfronteiras\\saudesemfronteiras\\chat\\queries\\ichatqueries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D8D39A77-28EA-48FC-AAE3-AB05D23C82EF}|SaudeSemFronteiras\\SaudeSemFronteiras.Application.csproj|solutionrelative:saudesemfronteiras\\chat\\queries\\ichatqueries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -18,37 +9,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ChatQueries.cs",
-              "DocumentMoniker": "C:\\Users\\jeana\\source\\repos\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras\\Chat\\Queries\\ChatQueries.cs",
-              "RelativeDocumentMoniker": "SaudeSemFronteiras\\Chat\\Queries\\ChatQueries.cs",
-              "ToolTip": "C:\\Users\\jeana\\source\\repos\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras\\Chat\\Queries\\ChatQueries.cs",
-              "RelativeToolTip": "SaudeSemFronteiras\\Chat\\Queries\\ChatQueries.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-29T22:52:21.304Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "IChatQueries.cs",
-              "DocumentMoniker": "C:\\Users\\jeana\\source\\repos\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras\\Chat\\Queries\\IChatQueries.cs",
-              "RelativeDocumentMoniker": "SaudeSemFronteiras\\Chat\\Queries\\IChatQueries.cs",
-              "ToolTip": "C:\\Users\\jeana\\source\\repos\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras\\Chat\\Queries\\IChatQueries.cs",
-              "RelativeToolTip": "SaudeSemFronteiras\\Chat\\Queries\\IChatQueries.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-29T22:50:30.969Z",
-              "EditorCaption": ""
             }
           ]
         }

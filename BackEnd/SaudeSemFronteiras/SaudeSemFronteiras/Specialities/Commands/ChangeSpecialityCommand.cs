@@ -17,7 +17,7 @@ public class ChangeSpecialityCommand : IRequest<Result>
         if (Description.ToString().IsNullOrEmpty())
             return Result.Failure("Descrição da especialidade não pode ser nula");
         if (IsActive.ToString().IsNullOrEmpty())
-            return Result.Failure("Status de atividade não pode ser nulo");
+            return Result.Failure("É necessário estar ativa ou inativa a especialidade");
         if (IdDoctor.ToString().IsNullOrEmpty())
             return Result.Failure("Código do médico não pode ser nulo");
 

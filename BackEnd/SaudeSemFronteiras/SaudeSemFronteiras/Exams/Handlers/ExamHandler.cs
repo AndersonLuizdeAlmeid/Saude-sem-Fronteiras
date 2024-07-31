@@ -22,7 +22,7 @@ public class ExamHandler : IRequestHandler<CreateExamCommand, Result>,
         if (validationResult.IsFailure)
             return validationResult;
 
-        var exam = Exam.Create(request.Title, request.Description, DateTime.Now, request.LocalExam, request.Results, request.Comments);
+        var exam = Exam.Create(request.Title, request.Description, DateTime.Now, request.LocalExam, request.Results, request.Comments, request.DocumentId);
 
         await _examRepository.Insert(exam, cancellationToken);
         return Result.Success();
@@ -39,7 +39,7 @@ public class ExamHandler : IRequestHandler<CreateExamCommand, Result>,
         if (validationResult.IsFailure)
             return validationResult;
 
-        exam.Update(request.Title, request.Description, DateTime.Now, request.LocalExam, request.Results, request.Comments);
+        exam.Update(request.Title, request.Description, DateTime.Now, request.LocalExam, request.Results, request.Comments, request.DocumentId);
 
         await _examRepository.Update(exam, cancellationToken);
 

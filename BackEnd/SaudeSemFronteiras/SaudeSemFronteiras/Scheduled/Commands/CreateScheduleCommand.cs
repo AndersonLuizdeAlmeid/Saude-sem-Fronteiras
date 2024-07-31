@@ -17,7 +17,7 @@ public class CreateScheduleCommand : IRequest<Result>
         if (ScheduledDate.ToString().IsNullOrEmpty())
             return Result.Failure("Data da consulta não pode ser nulo.");
         if (IsActive.ToString().IsNullOrEmpty())
-            return Result.Failure("Valor da atividade não pode ser nulo.");
+            return Result.Failure("É necessário estar ativa ou inativa a consulta");
         if (AppointmentId.ToString().IsNullOrEmpty())
             return Result.Failure("Código da consulta não pode ser nulo.");
 

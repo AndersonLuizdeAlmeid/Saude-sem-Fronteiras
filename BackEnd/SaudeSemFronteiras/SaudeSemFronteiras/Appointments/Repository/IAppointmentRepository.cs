@@ -1,6 +1,4 @@
 ﻿using SaudeSemFronteiras.Application.Appointments.Domain;
-using SaudeSemFronteiras.Application.Users.Domain;
-
 namespace SaudeSemFronteiras.Application.Appointments.Repository;
 public interface IAppointmentRepository
 {

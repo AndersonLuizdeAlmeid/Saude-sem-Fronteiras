@@ -1,5 +1,6 @@
 ﻿using CSharpFunctionalExtensions;
 using MediatR;
+using Microsoft.IdentityModel.Tokens;
 
 namespace SaudeSemFronteiras.Application.Users.Commands;
 public class ChangeUserCommand : IRequest<Result>
@@ -14,6 +15,8 @@ public class ChangeUserCommand : IRequest<Result>
 
     public Result Validation()
     {
+        if (Id.ToString().IsNullOrEmpty())
+            return Result.Failure("Código do usuário não pode ser nulo");
         if (string.IsNullOrEmpty(Name))
             return Result.Failure("Nome não pode ser nulo");
         if (string.IsNullOrEmpty(CPF))

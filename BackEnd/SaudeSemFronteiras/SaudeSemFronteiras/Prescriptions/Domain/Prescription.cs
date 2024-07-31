@@ -1,4 +1,5 @@
 ﻿namespace SaudeSemFronteiras.Application.Prescriptions.Domain;
+
 public class Prescription
 {
     public long Id { get; private set; }
