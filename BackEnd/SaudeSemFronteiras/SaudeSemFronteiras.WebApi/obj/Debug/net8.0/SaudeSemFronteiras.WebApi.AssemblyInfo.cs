@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SaudeSemFronteiras.WebApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dd5aa44fb4daae97b5c26fe1530c893a23ee4345")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+142eb720a658300563f44a8e8b5e3294311a3555")]
 [assembly: System.Reflection.AssemblyProductAttribute("SaudeSemFronteiras.WebApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SaudeSemFronteiras.WebApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

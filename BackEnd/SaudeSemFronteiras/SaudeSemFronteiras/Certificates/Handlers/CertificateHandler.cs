@@ -5,8 +5,8 @@ using SaudeSemFronteiras.Application.Certificates.Domain;
 using SaudeSemFronteiras.Application.Certificates.Repository;
 
 namespace SaudeSemFronteiras.Application.Certificates.Handlers;
-internal class CertificateHandler : IRequestHandler<CreateCertificateCommand, Result>,
-                                    IRequestHandler<ChangeCertificateCommand, Result>
+public class CertificateHandler : IRequestHandler<CreateCertificateCommand, Result>,
+                                  IRequestHandler<ChangeCertificateCommand, Result>
 {
     private readonly ICertificateRepository _certificateRepository;
 
@@ -47,6 +47,4 @@ internal class CertificateHandler : IRequestHandler<CreateCertificateCommand, Re
 
         return Result.Success();
     }
-
-
 }
