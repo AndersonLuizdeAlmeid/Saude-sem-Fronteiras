@@ -12,9 +12,12 @@ public class CreateSpecialityCommand : IRequest<Result>
 
     public Result Validation()
     {
-         if (Description.ToString().IsNullOrEmpty())
+        if (Description.ToString().IsNullOrEmpty())
             return Result.Failure("Descrição da especialidade não pode ser nula");
+        if (IsActive.ToString().IsNullOrEmpty())
+            return Result.Failure("É necessário estar ativa ou inativa a especialidade");
         if (IdDoctor.ToString().IsNullOrEmpty())
+            if (IdDoctor.ToString().IsNullOrEmpty())
             return Result.Failure("Código do médico não pode ser nulo");
 
         return Result.Success();

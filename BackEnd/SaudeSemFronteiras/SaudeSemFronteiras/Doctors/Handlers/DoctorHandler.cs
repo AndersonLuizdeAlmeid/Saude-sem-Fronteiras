@@ -38,13 +38,12 @@ public class DoctorHandler : IRequestHandler<CreateDoctorCommand, Result>,
 
         var doctor = await _doctorRepository.GetById(request.Id, cancellationToken);
         if (doctor == null)
-            return Result.Failure("Não foi possível encontrar o doutor.");
+            return Result.Failure("Não foi possível encontrar o médico.");
 
         doctor.Update(request.RegistryNumber, request.AvaibalityHours, request.ConsultationPrince, request.IdUser);
 
         await _doctorRepository.Update(doctor, cancellationToken);
 
         return Result.Success();
-
     }
 }

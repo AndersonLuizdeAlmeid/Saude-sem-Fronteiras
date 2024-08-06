@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaudeSemFronteiras.Applicat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaudeSemFronteiras.Common", "SaudeSemFronteiras.Common\SaudeSemFronteiras.Common.csproj", "{8994213D-DCA9-40E5-82C6-B6759F1718F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaudeSemFronteiras.WebApi", "SaudeSemFronteiras.WebApi\SaudeSemFronteiras.WebApi.csproj", "{1E5C3324-DF7B-4934-AB33-845F93981F73}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaudeSemFronteiras.WebApi", "SaudeSemFronteiras.WebApi\SaudeSemFronteiras.WebApi.csproj", "{1E5C3324-DF7B-4934-AB33-845F93981F73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

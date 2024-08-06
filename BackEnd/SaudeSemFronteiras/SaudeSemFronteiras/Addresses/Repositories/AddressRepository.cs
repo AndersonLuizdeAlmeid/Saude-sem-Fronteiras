@@ -22,7 +22,7 @@ public class AddressRepository(IDatabaseFactory LocalDatabase) : IAddressReposit
 
     public async Task Insert(Address address, CancellationToken cancellationToken)
     {
-        var sql = @"insert into users(id, district, street, number, complement, city_id) 
+        var sql = @"insert into addresses(id, district, street, number, complement, city_id) 
                     values (@Id, @District, @Street, @Number, @Complement, @CityId)";
 
         var command = new CommandDefinition(sql, address, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
@@ -31,7 +31,7 @@ public class AddressRepository(IDatabaseFactory LocalDatabase) : IAddressReposit
 
     public async Task Update(Address address, CancellationToken cancellationToken)
     {
-        var sql = @"update users
+        var sql = @"update addresses
                        set district = @District,
                            street = @Street,
                            number = @Number,

@@ -1,6 +1,5 @@
 ﻿using Dapper;
 using SaudeSemFronteiras.Application.Countries.Dtos;
-using SaudeSemFronteiras.Application.Users.Dtos;
 using SaudeSemFronteiras.Common.Factory.Interfaces;
 
 namespace SaudeSemFronteiras.Application.Countries.Queries;

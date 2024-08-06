@@ -34,7 +34,7 @@ public class PrescritpionHandler : IRequestHandler<CreatePrescriptionCommand, Re
         //TODO Ver possibilidade de bloquear quando tiver consultas abertas.
         var prescription = await _prescriptionRepository.GetByID(request.Id, cancellationToken);
         if (prescription == null)
-            return Result.Failure("Usuário não encontrado");
+            return Result.Failure("Receita não encontrado");
 
         var validationResult = request.Validation();
 

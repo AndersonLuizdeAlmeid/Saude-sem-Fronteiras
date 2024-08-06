@@ -18,11 +18,11 @@ public class ChangePrescriptionCommand : IRequest<Result>
     public Result Validation()
     {
         if (Id.ToString().IsNullOrEmpty())
-            return Result.Failure("Código do receita não pode ser nulo.");
+            return Result.Failure("Código da receita não pode ser nulo.");
         if (IssuanceDate.ToString().IsNullOrEmpty())
             return Result.Failure("Data de emissão receita não pode ser nulo.");
         if (Title.IsNullOrEmpty())
-            return Result.Failure("Título do receita não pode ser nulo.");
+            return Result.Failure("Título da receita não pode ser nulo.");
         if (Description.IsNullOrEmpty())
             return Result.Failure("Descrição do receita não pode ser nulo.");
         if (Instructions.IsNullOrEmpty())

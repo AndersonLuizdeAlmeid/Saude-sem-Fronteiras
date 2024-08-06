@@ -1,7 +1,6 @@
 ﻿using CSharpFunctionalExtensions;
 using MediatR;
 using Microsoft.IdentityModel.Tokens;
-using System.Xml.Linq;
 
 namespace SaudeSemFronteiras.Application.Doctors.Commands;
 public class ChangeDoctorCommand : IRequest<Result>
@@ -14,6 +13,8 @@ public class ChangeDoctorCommand : IRequest<Result>
 
     public Result Validation()
     {
+        if (Id.ToString().IsNullOrEmpty())
+            return Result.Failure("Código do médico não pode ser nulo");
         if (string.IsNullOrEmpty(RegistryNumber))
             return Result.Failure("Número do registro não pode ser nulo");
         if (string.IsNullOrEmpty(AvaibalityHours))

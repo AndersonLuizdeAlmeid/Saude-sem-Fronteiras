@@ -31,7 +31,7 @@ public class EmergencyHandler : IRequestHandler<CreateEmergencyCommand, Result>,
     {
         var Emergency = await _emergencyRepository.GetById(request.Id, cancellationToken);
         if (Emergency == null)
-            return Result.Failure("Especialidade não encontrada");
+            return Result.Failure("Consulta emergencial não encontrada");
 
         var validationResult = request.Validation();
 

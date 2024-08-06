@@ -8,4 +8,5 @@ public class ExamDto
     public string LocalExam { get; set; } = string.Empty;
     public string Results { get; set; } = string.Empty;
     public string Comments { get; set; } = string.Empty;
+    public long DocumentId { get; set; }
 }

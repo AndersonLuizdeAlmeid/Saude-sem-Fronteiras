@@ -4,7 +4,6 @@ using SaudeSemFronteiras.Application.Authentications.Commands;
 using SaudeSemFronteiras.Application.JwtToken.Services;
 using SaudeSemFronteiras.Application.Login.Queries;
 using SaudeSemFronteiras.Application.Users.Dtos;
-using SaudeSemFronteiras.Application.Users.Queries;
 using SaudeSemFronteiras.Application.Users.Repository;
 using System.Text.RegularExpressions;
 

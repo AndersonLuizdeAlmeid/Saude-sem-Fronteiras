@@ -16,10 +16,10 @@ public class CreateDocumentCommand : IRequest<Result>
     {
         if (Description.IsNullOrEmpty())
             return Result.Failure("Descrição do documento não pode ser nulo.");
-        if (DateDocument.ToString().IsNullOrEmpty())
-            return Result.Failure("Data do documento não pode ser nulo.");
         if (TypeDocument.ToString().IsNullOrEmpty())
             return Result.Failure("Tipo de documento não pode ser nulo.");
+        if (DateDocument.ToString().IsNullOrEmpty())
+            return Result.Failure("Data do documento não pode ser nulo.");
         if (AppointmentId.ToString().IsNullOrEmpty())
             return Result.Failure("Código da consulta não pode ser nulo.");
 

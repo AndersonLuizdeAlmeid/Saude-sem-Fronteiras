@@ -32,7 +32,7 @@ public class DocumentHandler : IRequestHandler<CreateDocumentCommand, Result>,
     {
         var document = await _documentRepository.GetById(request.Id, cancellationToken);
         if (document == null)
-            return Result.Failure("Especialidade não encontrada");
+            return Result.Failure("Documento não encontrado");
 
         var validationResult = request.Validation();
 

@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SaudeSemFronteiras.Application.Chat.Commands;
+using SaudeSemFronteiras.Application.Chats.Commands;
 
 namespace SaudeSemFronteiras.WebApi.Controllers;
 [ApiController]
