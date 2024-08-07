@@ -14,11 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SaudeSemFronteiras.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< Updated upstream
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dd5aa44fb4daae97b5c26fe1530c893a23ee4345")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+df3e5da7c5154099fe0c8351df00a3264cfb0e39")]
->>>>>>> Stashed changes
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6e842022047a569fecc15bdd4c9611a68c648a96")]
 [assembly: System.Reflection.AssemblyProductAttribute("SaudeSemFronteiras.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SaudeSemFronteiras.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

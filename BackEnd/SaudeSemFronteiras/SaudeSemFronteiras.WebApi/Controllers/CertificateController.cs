@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SaudeSemFronteiras.Application.Appointments.Commands;
 using SaudeSemFronteiras.Application.Certificates.Commands;
 
 namespace SaudeSemFronteiras.WebApi.Controllers;
