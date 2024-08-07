@@ -5,22 +5,7 @@ using SaudeSemFronteiras.Common.Factory.Interfaces;
 namespace SaudeSemFronteiras.Application.Users.Repository;
 public class UserRepository(IDatabaseFactory LocalDatabase) : IUserRepository
 {
-    public async Task<User?> GetByID(long iD, CancellationToken cancellationToken)
-    {
-        var sql = @"select id as Id, 
-                           name as Name, 
-                           cpf as CPF, 
-                           mother_name as MotherName,
-                           date_birth as DateBirth,
-                           date_of_creation as DateOfCreation,
-                           language as Language,
-                           is_active as IsActive
-                      from users
-                     where id = @iD";
 
-        var command = new CommandDefinition(sql, new { iD }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
-        return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<User>(command);
-    }
 
     public async Task Insert(User user, CancellationToken cancellationToken)
     {
