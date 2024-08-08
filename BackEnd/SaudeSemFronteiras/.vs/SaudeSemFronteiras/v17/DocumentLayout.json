@@ -1,7 +1,32 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\jeana\\source\\repos\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D8D39A77-28EA-48FC-AAE3-AB05D23C82EF}|SaudeSemFronteiras\\SaudeSemFronteiras.Application.csproj|c:\\users\\jeana\\source\\repos\\saude-sem-fronteiras\\backend\\saudesemfronteiras\\saudesemfronteiras\\addresses\\handlers\\addresshandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8D39A77-28EA-48FC-AAE3-AB05D23C82EF}|SaudeSemFronteiras\\SaudeSemFronteiras.Application.csproj|solutionrelative:saudesemfronteiras\\addresses\\handlers\\addresshandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8D39A77-28EA-48FC-AAE3-AB05D23C82EF}|SaudeSemFronteiras\\SaudeSemFronteiras.Application.csproj|c:\\users\\jeana\\source\\repos\\saude-sem-fronteiras\\backend\\saudesemfronteiras\\saudesemfronteiras\\addresses\\queries\\addressqueries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8D39A77-28EA-48FC-AAE3-AB05D23C82EF}|SaudeSemFronteiras\\SaudeSemFronteiras.Application.csproj|solutionrelative:saudesemfronteiras\\addresses\\queries\\addressqueries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8D39A77-28EA-48FC-AAE3-AB05D23C82EF}|SaudeSemFronteiras\\SaudeSemFronteiras.Application.csproj|c:\\users\\jeana\\source\\repos\\saude-sem-fronteiras\\backend\\saudesemfronteiras\\saudesemfronteiras\\addresses\\queries\\iaddressqueries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8D39A77-28EA-48FC-AAE3-AB05D23C82EF}|SaudeSemFronteiras\\SaudeSemFronteiras.Application.csproj|solutionrelative:saudesemfronteiras\\addresses\\queries\\iaddressqueries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8D39A77-28EA-48FC-AAE3-AB05D23C82EF}|SaudeSemFronteiras\\SaudeSemFronteiras.Application.csproj|c:\\users\\jeana\\source\\repos\\saude-sem-fronteiras\\backend\\saudesemfronteiras\\saudesemfronteiras\\users\\queries\\iuserqueries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8D39A77-28EA-48FC-AAE3-AB05D23C82EF}|SaudeSemFronteiras\\SaudeSemFronteiras.Application.csproj|solutionrelative:saudesemfronteiras\\users\\queries\\iuserqueries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8D39A77-28EA-48FC-AAE3-AB05D23C82EF}|SaudeSemFronteiras\\SaudeSemFronteiras.Application.csproj|c:\\users\\jeana\\source\\repos\\saude-sem-fronteiras\\backend\\saudesemfronteiras\\saudesemfronteiras\\users\\handlers\\userhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8D39A77-28EA-48FC-AAE3-AB05D23C82EF}|SaudeSemFronteiras\\SaudeSemFronteiras.Application.csproj|solutionrelative:saudesemfronteiras\\users\\handlers\\userhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8D39A77-28EA-48FC-AAE3-AB05D23C82EF}|SaudeSemFronteiras\\SaudeSemFronteiras.Application.csproj|c:\\users\\jeana\\source\\repos\\saude-sem-fronteiras\\backend\\saudesemfronteiras\\saudesemfronteiras\\users\\queries\\userqueries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8D39A77-28EA-48FC-AAE3-AB05D23C82EF}|SaudeSemFronteiras\\SaudeSemFronteiras.Application.csproj|solutionrelative:saudesemfronteiras\\users\\queries\\userqueries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,8 +34,47 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AddressHandler.cs",
+              "DocumentMoniker": "C:\\Users\\jeana\\source\\repos\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras\\Addresses\\Handlers\\AddressHandler.cs",
+              "RelativeDocumentMoniker": "SaudeSemFronteiras\\Addresses\\Handlers\\AddressHandler.cs",
+              "ToolTip": "C:\\Users\\jeana\\source\\repos\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras\\Addresses\\Handlers\\AddressHandler.cs",
+              "RelativeToolTip": "SaudeSemFronteiras\\Addresses\\Handlers\\AddressHandler.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAQwCQAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T00:42:58.549Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AddressQueries.cs",
+              "DocumentMoniker": "C:\\Users\\jeana\\source\\repos\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras\\Addresses\\Queries\\AddressQueries.cs",
+              "RelativeDocumentMoniker": "SaudeSemFronteiras\\Addresses\\Queries\\AddressQueries.cs",
+              "ToolTip": "C:\\Users\\jeana\\source\\repos\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras\\Addresses\\Queries\\AddressQueries.cs",
+              "RelativeToolTip": "SaudeSemFronteiras\\Addresses\\Queries\\AddressQueries.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAzwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T01:30:13.9Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IAddressQueries.cs",
+              "DocumentMoniker": "C:\\Users\\jeana\\source\\repos\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras\\Addresses\\Queries\\IAddressQueries.cs",
+              "RelativeDocumentMoniker": "SaudeSemFronteiras\\Addresses\\Queries\\IAddressQueries.cs",
+              "ToolTip": "C:\\Users\\jeana\\source\\repos\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras\\Addresses\\Queries\\IAddressQueries.cs",
+              "RelativeToolTip": "SaudeSemFronteiras\\Addresses\\Queries\\IAddressQueries.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T01:31:59.427Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -18,6 +82,66 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "42ab4a88-677c-48ca-b99f-65e8450941a1",
+        "Display": 1,
+        "X": 311,
+        "Y": 170,
+        "Width": 1239,
+        "Height": 749,
+        "WindowState": 2
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UserHandler.cs",
+              "DocumentMoniker": "C:\\Users\\jeana\\source\\repos\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras\\Users\\Handlers\\UserHandler.cs",
+              "RelativeDocumentMoniker": "SaudeSemFronteiras\\Users\\Handlers\\UserHandler.cs",
+              "ToolTip": "C:\\Users\\jeana\\source\\repos\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras\\Users\\Handlers\\UserHandler.cs",
+              "RelativeToolTip": "SaudeSemFronteiras\\Users\\Handlers\\UserHandler.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAxwCUAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T01:31:19.747Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UserQueries.cs",
+              "DocumentMoniker": "C:\\Users\\jeana\\source\\repos\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras\\Users\\Queries\\UserQueries.cs",
+              "RelativeDocumentMoniker": "SaudeSemFronteiras\\Users\\Queries\\UserQueries.cs",
+              "ToolTip": "C:\\Users\\jeana\\source\\repos\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras\\Users\\Queries\\UserQueries.cs",
+              "RelativeToolTip": "SaudeSemFronteiras\\Users\\Queries\\UserQueries.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB4AAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T01:31:33.031Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IUserQueries.cs",
+              "DocumentMoniker": "C:\\Users\\jeana\\source\\repos\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras\\Users\\Queries\\IUserQueries.cs",
+              "RelativeDocumentMoniker": "SaudeSemFronteiras\\Users\\Queries\\IUserQueries.cs",
+              "ToolTip": "C:\\Users\\jeana\\source\\repos\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras\\Users\\Queries\\IUserQueries.cs",
+              "RelativeToolTip": "SaudeSemFronteiras\\Users\\Queries\\IUserQueries.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T01:31:30.093Z",
+              "EditorCaption": ""
             }
           ]
         }

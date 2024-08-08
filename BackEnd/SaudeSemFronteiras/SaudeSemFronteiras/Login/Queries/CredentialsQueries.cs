@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using SaudeSemFronteiras.Application.Login.Domain;
 using SaudeSemFronteiras.Application.Login.Dtos;
 using SaudeSemFronteiras.Common.Factory.Interfaces;
 
@@ -40,4 +41,17 @@ public class CredentialsQueries(IDatabaseFactory _databaseFactory) : ICredential
         var command = new CommandDefinition(sql, transaction: _databaseFactory.Transaction, cancellationToken: cancellationToken);
         return await _databaseFactory.Connection.QueryAsync<CredentialsDto>(command);
     }
+
+    public async Task<Credentials?> GetById(long iD, CancellationToken cancellationToken)
+    {
+        var sql = @"select id as ID, 
+                           email as Email, 
+                           password as Password
+                      from logins
+                     where id = @iD";
+
+        var command = new CommandDefinition(sql, new { iD }, transaction: _databaseFactory.Transaction, cancellationToken: cancellationToken);
+        return await _databaseFactory.Connection.QueryFirstOrDefaultAsync<Credentials>(command);
+    }
+
 }

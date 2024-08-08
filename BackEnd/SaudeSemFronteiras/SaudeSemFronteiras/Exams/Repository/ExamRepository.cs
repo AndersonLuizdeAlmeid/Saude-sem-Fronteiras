@@ -5,23 +5,6 @@ using SaudeSemFronteiras.Common.Factory.Interfaces;
 namespace SaudeSemFronteiras.Application.Exams.Repository;
 public class ExamRepository(IDatabaseFactory LocalDatabase) : IExamRepository
 {
-    public async Task<Exam?> GetById(long iD, CancellationToken cancellationToken)
-    {
-        var sql = @"select id as Id, 
-                           title as Title,
-                           description as Description, 
-                           date_exam as DateExam,
-                           local_exam as LocalExam,
-                           results as Results,
-                           comments as Comments,
-                           document_id as DocumentId
-                      from exams
-                     where id = @iD";
-
-        var command = new CommandDefinition(sql, new { iD }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
-        return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<Exam>(command);
-    }
-
     public async Task Insert(Exam exam, CancellationToken cancellationToken)
     {
         var sql = @"insert into exams(title, description, date_exam, local_exam, results, comments, document_id) 

@@ -2,6 +2,7 @@
 using MediatR;
 using SaudeSemFronteiras.Application.Patients.Commands;
 using SaudeSemFronteiras.Application.Patients.Domain;
+using SaudeSemFronteiras.Application.Patients.Queries;
 using SaudeSemFronteiras.Application.Patients.Repository;
 
 namespace SaudeSemFronteiras.Application.Patients.Handlers;
@@ -9,10 +10,12 @@ public class PatientHandler : IRequestHandler<CreatePatientCommand, Result>,
                               IRequestHandler<ChangePatientCommand, Result>
 {
     private readonly IPatientRepository _patientRepository;
+    private readonly IPatientQueries _patientQueries;
 
-    public PatientHandler(IPatientRepository patientRepository)
+    public PatientHandler(IPatientRepository patientRepository, IPatientQueries patientQueries)
     {
         _patientRepository = patientRepository;
+        _patientQueries = patientQueries;
     }
 
     public async Task<Result> Handle(CreatePatientCommand request, CancellationToken cancellationToken)
@@ -31,7 +34,7 @@ public class PatientHandler : IRequestHandler<CreatePatientCommand, Result>,
 
     public async Task<Result> Handle(ChangePatientCommand request, CancellationToken cancellationToken)
     {
-        var patient = await _patientRepository.GetById(request.Id, cancellationToken);
+        var patient = await _patientQueries.GetById(request.Id, cancellationToken);
         if (patient == null)
             return Result.Failure("Paciente não encontrado");
 

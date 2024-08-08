@@ -2,6 +2,7 @@
 using MediatR;
 using SaudeSemFronteiras.Application.Exams.Commands;
 using SaudeSemFronteiras.Application.Exams.Domain;
+using SaudeSemFronteiras.Application.Exams.Queries;
 using SaudeSemFronteiras.Application.Exams.Repository;
 
 namespace SaudeSemFronteiras.Application.Exams.Handlers;
@@ -9,10 +10,12 @@ public class ExamHandler : IRequestHandler<CreateExamCommand, Result>,
                            IRequestHandler<ChangeExamCommand, Result>
 {
     private readonly IExamRepository _examRepository;
+    private readonly IExamQueries _examQueries;
 
-    public ExamHandler(IExamRepository examRepository)
+    public ExamHandler(IExamRepository examRepository, IExamQueries examQueries)
     {
         _examRepository = examRepository;
+        _examQueries = examQueries;
     }
 
     public async Task<Result> Handle(CreateExamCommand request, CancellationToken cancellationToken)
@@ -30,7 +33,7 @@ public class ExamHandler : IRequestHandler<CreateExamCommand, Result>,
 
     public async Task<Result> Handle(ChangeExamCommand request, CancellationToken cancellationToken)
     {
-        var exam = await _examRepository.GetById(request.Id, cancellationToken);
+        var exam = await _examQueries.GetById(request.Id, cancellationToken);
         if (exam == null)
             return Result.Failure("Exame não encontrado");
 

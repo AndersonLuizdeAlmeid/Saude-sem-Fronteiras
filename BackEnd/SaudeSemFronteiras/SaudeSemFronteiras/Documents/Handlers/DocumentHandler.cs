@@ -2,6 +2,7 @@
 using MediatR;
 using SaudeSemFronteiras.Application.Documents.Commands;
 using SaudeSemFronteiras.Application.Documents.Domain;
+using SaudeSemFronteiras.Application.Documents.Queries;
 using SaudeSemFronteiras.Application.Documents.Repository;
 
 namespace SaudeSemFronteiras.Application.Documents.Handlers;
@@ -9,10 +10,12 @@ public class DocumentHandler : IRequestHandler<CreateDocumentCommand, Result>,
                                IRequestHandler<ChangeDocumentCommand, Result>
 {
     private readonly IDocumentRepository _documentRepository;
+    private readonly IDocumentQueries _documentQueries;
 
-    public DocumentHandler(IDocumentRepository documentRepository)
+    public DocumentHandler(IDocumentRepository documentRepository, IDocumentQueries documentQueries)
     {
         _documentRepository = documentRepository;
+        _documentQueries = documentQueries;
     }
 
     public async Task<Result> Handle(CreateDocumentCommand request, CancellationToken cancellationToken)
@@ -30,7 +33,7 @@ public class DocumentHandler : IRequestHandler<CreateDocumentCommand, Result>,
 
     public async Task<Result> Handle(ChangeDocumentCommand request, CancellationToken cancellationToken)
     {
-        var document = await _documentRepository.GetById(request.Id, cancellationToken);
+        var document = await _documentQueries.GetById(request.Id, cancellationToken);
         if (document == null)
             return Result.Failure("Documento não encontrado");
 

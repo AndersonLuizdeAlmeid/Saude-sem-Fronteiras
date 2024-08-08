@@ -5,20 +5,6 @@ using SaudeSemFronteiras.Common.Factory.Interfaces;
 namespace SaudeSemFronteiras.Application.Scheduled.Repository;
 public class ScheduleRepository(IDatabaseFactory LocalDatabase) : IScheduleRepository
 {
-    public async Task<Schedule?> GetById(long iD, CancellationToken cancellationToken)
-    {
-        var sql = @"select id as Id, 
-                           value as Value,
-                           scheduled_date as ScheduledDate,
-                           is_active as IsActive,
-                           appointment_id as AppointmentId
-                      from scheduled
-                     where id = @iD";
-
-        var command = new CommandDefinition(sql, new { iD }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
-        return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<Schedule>(command);
-    }
-
     public async Task Insert(Schedule schedule, CancellationToken cancellationToken)
     {
         var sql = @"insert into scheduled(value, scheduled_date, is_active, appointment_id) 

@@ -5,22 +5,6 @@ using SaudeSemFronteiras.Common.Factory.Interfaces;
 namespace SaudeSemFronteiras.Application.Screenings.Repository;
 public class ScreeningRepository(IDatabaseFactory LocalDatabase) : IScreeningRepository
 {
-    public async Task<Screening?> GetById(long iD, CancellationToken cancellationToken)
-    {
-        var sql = @"select id as Id, 
-                           degree_severity as DegreeSeverity, 
-                           symptons as Symptons,
-                           date_symptons as DateSymptons,
-                           continuos_medicine as ContinuosMedicine,
-                           allergies as Allergies,
-                           emergency_id as EmergencyId
-                      from screenings
-                     where id = @iD";
-
-        var command = new CommandDefinition(sql, new { iD }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
-        return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<Screening>(command);
-    }
-
     public async Task Insert(Screening screening, CancellationToken cancellationToken)
     {
         var sql = @"insert into screenings(degree_severity, symptons, date_symptons, continuos_medicine, allergies, emergency_id) 

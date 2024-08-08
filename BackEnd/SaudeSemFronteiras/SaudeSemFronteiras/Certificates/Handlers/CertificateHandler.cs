@@ -2,6 +2,7 @@
 using MediatR;
 using SaudeSemFronteiras.Application.Certificates.Commands;
 using SaudeSemFronteiras.Application.Certificates.Domain;
+using SaudeSemFronteiras.Application.Certificates.Queries;
 using SaudeSemFronteiras.Application.Certificates.Repository;
 
 namespace SaudeSemFronteiras.Application.Certificates.Handlers;
@@ -9,10 +10,12 @@ public class CertificateHandler : IRequestHandler<CreateCertificateCommand, Resu
                                   IRequestHandler<ChangeCertificateCommand, Result>
 {
     private readonly ICertificateRepository _certificateRepository;
+    private readonly ICertificateQueries _certificateQueries;
 
-    public CertificateHandler(ICertificateRepository certificateRepository)
+    public CertificateHandler(ICertificateRepository certificateRepository, ICertificateQueries certificateQueries)
     {
         _certificateRepository = certificateRepository;
+        _certificateQueries = certificateQueries;
     }
 
     public async Task<Result> Handle(CreateCertificateCommand request, CancellationToken cancellationToken)
@@ -32,7 +35,7 @@ public class CertificateHandler : IRequestHandler<CreateCertificateCommand, Resu
     public async Task<Result> Handle(ChangeCertificateCommand request, CancellationToken cancellationToken)
     {
         //TODO Ver possibilidade de bloquear quando tiver consultas abertas.
-        var certificate = await _certificateRepository.GetByID(request.Id, cancellationToken);
+        var certificate = await _certificateQueries.GetByID(request.Id, cancellationToken);
         if (certificate == null)
             return Result.Failure("Atestado não encontrado");
 

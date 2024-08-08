@@ -37,7 +37,7 @@ public class CredentialsHandler : IRequestHandler<CreateCredentialsCommand, Resu
     }
     public async Task<Result> Handle(ChangeCredentialsCommand request, CancellationToken cancellationToken)
     {
-        var credentials = await _credentialsRepository.GetById(request.Id, cancellationToken);
+        var credentials = await _credentialsQueries.GetById(request.Id, cancellationToken);
         if (credentials == null)
             return Result.Failure("Usuário não cadastrado");
 

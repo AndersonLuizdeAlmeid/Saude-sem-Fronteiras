@@ -2,6 +2,7 @@
 using MediatR;
 using SaudeSemFronteiras.Application.Invoices.Commands;
 using SaudeSemFronteiras.Application.Invoices.Domain;
+using SaudeSemFronteiras.Application.Invoices.Queries;
 using SaudeSemFronteiras.Application.Invoices.Repository;
 
 namespace SaudeSemFronteiras.Application.Invoices.Handlers;
@@ -9,10 +10,12 @@ public class InvoiceHandler : IRequestHandler<CreateInvoiceCommand, Result>,
                               IRequestHandler<ChangeInvoiceCommand, Result>
 {
     private readonly IInvoiceRepository _invoiceRepository;
+    private readonly IInvoiceQueries _invoiceQueries;
 
-    public InvoiceHandler(IInvoiceRepository invoiceRepository)
+    public InvoiceHandler(IInvoiceRepository invoiceRepository, IInvoiceQueries invoiceQueries)
     {
         _invoiceRepository = invoiceRepository;
+        _invoiceQueries = invoiceQueries;
     }
 
     public async Task<Result> Handle(CreateInvoiceCommand request, CancellationToken cancellationToken)
@@ -32,7 +35,7 @@ public class InvoiceHandler : IRequestHandler<CreateInvoiceCommand, Result>,
     public async Task<Result> Handle(ChangeInvoiceCommand request, CancellationToken cancellationToken)
     {
         //TODO Ver possibilidade de bloquear quando tiver consultas abertas.
-        var invoice = await _invoiceRepository.GetByID(request.Id, cancellationToken);
+        var invoice = await _invoiceQueries.GetByID(request.Id, cancellationToken);
         if (invoice == null)
             return Result.Failure("Fatura não encontrada");
 
@@ -47,6 +50,4 @@ public class InvoiceHandler : IRequestHandler<CreateInvoiceCommand, Result>,
 
         return Result.Success();
     }
-
-
 }

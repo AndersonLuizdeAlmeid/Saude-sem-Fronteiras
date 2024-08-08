@@ -5,21 +5,9 @@ using SaudeSemFronteiras.Common.Factory.Interfaces;
 namespace SaudeSemFronteiras.Application.Login.Repository;
 public class CredentialsRepository(IDatabaseFactory LocalDatabase) : ICredentialsRepository
 {
-    public async Task<Credentials?> GetById(long iD, CancellationToken cancellationToken)
-    {
-        var sql = @"select id as ID, 
-                           email as Email, 
-                           password as Password
-                      from credentials
-                     where id = @iD";
-
-        var command = new CommandDefinition(sql, new { iD }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
-        return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<Credentials>(command);
-    }
-
     public async Task Insert(Credentials credentials, CancellationToken cancellationToken)
     {
-        var sql = @"insert into credentials(email, password) 
+        var sql = @"insert into logins(email, password) 
                     values (@Email, @Password)";
 
         var command = new CommandDefinition(sql, credentials, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
@@ -28,7 +16,7 @@ public class CredentialsRepository(IDatabaseFactory LocalDatabase) : ICredential
 
     public async Task Update(Credentials credentials, CancellationToken cancellationToken)
     {
-        var sql = @"update credentials
+        var sql = @"update logins
                        set email = @Email,
                            password = @Password
                      where id = @ID";

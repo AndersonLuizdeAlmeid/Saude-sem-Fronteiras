@@ -2,6 +2,7 @@
 using MediatR;
 using SaudeSemFronteiras.Application.Doctors.Commands;
 using SaudeSemFronteiras.Application.Doctors.Domain;
+using SaudeSemFronteiras.Application.Doctors.Queries;
 using SaudeSemFronteiras.Application.Doctors.Repository;
 
 namespace SaudeSemFronteiras.Application.Doctors.Handlers;
@@ -9,10 +10,12 @@ public class DoctorHandler : IRequestHandler<CreateDoctorCommand, Result>,
                              IRequestHandler<ChangeDoctorCommand, Result>
 {
     private readonly IDoctorRepository _doctorRepository;
+    private readonly IDoctorQueries _doctorQueries;
 
-    public DoctorHandler(IDoctorRepository doctorRepository)
+    public DoctorHandler(IDoctorRepository doctorRepository, IDoctorQueries doctorQueries)
     {
         _doctorRepository = doctorRepository;
+        _doctorQueries = doctorQueries;
     }
 
     public async Task<Result> Handle(CreateDoctorCommand request, CancellationToken cancellationToken)
@@ -36,7 +39,7 @@ public class DoctorHandler : IRequestHandler<CreateDoctorCommand, Result>,
         if (validationResult.IsFailure)
             return validationResult;
 
-        var doctor = await _doctorRepository.GetById(request.Id, cancellationToken);
+        var doctor = await _doctorQueries.GetById(request.Id, cancellationToken);
         if (doctor == null)
             return Result.Failure("Não foi possível encontrar o médico.");
 

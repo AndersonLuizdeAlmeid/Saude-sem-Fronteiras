@@ -2,6 +2,7 @@
 using MediatR;
 using SaudeSemFronteiras.Application.Appointments.Commands;
 using SaudeSemFronteiras.Application.Appointments.Domain;
+using SaudeSemFronteiras.Application.Appointments.Queries;
 using SaudeSemFronteiras.Application.Appointments.Repository;
 
 namespace SaudeSemFronteiras.Application.Appointments.Handlers;
@@ -9,10 +10,12 @@ public class AppointmentHandler : IRequestHandler<CreateAppointmentCommand, Resu
                                   IRequestHandler<ChangeAppointmentCommand, Result>
 {
     private readonly IAppointmentRepository _appointmentRepository;
+    private readonly IAppointmentQueries _appointmentQueries;
 
-    public AppointmentHandler(IAppointmentRepository appointmentRepository)
+    public AppointmentHandler(IAppointmentRepository appointmentRepository, IAppointmentQueries appointmentQueries)
     {
         _appointmentRepository = appointmentRepository;
+        _appointmentQueries = appointmentQueries;
     }
 
     public async Task<Result> Handle(CreateAppointmentCommand request, CancellationToken cancellationToken)
@@ -32,7 +35,7 @@ public class AppointmentHandler : IRequestHandler<CreateAppointmentCommand, Resu
     public async Task<Result> Handle(ChangeAppointmentCommand request, CancellationToken cancellationToken)
     {
         //TODO Ver possibilidade de bloquear quando tiver consultas abertas.
-        var appointment = await _appointmentRepository.GetById(request.Id, cancellationToken);
+        var appointment = await _appointmentQueries.GetById(request.Id, cancellationToken);
         if (appointment == null)
             return Result.Failure("Consulta não encontrada");
 

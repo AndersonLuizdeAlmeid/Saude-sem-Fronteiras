@@ -5,19 +5,6 @@ using SaudeSemFronteiras.Common.Factory.Interfaces;
 namespace SaudeSemFronteiras.Application.Messages.Repository;
 public class MessageRepository(IDatabaseFactory LocalDatabase) : IMessageRepository
 {
-    public async Task<Message?> GetById(long iD, CancellationToken cancellationToken)
-    {
-        var sql = @"select id as Id, 
-                           message_date as MessageDate,
-                           description as Description,
-                           chat_id as ChatId
-                      from messages
-                     where id = @iD";
-
-        var command = new CommandDefinition(sql, new { iD }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
-        return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<Message>(command);
-    }
-    
     public async Task Insert(Message message, CancellationToken cancellationToken)
     {
         var sql = @"insert into messages(message_date, description, chat_id) 

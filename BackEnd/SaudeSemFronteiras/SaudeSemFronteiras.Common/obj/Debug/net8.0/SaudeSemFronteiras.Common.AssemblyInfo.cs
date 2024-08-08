@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SaudeSemFronteiras.Common")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+142eb720a658300563f44a8e8b5e3294311a3555")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+25483393f1962854c8e406f21746926acfcee30c")]
 [assembly: System.Reflection.AssemblyProductAttribute("SaudeSemFronteiras.Common")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SaudeSemFronteiras.Common")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
