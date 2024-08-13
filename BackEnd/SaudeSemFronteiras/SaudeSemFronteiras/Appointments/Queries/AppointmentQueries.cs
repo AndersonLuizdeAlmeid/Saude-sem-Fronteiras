@@ -14,6 +14,8 @@ public class AppointmentQueries(IDatabaseFactory databaseFactory) : IAppointment
         var sql = @"SELECT id as Id, 
                            time as Time,
                            duration as Duration
+                           doctor_id as DoctorId
+                           patient_id as PatientId
                       FROM appointments ";
 
         var command = new CommandDefinition(sql, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
@@ -25,6 +27,8 @@ public class AppointmentQueries(IDatabaseFactory databaseFactory) : IAppointment
         var sql = @"select id as Id, 
                            time as Time,
                            duration as Duration
+                           doctor_id as DoctorId
+                           patient_id as PatientId
                       from appointments
                      where id = @iD";
 
