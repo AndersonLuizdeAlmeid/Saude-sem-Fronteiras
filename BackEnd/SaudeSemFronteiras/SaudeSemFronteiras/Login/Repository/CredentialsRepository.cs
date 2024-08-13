@@ -7,8 +7,8 @@ public class CredentialsRepository(IDatabaseFactory LocalDatabase) : ICredential
 {
     public async Task Insert(Credentials credentials, CancellationToken cancellationToken)
     {
-        var sql = @"insert into logins(email, password) 
-                    values (@Email, @Password)";
+        var sql = @"insert into logins(email, password, user_id) 
+                    values (@Email, @Password, @UserId)";
 
         var command = new CommandDefinition(sql, credentials, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         await LocalDatabase.Connection.ExecuteAsync(command);
@@ -18,7 +18,8 @@ public class CredentialsRepository(IDatabaseFactory LocalDatabase) : ICredential
     {
         var sql = @"update logins
                        set email = @Email,
-                           password = @Password
+                           password = @Password,
+                           user_id = @UserId
                      where id = @ID";
 
         var command = new CommandDefinition(sql, credentials, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);

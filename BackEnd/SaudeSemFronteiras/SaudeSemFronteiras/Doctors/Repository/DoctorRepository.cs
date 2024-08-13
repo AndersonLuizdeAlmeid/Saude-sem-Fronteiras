@@ -8,7 +8,7 @@ public class DoctorRepository(IDatabaseFactory LocalDatabase) : IDoctorRepositor
     public async Task Insert(Doctor doctor, CancellationToken cancellationToken)
     {
         var sql = @"insert into doctors(registry_number, avaibality_hours, consultation_price, user_id) 
-                    values (@RegistryNumber, @AvaibalityHours, @ConsultationPrince, @IdUser)";
+                    values (@RegistryNumber, @AvaibalityHours, @ConsultationPrince, @UserId)";
 
         var command = new CommandDefinition(sql, doctor, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         await LocalDatabase.Connection.ExecuteAsync(command);
@@ -20,7 +20,7 @@ public class DoctorRepository(IDatabaseFactory LocalDatabase) : IDoctorRepositor
                        set registry_number = @RegistryNumber, 
                            avaibality_hours = @AvaibalityHours, 
                            consultation_price = @ConsultationPrince,
-                           user_id = @IdUser
+                           user_id = @UserId
                      where id = @Id";
 
         var command = new CommandDefinition(sql, doctor, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);

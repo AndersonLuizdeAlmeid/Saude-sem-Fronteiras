@@ -25,7 +25,7 @@ public class SpecialityHandler : IRequestHandler<CreateSpecialityCommand, Result
         if (validationResult.IsFailure)
             return validationResult;
 
-        var speciality = Speciality.Create(request.Description, true, request.IdDoctor);
+        var speciality = Speciality.Create(request.Description, true, request.DoctorId);
 
         await _specialityRepository.Insert(speciality, cancellationToken);
         return Result.Success();
@@ -42,7 +42,7 @@ public class SpecialityHandler : IRequestHandler<CreateSpecialityCommand, Result
         if (validationResult.IsFailure)
             return validationResult;
 
-        speciality.Update(request.Description, request.IsActive, request.IdDoctor);
+        speciality.Update(request.Description, request.IsActive, request.DoctorId);
         
         await _specialityRepository.Update(speciality, cancellationToken);
         

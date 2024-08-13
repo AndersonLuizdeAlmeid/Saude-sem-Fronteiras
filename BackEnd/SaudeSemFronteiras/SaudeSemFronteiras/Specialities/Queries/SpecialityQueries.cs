@@ -13,7 +13,7 @@ public class SpecialityQueries(IDatabaseFactory databaseFactory) : ISpecialityQu
         var sql = @"SELECT id as ID,
                            description as Description,
                            is_active as IsActive,
-                           id_Doctor as IdDoctor
+                           doctor_id as DoctorId
                       FROM specialities ";
 
         var command = new CommandDefinition(sql, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
@@ -25,7 +25,7 @@ public class SpecialityQueries(IDatabaseFactory databaseFactory) : ISpecialityQu
         var sql = @"select id as Id, 
                            description as Description, 
                            is_active as IsActive,
-                           id_doctor as IdDoctor
+                           doctor_id as DoctorId
                       from specialities
                      where id = @iD";
 

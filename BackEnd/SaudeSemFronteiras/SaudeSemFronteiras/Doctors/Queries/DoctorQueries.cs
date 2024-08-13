@@ -14,7 +14,7 @@ public class DoctorQueries(IDatabaseFactory databaseFactory) : IDoctorQueries
                            registry_number as RegistryNumber, 
                            avaibality_hours as AvaibalityHours, 
                            consultation_price as ConsultationPrince,
-                           user_id as IdUser
+                           user_id as UserId
                       FROM doctors ";
 
         var command = new CommandDefinition(sql, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
@@ -27,7 +27,7 @@ public class DoctorQueries(IDatabaseFactory databaseFactory) : IDoctorQueries
                            registry_number as RegistryNumber, 
                            avaibality_hours as AvaibalityHours, 
                            consultation_price as ConsultationPrince,
-                           user_id as IdUser
+                           user_id as UserId
                       from doctors
                      where id = @iD";
 

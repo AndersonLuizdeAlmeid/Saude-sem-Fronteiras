@@ -33,7 +33,8 @@ public class CredentialsQueries(IDatabaseFactory _databaseFactory) : ICredential
     {
         var sql = @"SELECT id as ID, 
                            email as Email, 
-                           password as Password
+                           password as Password,
+                           user_id as UserId
                       FROM logins
                      where email = @email
                        and password = @password";
@@ -46,7 +47,8 @@ public class CredentialsQueries(IDatabaseFactory _databaseFactory) : ICredential
     {
         var sql = @"select id as ID, 
                            email as Email, 
-                           password as Password
+                           password as Password,
+                           user_id as UserId
                       from logins
                      where id = @iD";
 

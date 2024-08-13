@@ -1,6 +1,7 @@
 ﻿using CSharpFunctionalExtensions;
 using MediatR;
 using Microsoft.IdentityModel.Tokens;
+using SaudeSemFronteiras.Application.Addresses.Domain;
 
 namespace SaudeSemFronteiras.Application.Users.Commands;
 public class CreateUserCommand : IRequest<Result>
@@ -10,6 +11,7 @@ public class CreateUserCommand : IRequest<Result>
     public string MotherName { get; set; } = string.Empty;
     public DateTime DateBirth { get; set; }
     public string Language { get; set; } = string.Empty;
+    public long AddressId { get; set; }
 
     public Result Validation()
     {
@@ -23,6 +25,8 @@ public class CreateUserCommand : IRequest<Result>
             return Result.Failure("Data de Aniversário não pode nulo");
         if (string.IsNullOrEmpty(Language))
             return Result.Failure("Linguagem não pode ser nulo");
+        if (AddressId.ToString().IsNullOrEmpty())
+            return Result.Failure("Código do endereço não pode ser nulo");
 
         return Result.Success();
     }

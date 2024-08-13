@@ -5,5 +5,5 @@ public class DoctorDto
     public string RegistryNumber { get;  set; } = string.Empty;
     public string AvaibalityHours { get;  set; } = string.Empty;
     public decimal ConsultationPrince { get;  set; }
-    public long IdUser { get;  set; }
+    public long UserId { get;  set; }
 }

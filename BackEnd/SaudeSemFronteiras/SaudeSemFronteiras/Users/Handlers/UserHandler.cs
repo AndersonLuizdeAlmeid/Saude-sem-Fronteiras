@@ -25,7 +25,7 @@ public class UserHandler : IRequestHandler<CreateUserCommand, Result>,
         if (validationResult.IsFailure)
             return validationResult;
 
-        var user = User.Create(request.Name, request.CPF, request.MotherName, request.DateBirth, DateTime.Now, request.Language, true);
+        var user = User.Create(request.Name, request.CPF, request.MotherName, request.DateBirth, DateTime.Now, request.Language, true, request.AddressId);
 
         await _userRepository.Insert(user, cancellationToken);
 
@@ -44,7 +44,7 @@ public class UserHandler : IRequestHandler<CreateUserCommand, Result>,
         if (validationResult.IsFailure)
             return validationResult;
 
-        user.Update(request.Name, request.CPF, request.MotherName, request.DateBirth, request.Language, request.IsActive);
+        user.Update(request.Name, request.CPF, request.MotherName, request.DateBirth, request.Language, request.IsActive, request.AddressId);
 
         await _userRepository.Update(user, cancellationToken);
 

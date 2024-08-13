@@ -7,8 +7,8 @@ public class SpecialityRepository(IDatabaseFactory LocalDatabase) : ISpecialityR
 {
     public async Task Insert(Speciality speciality, CancellationToken cancellationToken)
     {
-        var sql = @"insert into specialities(description, is_active, id_doctor) 
-                                 values (@Description, @IsActive, @IdDoctor)";
+        var sql = @"insert into specialities(description, is_active, doctor_id) 
+                                 values (@Description, @IsActive, @DoctorId)";
         var command = new CommandDefinition(sql, speciality, transaction:  LocalDatabase.Transaction, cancellationToken: cancellationToken);
         await LocalDatabase.Connection.ExecuteAsync(command);
     }
@@ -18,7 +18,7 @@ public class SpecialityRepository(IDatabaseFactory LocalDatabase) : ISpecialityR
         var sql = @"update specialities
                        set description = @Description, 
                            is_active = @IsActive,
-                           id_doctor = @IdDoctor
+                           doctor_id = @DoctorId
                      where id = @Id";
 
         var command = new CommandDefinition(sql, speciality, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);

@@ -18,10 +18,14 @@ public class DatabaseHandler : IRequestHandler<CreateTablesCommand, Result>
         _databaseRepository.LocalDatabase.Begin();
         await _databaseRepository.CreateLoginsTable();
         await _databaseRepository.CreateUsersTable();
+        await _databaseRepository.CreatePhonesTable();
         await _databaseRepository.CreateCountriesTable();
         await _databaseRepository.CreateStatesTable();
         await _databaseRepository.CreateCitiesTable();
         await _databaseRepository.CreateAddressesTable();
+
+
+
         _databaseRepository.LocalDatabase.Commit();
 
         return Result.Success();

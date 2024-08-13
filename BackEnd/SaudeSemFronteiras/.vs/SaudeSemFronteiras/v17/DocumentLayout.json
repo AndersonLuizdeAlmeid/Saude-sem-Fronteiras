@@ -1,12 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\jeana\\source\\repos\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{D8D39A77-28EA-48FC-AAE3-AB05D23C82EF}|SaudeSemFronteiras\\SaudeSemFronteiras.Application.csproj|c:\\users\\jeana\\source\\repos\\saude-sem-fronteiras\\backend\\saudesemfronteiras\\saudesemfronteiras\\appointments\\handlers\\appointmenthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D8D39A77-28EA-48FC-AAE3-AB05D23C82EF}|SaudeSemFronteiras\\SaudeSemFronteiras.Application.csproj|solutionrelative:saudesemfronteiras\\appointments\\handlers\\appointmenthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -14,21 +9,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": -1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AppointmentHandler.cs",
-              "DocumentMoniker": "C:\\Users\\jeana\\source\\repos\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras\\Appointments\\Handlers\\AppointmentHandler.cs",
-              "RelativeDocumentMoniker": "SaudeSemFronteiras\\Appointments\\Handlers\\AppointmentHandler.cs",
-              "ToolTip": "C:\\Users\\jeana\\source\\repos\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras\\Appointments\\Handlers\\AppointmentHandler.cs",
-              "RelativeToolTip": "SaudeSemFronteiras\\Appointments\\Handlers\\AppointmentHandler.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADAAAABMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-13T01:02:03.783Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"

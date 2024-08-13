@@ -25,7 +25,7 @@ public class DoctorHandler : IRequestHandler<CreateDoctorCommand, Result>,
         if (validationResult.IsFailure)
             return validationResult;
 
-        var doctor = Doctor.Create(request.RegistryNumber, request.AvaibalityHours, request.ConsultationPrince, request.IdUser);
+        var doctor = Doctor.Create(request.RegistryNumber, request.AvaibalityHours, request.ConsultationPrince, request.UserId);
 
         await _doctorRepository.Insert(doctor, cancellationToken);
 
@@ -43,7 +43,7 @@ public class DoctorHandler : IRequestHandler<CreateDoctorCommand, Result>,
         if (doctor == null)
             return Result.Failure("Não foi possível encontrar o médico.");
 
-        doctor.Update(request.RegistryNumber, request.AvaibalityHours, request.ConsultationPrince, request.IdUser);
+        doctor.Update(request.RegistryNumber, request.AvaibalityHours, request.ConsultationPrince, request.UserId);
 
         await _doctorRepository.Update(doctor, cancellationToken);
 

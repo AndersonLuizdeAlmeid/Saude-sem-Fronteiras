@@ -16,7 +16,8 @@ public class UserQueries(IDatabaseFactory databaseFactory) : IUserQueries
                            motherName as MotherName,
                            dateBirth as DateBirth,
                            language as Language,
-                           is_active as IsActive
+                           is_active as IsActive,
+                           address_id as AddressId
                       FROM users ";
 
         var command = new CommandDefinition(sql, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
@@ -32,7 +33,8 @@ public class UserQueries(IDatabaseFactory databaseFactory) : IUserQueries
                            date_birth as DateBirth,
                            date_of_creation as DateOfCreation,
                            language as Language,
-                           is_active as IsActive
+                           is_active as IsActive,
+                           address_id as AddressId
                       from users
                      where id = @iD";
 

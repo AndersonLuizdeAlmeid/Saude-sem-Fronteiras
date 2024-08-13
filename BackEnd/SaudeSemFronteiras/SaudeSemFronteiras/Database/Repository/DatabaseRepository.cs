@@ -12,6 +12,18 @@ public class DatabaseRepository : IDatabaseRepository
         LocalDatabase = databaseFactory;
     }
 
+    public async Task CreateLoginsTable()
+    {
+        var sql = @"CREATE TABLE IF NOT EXISTS 
+                        logins (
+                            id SERIAL PRIMARY KEY NOT NULL,
+                            email VARCHAR(255) NOT NULL,
+                            password VARCHAR(255) NOT NULL
+                        )";
+
+        await LocalDatabase.Connection.ExecuteAsync(sql, transaction: LocalDatabase.Transaction);
+
+    }
 
     public async Task CreateUsersTable()
     {
@@ -24,19 +36,22 @@ public class DatabaseRepository : IDatabaseRepository
                             date_birth TIMESTAMP NOT NULL,
                             date_of_creation TIMESTAMP NOT NULL,
                             language VARCHAR(50) NOT NULL,
-                            is_active BOOLEAN NOT NULL
+                            is_active BOOLEAN NOT NULL,
+                            address_id BIGINT,
+                            FOREIGN KEY (address_id) REFERENCES addresses(id)
                         )";
 
         await LocalDatabase.Connection.ExecuteAsync(sql, transaction: LocalDatabase.Transaction);
     }
 
-    public async Task CreateLoginsTable()
+    public async Task CreatePhonesTable()
     {
         var sql = @"CREATE TABLE IF NOT EXISTS 
-                        logins (
+                        phones (
                             id SERIAL PRIMARY KEY NOT NULL,
-                            email VARCHAR(255) NOT NULL,
-                            password VARCHAR(255) NOT NULL
+                            number VARCHAR(255) NOT NULL,
+                            user_id BIGINT,
+                            FOREIGN KEY (user_id) REFERENCES users(id)
                         )";
 
         await LocalDatabase.Connection.ExecuteAsync(sql, transaction: LocalDatabase.Transaction);
