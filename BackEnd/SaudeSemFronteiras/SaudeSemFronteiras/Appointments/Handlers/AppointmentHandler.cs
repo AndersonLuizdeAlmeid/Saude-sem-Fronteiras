@@ -25,7 +25,7 @@ public class AppointmentHandler : IRequestHandler<CreateAppointmentCommand, Resu
         if (validationResult.IsFailure)
             return validationResult;
 
-        var appointment = Appointment.Create(request.Time, request.Duration, request.DoctorId, request.PatientId);
+        var appointment = Appointment.Create(request.Date, request.Duration, request.DoctorId, request.PatientId);
 
         await _appointmentRepository.Insert(appointment, cancellationToken);
 
@@ -44,7 +44,7 @@ public class AppointmentHandler : IRequestHandler<CreateAppointmentCommand, Resu
         if (validationResult.IsFailure)
             return validationResult;
 
-        appointment.Update(request.Time, request.Duration, request.DoctorId, request.PatientId);
+        appointment.Update(request.Date, request.Duration, request.DoctorId, request.PatientId);
 
         await _appointmentRepository.Update(appointment, cancellationToken);
 

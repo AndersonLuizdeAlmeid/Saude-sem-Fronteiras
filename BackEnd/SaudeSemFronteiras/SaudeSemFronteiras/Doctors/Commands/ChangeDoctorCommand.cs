@@ -15,9 +15,9 @@ public class ChangeDoctorCommand : IRequest<Result>
     {
         if (Id.ToString().IsNullOrEmpty())
             return Result.Failure("Código do médico não pode ser nulo");
-        if (string.IsNullOrEmpty(RegistryNumber))
+        if (RegistryNumber.IsNullOrEmpty())
             return Result.Failure("Número do registro não pode ser nulo");
-        if (string.IsNullOrEmpty(AvaibalityHours))
+        if (AvaibalityHours.IsNullOrEmpty())
             return Result.Failure("Horários de disponibilidade não pode ser nulo");
         if (ConsultationPrince.ToString().IsNullOrEmpty())
             return Result.Failure("Preço de consulta não pode ser nulo");

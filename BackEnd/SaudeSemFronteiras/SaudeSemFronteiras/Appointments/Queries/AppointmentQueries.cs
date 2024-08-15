@@ -12,7 +12,7 @@ public class AppointmentQueries(IDatabaseFactory databaseFactory) : IAppointment
     public async Task<IEnumerable<AppointmentDto>> GetAll(CancellationToken cancellationToken)
     {
         var sql = @"SELECT id as Id, 
-                           time as Time,
+                           date as Date,
                            duration as Duration
                            doctor_id as DoctorId
                            patient_id as PatientId
@@ -25,7 +25,7 @@ public class AppointmentQueries(IDatabaseFactory databaseFactory) : IAppointment
     public async Task<Appointment?> GetById(long iD, CancellationToken cancellationToken)
     {
         var sql = @"select id as Id, 
-                           time as Time,
+                           date as Date,
                            duration as Duration
                            doctor_id as DoctorId
                            patient_id as PatientId

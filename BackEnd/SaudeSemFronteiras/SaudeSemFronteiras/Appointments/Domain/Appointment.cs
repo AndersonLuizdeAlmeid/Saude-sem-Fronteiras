@@ -2,26 +2,26 @@
 public class Appointment
 {
     public long Id { get; private set; }
-    public DateTime Time { get; private set; }
+    public DateTime Date { get; private set; }
     public decimal Duration { get; private set; }
     public long DoctorId { get; private set; }
     public long PatientId { get; private set; }
 
-    public Appointment(long id, DateTime time, decimal duration, long doctorId, long patientId)
+    public Appointment(long id, DateTime date, decimal duration, long doctorId, long patientId)
     {
         Id = id;
-        Time = time;
+        Date = date;
         Duration = duration;
         DoctorId = doctorId;
         PatientId = patientId;
     }
 
-    public static Appointment Create(DateTime time, decimal duration, long doctorId, long patientId) =>
-        new(0, time, duration, doctorId, patientId);
+    public static Appointment Create(DateTime date, decimal duration, long doctorId, long patientId) =>
+        new(0, date, duration, doctorId, patientId);
 
-    public void Update(DateTime time, decimal duration, long doctorId, long patientId)
+    public void Update(DateTime date, decimal duration, long doctorId, long patientId)
     {
-        Time = time;
+        Date = date;
         Duration = duration;
         DoctorId = doctorId;
         PatientId = patientId;
