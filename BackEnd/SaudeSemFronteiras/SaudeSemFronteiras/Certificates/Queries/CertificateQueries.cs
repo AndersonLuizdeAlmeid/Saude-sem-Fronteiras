@@ -5,7 +5,7 @@ using SaudeSemFronteiras.Common.Factory.Interfaces;
 
 namespace SaudeSemFronteiras.Application.Certificates.Queries;
 
-public class CertifiecateQueries(IDatabaseFactory databaseFactory) : ICertificateQueries
+public class CertificateQueries(IDatabaseFactory databaseFactory) : ICertificateQueries
 {
     private readonly IDatabaseFactory LocalDatabase = databaseFactory;
 
