@@ -1,5 +1,6 @@
 ﻿using CSharpFunctionalExtensions;
 using MediatR;
+using SaudeSemFronteiras.Application.Countries.Queries;
 using SaudeSemFronteiras.Application.Database.Commands;
 using SaudeSemFronteiras.Application.Database.Repository;
 
@@ -7,10 +8,14 @@ namespace SaudeSemFronteiras.Application.Database.Handler;
 public class DatabaseHandler : IRequestHandler<CreateTablesCommand, Result>
 {
     private readonly IDatabaseRepository _databaseRepository;
+    private readonly ICountryQueries _countryQueries;
+    private readonly IDatabaseInsertsRepository _databaseInsertsRepository;
 
-    public DatabaseHandler(IDatabaseRepository databaseRepository)
+    public DatabaseHandler(IDatabaseRepository databaseRepository, ICountryQueries countryQueries, IDatabaseInsertsRepository databaseInsertsRepository)
     {
         _databaseRepository = databaseRepository;
+        _countryQueries = countryQueries;
+        _databaseInsertsRepository = databaseInsertsRepository;
     }
 
     public async Task<Result> Handle(CreateTablesCommand request, CancellationToken cancellationToken)
@@ -38,6 +43,13 @@ public class DatabaseHandler : IRequestHandler<CreateTablesCommand, Result>
         await _databaseRepository.CreateScheduledTable();
         await _databaseRepository.CreateEmergenciesTable();
         await _databaseRepository.CreateScreeningsTable();
+
+        if (await _countryQueries.GetCountryCountable() > 0)
+        {
+            await _databaseInsertsRepository.InsertCountriesRecords();
+            await _databaseInsertsRepository.InsertStatesRecords();
+            await _databaseInsertsRepository.InsertCitiesRecords();
+        }
 
         _databaseRepository.LocalDatabase.Commit();
 
