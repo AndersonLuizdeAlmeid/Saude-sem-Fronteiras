@@ -1,9 +1,11 @@
 ﻿using CSharpFunctionalExtensions;
 using MediatR;
+using Microsoft.IdentityModel.Tokens;
 using SaudeSemFronteiras.Application.Addresses.Commands;
 using SaudeSemFronteiras.Application.Addresses.Domain;
 using SaudeSemFronteiras.Application.Addresses.Queries;
 using SaudeSemFronteiras.Application.Addresses.Repositories;
+using SaudeSemFronteiras.Application.Users.Queries;
 
 namespace SaudeSemFronteiras.Application.Addresses.Handlers;
 public class AddressHandler : IRequestHandler<CreateAddressCommand, Result>,
@@ -11,11 +13,13 @@ public class AddressHandler : IRequestHandler<CreateAddressCommand, Result>,
 {
     private readonly IAddressRepository _addressRepository;
     private readonly IAddressQueries _addressQueries;
+    private readonly IUserQueries _userQueries;
 
-    public AddressHandler(IAddressRepository addressRepository, IAddressQueries addressQueries)
+    public AddressHandler(IAddressRepository addressRepository, IAddressQueries addressQueries, IUserQueries userQueries)
     {
         _addressRepository = addressRepository;
         _addressQueries = addressQueries;
+        _userQueries = userQueries;
     }
 
     public async Task<Result> Handle(CreateAddressCommand request, CancellationToken cancellationToken)
@@ -25,7 +29,11 @@ public class AddressHandler : IRequestHandler<CreateAddressCommand, Result>,
         if (validationResult.IsFailure)
             return validationResult;
 
-        var address = Address.Create(request.District, request.Street, request.Number, request.Complement, request.CityId);
+        var id = await _userQueries.GetIdByCpf(request.Cpf, cancellationToken);
+        if (id.ToString().IsNullOrEmpty())
+            return Result.Failure("Código do usuário inválido.");
+
+        var address = Address.Create(request.District, request.Street, request.Number, request.Complement, request.CityId, id);
 
         await _addressRepository.Insert(address, cancellationToken);
 
@@ -42,7 +50,7 @@ public class AddressHandler : IRequestHandler<CreateAddressCommand, Result>,
         if (validationResult.IsFailure)
             return validationResult;
 
-        address.Update(request.District, request.Street, request.Number, request.Complement, request.CityId);
+        address.Update(request.District, request.Street, request.Number, request.Complement, request.CityId, request.UserId);
 
         await _addressRepository.Update(address, cancellationToken);
 

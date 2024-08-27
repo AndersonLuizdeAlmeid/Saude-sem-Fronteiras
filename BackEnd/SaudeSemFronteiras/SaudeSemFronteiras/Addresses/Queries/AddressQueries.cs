@@ -11,12 +11,12 @@ public class AddressQueries(IDatabaseFactory databaseFactory) : IAddressQueries
     public async Task<IEnumerable<AddressDto>> GetAll(CancellationToken cancellationToken)
     {
         var sql = @"SELECT id as ID,
-                           name as Name,
-                           cpf as CPF,
-                           motherName as MotherName,
-                           dateBirth as DateBirth,
-                           language as Language,
-                           is_active as IsActive
+                           district as District, 
+                           street as Street, 
+                           number as Number,
+                           complement as Complement,
+                           city_id as CityId,
+                           user_id as UserId
                       FROM addresses ";
 
         var command = new CommandDefinition(sql, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
@@ -30,7 +30,8 @@ public class AddressQueries(IDatabaseFactory databaseFactory) : IAddressQueries
                            street as Street, 
                            number as Number,
                            complement as Complement,
-                           city_id as CityId
+                           city_id as CityId,
+                           user_id as UserId
                       from addresses
                      where id = @iD";
 

@@ -20,14 +20,13 @@ public class UsersController(IMediator _mediator, IUserQueries _usersQueries) : 
     }
 
     [HttpPost]
-    //[Authorization]
     public async Task<IActionResult> CreateUser([FromBody] CreateUserCommand command, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(command, cancellationToken);
         if (result.IsFailure)
             return BadRequest(result.Error);
 
-        return Ok();
+        return Ok(result);
     }
 
     [HttpPut]

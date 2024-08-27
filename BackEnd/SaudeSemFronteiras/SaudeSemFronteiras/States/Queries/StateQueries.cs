@@ -10,7 +10,8 @@ public class StateQueries(IDatabaseFactory databaseFactory) :IStateQueries
     public async Task<IEnumerable<StateDto>> GetAll(CancellationToken cancellationToken)
     {
         var sql = @"SELECT id as ID, 
-                           description as Description
+                           description as Description,
+                           country_id as CountryId
                       FROM states ";
 
         var command = new CommandDefinition(sql, transaction: _databaseFactory.Transaction, cancellationToken: cancellationToken);

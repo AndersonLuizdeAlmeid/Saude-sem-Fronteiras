@@ -7,4 +7,5 @@ public class AddressDto
     public string Number { get; set; } = string.Empty;
     public string Complement { get; set; } = string.Empty;
     public long CityId { get; set; }
+    public long UserId { get; set; }
 }

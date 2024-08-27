@@ -7,8 +7,9 @@ public class Address
     public string Number {  get; private set; } = string.Empty;
     public string Complement {  get; private set; } = string.Empty;
     public long CityId { get; private set; }
+    public long UserId { get; private set; }
 
-    public Address(long id, string district, string street, string number, string complement, long cityId)
+    public Address(long id, string district, string street, string number, string complement, long cityId, long userId)
     {
         Id = id;
         District = district;
@@ -16,17 +17,19 @@ public class Address
         Number = number;
         Complement = complement;
         CityId = cityId;
+        UserId = userId;
     }
 
-    public static Address Create(string district, string street, string number, string complement, long cityId) =>
-        new(0, district, street, number, complement, cityId);
+    public static Address Create(string district, string street, string number, string complement, long cityId, long userId) =>
+        new(0, district, street, number, complement, cityId, userId);
 
-    public void Update(string district, string street, string number, string complement, long cityId)
+    public void Update(string district, string street, string number, string complement, long cityId, long userId)
     {
         District = district;
         Street = street;
         Number = number;
         Complement = complement;
         CityId = cityId;
+        UserId = userId;
     }
 }

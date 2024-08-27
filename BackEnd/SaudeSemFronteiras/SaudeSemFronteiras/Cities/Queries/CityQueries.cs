@@ -10,7 +10,8 @@ public class CityQueries(IDatabaseFactory databaseFactory) : ICityQueries
     public async Task<IEnumerable<CityDto>> GetAll(CancellationToken cancellationToken)
     {
         var sql = @"SELECT id as ID, 
-                           description as Description
+                           description as Description,
+                           state_id as StateId
                       FROM cities ";
 
         var command = new CommandDefinition(sql, transaction: _databaseFactory.Transaction, cancellationToken: cancellationToken);

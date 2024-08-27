@@ -12,7 +12,6 @@ public class ChangeUserCommand : IRequest<Result>
     public DateTime DateBirth { get; set; }
     public string Language { get; set; } = string.Empty;
     public bool IsActive { get; set; }
-    public long AddressId { get; set; }
 
     public Result Validation()
     {
@@ -26,8 +25,7 @@ public class ChangeUserCommand : IRequest<Result>
             return Result.Failure("Nome da mãe não pode ser nulo");
         if (string.IsNullOrEmpty(Language))
             return Result.Failure("Linguagem não pode ser nulo");
-        if (AddressId.ToString().IsNullOrEmpty())
-            return Result.Failure("Código do endereço não pode ser nulo");
+
         return Result.Success();
     }
 }

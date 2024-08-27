@@ -25,11 +25,13 @@ public class UserHandler : IRequestHandler<CreateUserCommand, Result>,
         if (validationResult.IsFailure)
             return validationResult;
 
-        var user = User.Create(request.Name, request.CPF, request.MotherName, request.DateBirth, DateTime.Now, request.Language, true, request.AddressId);
+        var user = User.Create(request.Name, request.CPF, request.MotherName, request.DateBirth, DateTime.Now, request.Language, true);
 
         await _userRepository.Insert(user, cancellationToken);
 
-        return Result.Success();
+        var userId = await _userQueries.GetIdByCpf(request.CPF, cancellationToken);
+
+        return Result.Success(userId);
     }
 
     public async Task<Result> Handle(ChangeUserCommand request, CancellationToken cancellationToken)
@@ -44,7 +46,7 @@ public class UserHandler : IRequestHandler<CreateUserCommand, Result>,
         if (validationResult.IsFailure)
             return validationResult;
 
-        user.Update(request.Name, request.CPF, request.MotherName, request.DateBirth, request.Language, request.IsActive, request.AddressId);
+        user.Update(request.Name, request.CPF, request.MotherName, request.DateBirth, request.Language, request.IsActive);
 
         await _userRepository.Update(user, cancellationToken);
 

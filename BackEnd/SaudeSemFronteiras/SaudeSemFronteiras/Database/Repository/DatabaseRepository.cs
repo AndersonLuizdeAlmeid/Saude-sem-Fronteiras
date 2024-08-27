@@ -49,22 +49,6 @@ public class DatabaseRepository : IDatabaseRepository
         await LocalDatabase.Connection.ExecuteAsync(sql, transaction: LocalDatabase.Transaction);
     }
 
-    public async Task CreateAddressesTable()
-    {
-        var sql = @"CREATE TABLE IF NOT EXISTS 
-                        addresses (
-                            id SERIAL PRIMARY KEY NOT NULL,
-                            district VARCHAR(255) NOT NULL,
-                            street VARCHAR(255) NOT NULL,
-                            number VARCHAR(10) NOT NULL,
-                            complement VARCHAR(255),
-                            city_id BIGINT,
-                            FOREIGN KEY (city_id) REFERENCES cities(id)
-                        )";
-
-        await LocalDatabase.Connection.ExecuteAsync(sql, transaction: LocalDatabase.Transaction);
-    }
-
     public async Task CreateUsersTable()
     {
         var sql = @"CREATE TABLE IF NOT EXISTS 
@@ -76,9 +60,25 @@ public class DatabaseRepository : IDatabaseRepository
                             date_birth TIMESTAMP NOT NULL,
                             date_of_creation TIMESTAMP NOT NULL,
                             language VARCHAR(50) NOT NULL,
-                            is_active BOOLEAN NOT NULL,
-                            address_id BIGINT,
-                            FOREIGN KEY (address_id) REFERENCES addresses(id)
+                            is_active BOOLEAN NOT NULL
+                        )";
+
+        await LocalDatabase.Connection.ExecuteAsync(sql, transaction: LocalDatabase.Transaction);
+    }
+
+    public async Task CreateAddressesTable()
+    {
+        var sql = @"CREATE TABLE IF NOT EXISTS 
+                        addresses (
+                            id SERIAL PRIMARY KEY NOT NULL,
+                            district VARCHAR(255) NOT NULL,
+                            street VARCHAR(255) NOT NULL,
+                            number VARCHAR(10) NOT NULL,
+                            complement VARCHAR(255),
+                            city_id BIGINT,
+                            user_id BIGINT,
+                            FOREIGN KEY (city_id) REFERENCES cities(id),
+                            FOREIGN KEY (user_id) REFERENCES users(id)
                         )";
 
         await LocalDatabase.Connection.ExecuteAsync(sql, transaction: LocalDatabase.Transaction);
@@ -166,7 +166,7 @@ public class DatabaseRepository : IDatabaseRepository
                             patient_id BIGINT,
                             doctor_id BIGINT,
                             FOREIGN KEY (patient_id) REFERENCES patients(id),
-                            FOREIGN KEY (doctors_id) REFERENCES doctors(id)
+                            FOREIGN KEY (doctor_id) REFERENCES doctors(id)
                         )";
 
         await LocalDatabase.Connection.ExecuteAsync(sql, transaction: LocalDatabase.Transaction);

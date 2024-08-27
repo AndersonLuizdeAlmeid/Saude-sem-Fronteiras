@@ -41,7 +41,8 @@ public static class RepositoriesInjection
                 .AddScoped<IScreeningRepository, ScreeningRepository>()
                 .AddScoped<ISpecialityRepository, SpecialityRepository>()
                 .AddScoped<IUserRepository, UserRepository>()
-                .AddScoped<IDatabaseRepository, DatabaseRepository>();
+                .AddScoped<IDatabaseRepository, DatabaseRepository>()
+                .AddScoped<IDatabaseInsertsRepository, DatabaseInsertsRepository>();
 
         return services;
     }

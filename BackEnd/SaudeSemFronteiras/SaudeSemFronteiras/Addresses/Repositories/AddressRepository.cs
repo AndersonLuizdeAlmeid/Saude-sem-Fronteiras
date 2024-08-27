@@ -7,8 +7,8 @@ public class AddressRepository(IDatabaseFactory LocalDatabase) : IAddressReposit
 {
     public async Task Insert(Address address, CancellationToken cancellationToken)
     {
-        var sql = @"insert into addresses(id, district, street, number, complement, city_id) 
-                    values (@Id, @District, @Street, @Number, @Complement, @CityId)";
+        var sql = @"insert into addresses(id, district, street, number, complement, city_id, user_id) 
+                    values (@Id, @District, @Street, @Number, @Complement, @CityId, @UserId)";
 
         var command = new CommandDefinition(sql, address, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         await LocalDatabase.Connection.ExecuteAsync(command);
@@ -21,7 +21,8 @@ public class AddressRepository(IDatabaseFactory LocalDatabase) : IAddressReposit
                            street = @Street,
                            number = @Number,
                            complement = @Complement,
-                           city_id = @CityId
+                           city_id = @CityId,
+                           user_id = @UserId
                      where id = @Id"
         ;
 

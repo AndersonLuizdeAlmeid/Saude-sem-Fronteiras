@@ -6,5 +6,6 @@ namespace SaudeSemFronteiras.Application.Phones.Queries;
 public interface IPhoneQueries
 {
     Task<IEnumerable<PhoneDto>> GetAll(CancellationToken cancellationToken);
+    Task<IEnumerable<PhoneDto>> GetAllPhonesById(long userId, CancellationToken cancellationToken);
     Task<Phone?> GetById(long iD, CancellationToken cancellationToken);
 }

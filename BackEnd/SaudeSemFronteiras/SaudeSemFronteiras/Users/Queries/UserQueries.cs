@@ -41,4 +41,14 @@ public class UserQueries(IDatabaseFactory databaseFactory) : IUserQueries
         var command = new CommandDefinition(sql, new { iD }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<User>(command);
     }
+
+    public async Task<long> GetIdByCpf(string cpf, CancellationToken cancellationToken)
+    {
+        var sql = @"select id as Id
+                      from users
+                     where cpf = @cpf";
+
+        var command = new CommandDefinition(sql, new { cpf }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
+        return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<long>(command);
+    }
 }

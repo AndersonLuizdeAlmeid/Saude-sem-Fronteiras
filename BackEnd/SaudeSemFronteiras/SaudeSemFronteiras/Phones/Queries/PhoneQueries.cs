@@ -1,7 +1,6 @@
 ﻿using Dapper;
 using SaudeSemFronteiras.Application.Phones.Domain;
 using SaudeSemFronteiras.Application.Phones.Dtos;
-using SaudeSemFronteiras.Application.Phones.Queries;
 using SaudeSemFronteiras.Common.Factory.Interfaces;
 
 namespace SaudeSemFronteiras.Application.Phones.Queries;
@@ -18,6 +17,18 @@ public class PhoneQueries(IDatabaseFactory databaseFactory) : IPhoneQueries
                       FROM phones ";
 
         var command = new CommandDefinition(sql, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
+        return await LocalDatabase.Connection.QueryAsync<PhoneDto>(command);
+    }
+
+    public async Task<IEnumerable<PhoneDto>> GetAllPhonesById(long userId, CancellationToken cancellationToken)
+    {
+        var sql = @"SELECT id as Id, 
+                           number as Number,
+                           user_id as UserId
+                      FROM phones 
+                     WHERE user_id = @userId";
+
+        var command = new CommandDefinition(sql, new { userId }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         return await LocalDatabase.Connection.QueryAsync<PhoneDto>(command);
     }
 

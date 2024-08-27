@@ -25,8 +25,8 @@ public class DatabaseHandler : IRequestHandler<CreateTablesCommand, Result>
         await _databaseRepository.CreateCountriesTable();
         await _databaseRepository.CreateStatesTable();
         await _databaseRepository.CreateCitiesTable();
-        await _databaseRepository.CreateAddressesTable();
         await _databaseRepository.CreateUsersTable();
+        await _databaseRepository.CreateAddressesTable();
         await _databaseRepository.CreateLoginsTable();
         await _databaseRepository.CreatePhonesTable();
         await _databaseRepository.CreatePatientsTable();
@@ -43,8 +43,8 @@ public class DatabaseHandler : IRequestHandler<CreateTablesCommand, Result>
         await _databaseRepository.CreateScheduledTable();
         await _databaseRepository.CreateEmergenciesTable();
         await _databaseRepository.CreateScreeningsTable();
-
-        if (await _countryQueries.GetCountryCountable() > 0)
+        var l_count = await _countryQueries.GetCountryCountable();
+        if (l_count == 0)
         {
             await _databaseInsertsRepository.InsertCountriesRecords();
             await _databaseInsertsRepository.InsertStatesRecords();

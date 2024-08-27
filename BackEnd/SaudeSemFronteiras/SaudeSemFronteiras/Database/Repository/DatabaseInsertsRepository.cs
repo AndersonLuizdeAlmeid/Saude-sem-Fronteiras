@@ -12,15 +12,16 @@ public class DatabaseInsertsRepository : IDatabaseInsertsRepository
     }
     public async Task InsertCountriesRecords()
     {
-        var sql = @"INSERT INTO countries (Id, Description) 
-                    VALUES (1, 'Brazil')";
+        var sql = @"INSERT INTO countries (id, description) 
+                    VALUES (1, 'Brazil'),
+                           (2, 'EUA')";
 
         await LocalDatabase.Connection.ExecuteAsync(sql, transaction: LocalDatabase.Transaction);
     }
 
     public async Task InsertStatesRecords()
     {
-        var sql = @"INSERT INTO states (Id, Description, CountryId) 
+        var sql = @"INSERT INTO states (id, description, country_id) 
                     VALUES (1, 'Acre', 1),
                            (2, 'Alagoas', 1),
                            (3, 'Amapá', 1),
@@ -54,7 +55,7 @@ public class DatabaseInsertsRepository : IDatabaseInsertsRepository
 
     public async Task InsertCitiesRecords()
     {
-        var sql = @" INSERT INTO City (Id, Description, StateId) 
+        var sql = @" INSERT INTO cities (id, description, state_id) 
                      VALUES (1, 'Rio Branco', 1),
                             (2, 'Maceió', 2),
                             (3, 'Macapá', 3),
