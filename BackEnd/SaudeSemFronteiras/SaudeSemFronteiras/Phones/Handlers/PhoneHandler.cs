@@ -7,7 +7,8 @@ using SaudeSemFronteiras.Application.Phones.Queries;
 
 namespace SaudeSemFronteiras.Application.Phones.Handlers;
 public class PhoneHandler : IRequestHandler<CreatePhoneCommand, Result>,
-                            IRequestHandler<ChangePhoneCommand, Result>
+                            IRequestHandler<ChangePhoneCommand, Result>,
+                            IRequestHandler<DeletePhoneCommand, Result>
 {
     private readonly IPhoneRepository _phoneRepository;
     private readonly IPhoneQueries _phoneQueries;
@@ -45,6 +46,18 @@ public class PhoneHandler : IRequestHandler<CreatePhoneCommand, Result>,
         phone.Update(request.Number, request.UserId);
 
         await _phoneRepository.Update(phone, cancellationToken);
+
+        return Result.Success();
+    }
+
+    public async Task<Result> Handle(DeletePhoneCommand request, CancellationToken cancellationToken)
+    {
+        var validationResult = request.Validation();
+
+        if (validationResult.IsFailure)
+            return validationResult;
+
+        await _phoneRepository.Delete(request.Id, cancellationToken);
 
         return Result.Success();
     }

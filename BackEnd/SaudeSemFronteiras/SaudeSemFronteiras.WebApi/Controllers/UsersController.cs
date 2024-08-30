@@ -19,6 +19,14 @@ public class UsersController(IMediator _mediator, IUserQueries _usersQueries) : 
         return Ok(users);
     }
 
+    [HttpGet]
+    public async Task<IActionResult> GetLastCreateId(CancellationToken cancellationToken)
+    {
+        var id = await _usersQueries.GetLastCreateId(cancellationToken);
+
+        return Ok(id);
+    }
+
     [HttpPost]
     public async Task<IActionResult> CreateUser([FromBody] CreateUserCommand command, CancellationToken cancellationToken)
     {

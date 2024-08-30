@@ -51,4 +51,13 @@ public class UserQueries(IDatabaseFactory databaseFactory) : IUserQueries
         var command = new CommandDefinition(sql, new { cpf }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<long>(command);
     }
+
+    public async Task<long> GetLastCreateId(CancellationToken cancellationToken)
+    {
+        var sql = @"select max(id) as Id
+                      from users ";
+
+        var command = new CommandDefinition(sql, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
+        return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<long>(command);
+    }
 }

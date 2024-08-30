@@ -18,14 +18,12 @@ public class PhoneController : ControllerBase
         _phoneQueries = phoneQueries;
     }
 
-    [HttpGet]
+    [HttpGet("{iD}")]
     public async Task<IActionResult> GetById(long iD, CancellationToken cancellationToken)
     {
-        var phones = _phoneQueries.GetById(iD, cancellationToken);
+        var phones = await _phoneQueries.GetAllPhonesByUserId(iD, cancellationToken);
         return Ok(phones);
     }
-
-
 
     [HttpPost]
     public async Task<IActionResult> CreatePhone([FromBody] CreatePhoneCommand command, CancellationToken cancellationToken)
@@ -34,7 +32,7 @@ public class PhoneController : ControllerBase
         if (result.IsFailure)
             return BadRequest(result.Error);
 
-        return Ok(result);
+        return Ok();
     }
 
     [HttpPut]
@@ -45,5 +43,16 @@ public class PhoneController : ControllerBase
             return BadRequest(result.Error);
 
         return Ok(result);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeletePhone(int id, CancellationToken cancellationToken)
+    {
+        var command = new DeletePhoneCommand { Id = id };
+        var result = await _mediator.Send(command, cancellationToken);
+        if (result.IsFailure)
+            return BadRequest(result.Error);
+
+        return Ok();
     }
 }

@@ -29,4 +29,9 @@ public class Phone
         Number = number;
         UserId = userId;
     }
+
+    public void Delete(long id)
+    {
+        Id = id;
+    }
 }
