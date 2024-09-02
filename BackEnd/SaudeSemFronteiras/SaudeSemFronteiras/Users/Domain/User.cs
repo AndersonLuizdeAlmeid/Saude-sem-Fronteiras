@@ -1,4 +1,6 @@
-﻿namespace SaudeSemFronteiras.Application.Users.Domain;
+﻿using SaudeSemFronteiras.Application.Login.Domain;
+
+namespace SaudeSemFronteiras.Application.Users.Domain;
 public class User
 {
     public long Id { get; private set; }
@@ -9,8 +11,9 @@ public class User
     public DateTime DateOfCreation { get; private set; }
     public string Language { get; private set; } = string.Empty;
     public bool IsActive { get; private set; }
+    public long CredentialsId { get; private set; }
 
-    public User(long id, string name, string cPF, string motherName, DateTime dateBirth, DateTime dateOfCreation, string language, bool isActive)
+    public User(long id, string name, string cPF, string motherName, DateTime dateBirth, DateTime dateOfCreation, string language, bool isActive, long credentialsId)
     {
         Id = id;
         Name = name;
@@ -20,10 +23,11 @@ public class User
         DateOfCreation = dateOfCreation;
         Language = language;
         IsActive = isActive;
+        CredentialsId = credentialsId;
     }
 
-    public static User Create(string name, string cpf, string motherName, DateTime dateBirth, DateTime dateOfCreation, string language, bool isActive) =>
-        new(0, name, cpf, motherName, dateBirth, DateTime.Now, language, isActive);
+    public static User Create(string name, string cpf, string motherName, DateTime dateBirth, DateTime dateOfCreation, string language, bool isActive, long credentialsId) =>
+        new(0, name, cpf, motherName, dateBirth, DateTime.Now, language, isActive, credentialsId);
 
     public void Update(string name, string cpf, string motherName, DateTime dateBirth, string language, bool isActive)
     {

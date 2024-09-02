@@ -8,7 +8,7 @@ public interface IDatabaseRepository : ILocalDatabaseRepository
     Task CreateCitiesTable();
     Task CreateAddressesTable();
     Task CreateUsersTable();
-    Task CreateLoginsTable();
+    Task CreateCredentialsTable();
     Task CreatePhonesTable();
     Task CreatePatientsTable();
     Task CreateDoctorsTable();

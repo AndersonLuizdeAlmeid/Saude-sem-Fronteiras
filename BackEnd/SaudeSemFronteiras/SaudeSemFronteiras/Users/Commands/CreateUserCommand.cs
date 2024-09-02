@@ -11,6 +11,7 @@ public class CreateUserCommand : IRequest<Result>
     public string MotherName { get; set; } = string.Empty;
     public DateTime DateBirth { get; set; }
     public string Language { get; set; } = string.Empty;
+    public long CredentialsId { get; set; }
 
     public Result Validation()
     {
@@ -24,6 +25,8 @@ public class CreateUserCommand : IRequest<Result>
             return Result.Failure("Data de Aniversário não pode nulo");
         if (string.IsNullOrEmpty(Language))
             return Result.Failure("Linguagem não pode ser nulo");
+        if (CredentialsId.ToString().IsNullOrEmpty())
+            return Result.Failure("Código das credenciais não pode ser nulo");
 
         return Result.Success();
     }

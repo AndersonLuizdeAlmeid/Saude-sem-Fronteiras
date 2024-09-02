@@ -25,9 +25,9 @@ public class DatabaseHandler : IRequestHandler<CreateTablesCommand, Result>
         await _databaseRepository.CreateCountriesTable();
         await _databaseRepository.CreateStatesTable();
         await _databaseRepository.CreateCitiesTable();
+        await _databaseRepository.CreateCredentialsTable();
         await _databaseRepository.CreateUsersTable();
         await _databaseRepository.CreateAddressesTable();
-        await _databaseRepository.CreateLoginsTable();
         await _databaseRepository.CreatePhonesTable();
         await _databaseRepository.CreatePatientsTable();
         await _databaseRepository.CreateDoctorsTable();

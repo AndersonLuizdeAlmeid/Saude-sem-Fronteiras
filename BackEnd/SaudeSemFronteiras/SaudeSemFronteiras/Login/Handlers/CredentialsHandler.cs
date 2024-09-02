@@ -26,10 +26,10 @@ public class CredentialsHandler : IRequestHandler<CreateCredentialsCommand, Resu
             return validationResult;
 
         var validateEmail = _credentialsQueries.GetIfEmailExists(request.Email, cancellationToken);
-        if (validateEmail.Result == 0)
+        if (validateEmail.Result > 0)
             return Result.Failure("Email já existe");
 
-        var credentials = Credentials.Create(request.Email, request.Password, request.UserId);
+        var credentials = Credentials.Create(request.Email, request.Password);
 
         await _credentialsRepository.Insert(credentials, cancellationToken);
 
@@ -46,7 +46,7 @@ public class CredentialsHandler : IRequestHandler<CreateCredentialsCommand, Resu
         if (validationResult.IsFailure)
             return validationResult;
 
-        credentials.Update(request.Email, request.Password, request.UserId);
+        credentials.Update(request.Email, request.Password);
 
         await _credentialsRepository.Update(credentials, cancellationToken);
 

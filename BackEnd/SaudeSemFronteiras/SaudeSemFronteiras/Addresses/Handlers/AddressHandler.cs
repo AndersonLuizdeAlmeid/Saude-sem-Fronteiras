@@ -29,11 +29,7 @@ public class AddressHandler : IRequestHandler<CreateAddressCommand, Result>,
         if (validationResult.IsFailure)
             return validationResult;
 
-        var id = await _userQueries.GetIdByCpf(request.Cpf, cancellationToken);
-        if (id.ToString().IsNullOrEmpty())
-            return Result.Failure("Código do usuário inválido.");
-
-        var address = Address.Create(request.District, request.Street, request.Number, request.Complement, request.CityId, id);
+        var address = Address.Create(request.District, request.Street, request.Number, request.Complement, request.CityId, request.UserId);
 
         await _addressRepository.Insert(address, cancellationToken);
 

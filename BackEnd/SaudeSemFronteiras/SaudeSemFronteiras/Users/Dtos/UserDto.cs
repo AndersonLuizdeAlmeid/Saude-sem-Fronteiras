@@ -8,4 +8,5 @@ public class UserDto
     public DateTime DateBirth { get; set; }
     public string Language { get; set; } = string.Empty;
     public bool IsActive { get; set; }
+    public long CredentialsId {  get; set; }
 }

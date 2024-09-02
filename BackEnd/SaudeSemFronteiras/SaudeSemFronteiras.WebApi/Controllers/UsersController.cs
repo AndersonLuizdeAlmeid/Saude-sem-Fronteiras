@@ -27,6 +27,14 @@ public class UsersController(IMediator _mediator, IUserQueries _usersQueries) : 
         return Ok(id);
     }
 
+    [HttpGet("credentialsId/{id}")]
+    public async Task<IActionResult> GetUserByCredentialsId(long id, CancellationToken cancellationToken)
+    {
+        var user = await _usersQueries.GetUserByCredentialsId(id, cancellationToken);
+
+        return Ok(user);
+    }
+
     [HttpPost]
     public async Task<IActionResult> CreateUser([FromBody] CreateUserCommand command, CancellationToken cancellationToken)
     {
@@ -34,7 +42,7 @@ public class UsersController(IMediator _mediator, IUserQueries _usersQueries) : 
         if (result.IsFailure)
             return BadRequest(result.Error);
 
-        return Ok(result);
+        return Ok();
     }
 
     [HttpPut]

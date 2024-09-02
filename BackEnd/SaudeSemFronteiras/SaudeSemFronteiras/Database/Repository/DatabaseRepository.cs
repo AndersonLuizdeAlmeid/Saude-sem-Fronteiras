@@ -49,6 +49,18 @@ public class DatabaseRepository : IDatabaseRepository
         await LocalDatabase.Connection.ExecuteAsync(sql, transaction: LocalDatabase.Transaction);
     }
 
+    public async Task CreateCredentialsTable()
+    {
+        var sql = @"CREATE TABLE IF NOT EXISTS 
+                        credentials (
+                            id SERIAL PRIMARY KEY NOT NULL,
+                            email VARCHAR(255) NOT NULL,
+                            password VARCHAR(255) NOT NULL
+                        )";
+
+        await LocalDatabase.Connection.ExecuteAsync(sql, transaction: LocalDatabase.Transaction);
+    }
+
     public async Task CreateUsersTable()
     {
         var sql = @"CREATE TABLE IF NOT EXISTS 
@@ -60,7 +72,9 @@ public class DatabaseRepository : IDatabaseRepository
                             date_birth TIMESTAMP NOT NULL,
                             date_of_creation TIMESTAMP NOT NULL,
                             language VARCHAR(50) NOT NULL,
-                            is_active BOOLEAN NOT NULL
+                            is_active BOOLEAN NOT NULL,
+                            credentials_id BIGINT,
+                            FOREIGN KEY (credentials_id) REFERENCES credentials(id)
                         )";
 
         await LocalDatabase.Connection.ExecuteAsync(sql, transaction: LocalDatabase.Transaction);
@@ -79,18 +93,6 @@ public class DatabaseRepository : IDatabaseRepository
                             user_id BIGINT,
                             FOREIGN KEY (city_id) REFERENCES cities(id),
                             FOREIGN KEY (user_id) REFERENCES users(id)
-                        )";
-
-        await LocalDatabase.Connection.ExecuteAsync(sql, transaction: LocalDatabase.Transaction);
-    }
-
-    public async Task CreateLoginsTable()
-    {
-        var sql = @"CREATE TABLE IF NOT EXISTS 
-                        logins (
-                            id SERIAL PRIMARY KEY NOT NULL,
-                            email VARCHAR(255) NOT NULL,
-                            password VARCHAR(255) NOT NULL
                         )";
 
         await LocalDatabase.Connection.ExecuteAsync(sql, transaction: LocalDatabase.Transaction);
@@ -116,7 +118,7 @@ public class DatabaseRepository : IDatabaseRepository
                             id SERIAL PRIMARY KEY NOT NULL,
                             blood_type VARCHAR(14) NOT NULL,
                             allergies VARCHAR(255),
-                            medical_conditions VARCHAR(255) NOT NULL,
+                            medical_condition VARCHAR(255) NOT NULL,
                             previous_surgeries VARCHAR(255),
                             medicines VARCHAR(255),
                             emergency_number VARCHAR(25) NOT NULL,

@@ -8,5 +8,6 @@ public interface IUserQueries
     Task<User?> GetByID(long iD, CancellationToken cancellationToken);
     Task<long> GetIdByCpf(string cpf, CancellationToken cancellationToken);
     Task<long> GetLastCreateId(CancellationToken cancellationToken);
+    Task<UserDto?> GetUserByCredentialsId(long iD, CancellationToken cancellationToken);
 
 }

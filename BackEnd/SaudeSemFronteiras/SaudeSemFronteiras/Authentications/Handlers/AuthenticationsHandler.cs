@@ -18,9 +18,9 @@ public class AuthenticationsHandler(ICredentialsQueries _credentialsQueries, IUs
         if (!Regex.IsMatch(request.Email, RegexEmail))
             return Result.Failure<string>("O email está incorreto.");
 
-        var credentials = await _credentialsQueries.GetByEmailAndPassword(request.Email, request.Password, cancellationToken);
+        var credentials = await _credentialsQueries.GetCredentialsByEmailAndPassword(request.Email, request.Password, cancellationToken);
 
-        var user = await _userQueries.GetByID(credentials.Id, cancellationToken);
+        var user = await _userQueries.GetUserByCredentialsId(credentials.Id, cancellationToken);
             
         if (user == null)
             return Result.Failure<string>("Email ou senha incorreto.");

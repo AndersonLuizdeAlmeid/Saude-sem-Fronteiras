@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SaudeSemFronteiras.Application.Login.Commands;
 using SaudeSemFronteiras.Application.Login.Queries;
-using SaudeSemFronteiras.Application.Users.Commands;
 using SaudeSemFronteiras.WebApi.Authorizations;
 
 namespace SaudeSemFronteiras.WebApi.Controllers;
@@ -11,17 +10,15 @@ namespace SaudeSemFronteiras.WebApi.Controllers;
 [Route("[controller]")]
 public class CredentialsController(IMediator _mediator, ICredentialsQueries _credentialsQueries) : ControllerBase
 {
-    [HttpGet]
-    [Authorization]
-    public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
+    [HttpGet("{email}/{password}")]
+    public async Task<IActionResult> GetCredentialsByEmailAndPassword(string email, string password, CancellationToken cancellationToken)
     {
-        var users = await _credentialsQueries.GetAll(cancellationToken);
+        var credentials = await _credentialsQueries.GetCredentialsByEmailAndPassword(email, password, cancellationToken);
 
-        return Ok(users);
+        return Ok(credentials);
     }
 
     [HttpPost]
-    //[Authorization]
     public async Task<IActionResult> CreateCredentials([FromBody] CreateCredentialsCommand command, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(command, cancellationToken);

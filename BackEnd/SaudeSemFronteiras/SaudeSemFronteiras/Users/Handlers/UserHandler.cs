@@ -25,13 +25,11 @@ public class UserHandler : IRequestHandler<CreateUserCommand, Result>,
         if (validationResult.IsFailure)
             return validationResult;
 
-        var user = User.Create(request.Name, request.CPF, request.MotherName, request.DateBirth, DateTime.Now, request.Language, true);
+        var user = User.Create(request.Name, request.CPF, request.MotherName, request.DateBirth, DateTime.Now, request.Language, true, request.CredentialsId);
 
         await _userRepository.Insert(user, cancellationToken);
 
-        var userId = await _userQueries.GetIdByCpf(request.CPF, cancellationToken);
-
-        return Result.Success(userId);
+        return Result.Success();
     }
 
     public async Task<Result> Handle(ChangeUserCommand request, CancellationToken cancellationToken)

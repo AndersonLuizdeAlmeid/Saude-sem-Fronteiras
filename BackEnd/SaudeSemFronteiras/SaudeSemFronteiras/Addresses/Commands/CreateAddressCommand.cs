@@ -10,7 +10,7 @@ public class CreateAddressCommand : IRequest<Result>
     public string Number { get; set; } = string.Empty;
     public string Complement { get; set; } = string.Empty;
     public long CityId { get; set; }
-    public string Cpf { get; set; } = string.Empty;
+    public long UserId { get; set; }
 
     public Result Validation()
     {
@@ -22,6 +22,8 @@ public class CreateAddressCommand : IRequest<Result>
             return Result.Failure("Linguagem não pode ser nulo");
         if (CityId.ToString().IsNullOrEmpty())
             return Result.Failure("Código da cidade não pode ser nulo");
+        if (UserId.ToString().IsNullOrEmpty())
+            return Result.Failure("Código do usuário não pode ser nulo");
 
         return Result.Success();
     }
