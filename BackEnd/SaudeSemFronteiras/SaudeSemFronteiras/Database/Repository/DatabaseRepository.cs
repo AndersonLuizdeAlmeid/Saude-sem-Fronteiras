@@ -71,6 +71,7 @@ public class DatabaseRepository : IDatabaseRepository
                             mother_name VARCHAR(255) NOT NULL,
                             date_birth TIMESTAMP NOT NULL,
                             date_of_creation TIMESTAMP NOT NULL,
+                            gender VARCHAR(50) NOT NULL,
                             language VARCHAR(50) NOT NULL,
                             is_active BOOLEAN NOT NULL,
                             credentials_id BIGINT,
@@ -135,8 +136,10 @@ public class DatabaseRepository : IDatabaseRepository
                         doctors (
                             id SERIAL PRIMARY KEY NOT NULL,
                             registry_number VARCHAR(25) NOT NULL,
-                            avaibality_hours VARCHAR(14) NOT NULL,
-                            consultation_prince VARCHAR(25) NOT NULL,
+                            initial_hour VARCHAR(14) NOT NULL,
+                            final_hour VARCHAR(14) NOT NULL,
+                            consultation_price VARCHAR(25) NOT NULL,
+                            days VARCHAR(14) NOT NULL,
                             user_id BIGINT,
                             FOREIGN KEY (user_id) REFERENCES users(id)
                         )";
@@ -151,7 +154,7 @@ public class DatabaseRepository : IDatabaseRepository
                             id SERIAL PRIMARY KEY NOT NULL,
                             description VARCHAR(255) NOT NULL,
                             is_active VARCHAR(14) NOT NULL,
-                            doctor_id BIGINT,
+                            doctor_id BIGINT NOT NULL,
                             FOREIGN KEY (doctor_id) REFERENCES doctors(id)
                         )";
 

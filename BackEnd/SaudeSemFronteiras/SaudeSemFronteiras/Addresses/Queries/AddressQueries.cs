@@ -38,4 +38,20 @@ public class AddressQueries(IDatabaseFactory databaseFactory) : IAddressQueries
         var command = new CommandDefinition(sql, new { iD }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<Address>(command);
     }
+
+    public async Task<AddressDto?> GetByUserId(long iD, CancellationToken cancellationToken)
+    {
+        var sql = @"select id as Id, 
+                           district as District, 
+                           street as Street, 
+                           number as Number,
+                           complement as Complement,
+                           city_id as CityId,
+                           user_id as UserId
+                      from addresses
+                     where user_id = @iD";
+
+        var command = new CommandDefinition(sql, new { iD }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
+        return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<AddressDto>(command);
+    }
 }

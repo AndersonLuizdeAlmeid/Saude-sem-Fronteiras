@@ -1,6 +1,8 @@
-﻿using MediatR;
+﻿using CSharpFunctionalExtensions;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SaudeSemFronteiras.Application.Addresses.Commands;
+using SaudeSemFronteiras.Application.Addresses.Queries;
 
 namespace SaudeSemFronteiras.WebApi.Controllers;
 
@@ -9,10 +11,22 @@ namespace SaudeSemFronteiras.WebApi.Controllers;
 public class AddressController : ControllerBase
 {
     private readonly IMediator _mediator;
+    private readonly IAddressQueries _addressQueries;
 
-    public AddressController(IMediator mediator)
+    public AddressController(IMediator mediator, IAddressQueries addressQueries)
     {
         _mediator = mediator;
+        _addressQueries = addressQueries;
+    }
+
+    [HttpGet("id/{id}")]
+    public async Task<IActionResult> GetAddressByUserCode(long iD, CancellationToken cancellationToken)
+    {
+        var address = _addressQueries.GetByUserId(iD, cancellationToken);
+        if(address.Result == null)
+            return BadRequest("Endereço não encontrado.");
+
+        return Ok(address.Result);
     }
 
     [HttpPost]

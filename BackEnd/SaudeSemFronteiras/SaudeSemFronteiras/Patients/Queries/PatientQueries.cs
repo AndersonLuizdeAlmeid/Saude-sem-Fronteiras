@@ -23,6 +23,23 @@ public class PatientQueries(IDatabaseFactory databaseFactory) : IPatientQueries
         var command = new CommandDefinition(sql, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         return await LocalDatabase.Connection.QueryAsync<PatientDto>(command);
     }
+    
+    public async Task<Patient?> GetByUserIdChange(long iD, CancellationToken cancellationToken)
+    {
+        var sql = @"select id as Id, 
+                           blood_type as BloodType, 
+                           allergies as Allergies,
+                           medical_condition as MedicalCondition,
+                           previous_surgeries as PreviousSurgeries,
+                           medicines as Medicines,
+                           emergency_number as EmergencyNumber,
+                           user_id as UserId
+                      from patients
+                     where user_id = @iD";
+
+        var command = new CommandDefinition(sql, new { iD }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
+        return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<Patient>(command);
+    }
 
     public async Task<Patient?> GetById(long iD, CancellationToken cancellationToken)
     {
@@ -39,5 +56,22 @@ public class PatientQueries(IDatabaseFactory databaseFactory) : IPatientQueries
 
         var command = new CommandDefinition(sql, new { iD }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<Patient>(command);
+    }
+
+    public async Task<PatientDto?> GetByUserId(long iD, CancellationToken cancellationToken)
+    {
+        var sql = @"select id as Id, 
+                           blood_type as BloodType, 
+                           allergies as Allergies,
+                           medical_condition as MedicalCondition,
+                           previous_surgeries as PreviousSurgeries,
+                           medicines as Medicines,
+                           emergency_number as EmergencyNumber,
+                           user_id as UserId
+                      from patients
+                     where user_id = @iD";
+
+        var command = new CommandDefinition(sql, new { iD }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
+        return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<PatientDto>(command);
     }
 }

@@ -34,14 +34,15 @@ public class PatientHandler : IRequestHandler<CreatePatientCommand, Result>,
 
     public async Task<Result> Handle(ChangePatientCommand request, CancellationToken cancellationToken)
     {
-        var patient = await _patientQueries.GetById(request.Id, cancellationToken);
-        if (patient == null)
+        var patientDto = await _patientQueries.GetByUserId(request.UserId, cancellationToken);
+        if (patientDto == null)
             return Result.Failure("Paciente não encontrado");
 
         var validationResult = request.Validation();
-
         if (validationResult.IsFailure)
             return validationResult;
+
+        Patient patient = new Patient(patientDto.Id, request.BloodType, request.Allergies, request.MedicalCondition, request.PreviousSurgeries, request.Medicines, request.EmergencyNumber, request.UserId);
 
         patient.Update(request.BloodType, request.Allergies, request.MedicalCondition, request.PreviousSurgeries, request.Medicines, request.EmergencyNumber, request.UserId);
 

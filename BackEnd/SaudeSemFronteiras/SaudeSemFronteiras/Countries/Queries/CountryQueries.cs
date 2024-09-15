@@ -9,7 +9,7 @@ public class CountryQueries(IDatabaseFactory databaseFactory) : ICountryQueries
 
     public async Task<IEnumerable<CountryDto>> GetAll(CancellationToken cancellationToken)
     {
-        var sql = @"SELECT id as ID, 
+        var sql = @"SELECT id as Id, 
                            description as Description
                       FROM countries ";
 
@@ -19,7 +19,7 @@ public class CountryQueries(IDatabaseFactory databaseFactory) : ICountryQueries
 
     public async Task<CountryDto> GetById(long iD, CancellationToken cancellationToken)
     {
-        var sql = @"SELECT id as ID, 
+        var sql = @"SELECT id as Id, 
                            description as Description
                       FROM countries
                      WHERE id = @iD ";

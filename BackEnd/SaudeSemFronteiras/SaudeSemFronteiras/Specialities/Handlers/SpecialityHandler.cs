@@ -1,5 +1,6 @@
 ﻿using CSharpFunctionalExtensions;
 using MediatR;
+using SaudeSemFronteiras.Application.Phones.Commands;
 using SaudeSemFronteiras.Application.Specialities.Commands;
 using SaudeSemFronteiras.Application.Specialities.Domain;
 using SaudeSemFronteiras.Application.Specialities.Queries;
@@ -7,7 +8,8 @@ using SaudeSemFronteiras.Application.Specialities.Repository;
 
 namespace SaudeSemFronteiras.Application.Specialities.Handlers;
 public class SpecialityHandler : IRequestHandler<CreateSpecialityCommand, Result>,
-                                 IRequestHandler<ChangeSpecialityCommand, Result>
+                                 IRequestHandler<ChangeSpecialityCommand, Result>,
+                                 IRequestHandler<DeleteSpecialityCommand, Result>
 {
     private readonly ISpecialityRepository _specialityRepository;
     private readonly ISpecialityQueries _specialityQueries;
@@ -46,6 +48,18 @@ public class SpecialityHandler : IRequestHandler<CreateSpecialityCommand, Result
         
         await _specialityRepository.Update(speciality, cancellationToken);
         
+        return Result.Success();
+    }
+
+    public async Task<Result> Handle(DeleteSpecialityCommand request, CancellationToken cancellationToken)
+    {
+        var validationResult = request.Validation();
+
+        if (validationResult.IsFailure)
+            return validationResult;
+
+        await _specialityRepository.Delete(request.Id, cancellationToken);
+
         return Result.Success();
     }
 }

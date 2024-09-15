@@ -6,4 +6,7 @@ public interface IDoctorQueries
 {
     Task<IEnumerable<DoctorDto>> GetAll(CancellationToken cancellationToken);
     Task<Doctor?> GetById(long iD, CancellationToken cancellationToken);
+    Task<DoctorDto?> GetDtoById(long iD, CancellationToken cancellationToken);
+    Task<DoctorDto?> GetByUserId(long iD, CancellationToken cancellationToken);
+    Task<IEnumerable<DoctorComboboxDto>> GetAllDoctorsBySpeciality(long specialityId, CancellationToken cancellationToken);
 }

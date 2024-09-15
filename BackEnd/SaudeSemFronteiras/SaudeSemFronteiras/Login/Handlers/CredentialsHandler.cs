@@ -7,7 +7,8 @@ using SaudeSemFronteiras.Application.Login.Repository;
 
 namespace SaudeSemFronteiras.Application.Login.Handlers;
 public class CredentialsHandler : IRequestHandler<CreateCredentialsCommand, Result>,
-                                  IRequestHandler<ChangeCredentialsCommand, Result>
+                                  IRequestHandler<ChangeCredentialsCommand, Result>,
+                                  IRequestHandler<ChangePasswordCommand, Result>
 {
     private readonly ICredentialsRepository _credentialsRepository;
     private readonly ICredentialsQueries _credentialsQueries;
@@ -45,6 +46,25 @@ public class CredentialsHandler : IRequestHandler<CreateCredentialsCommand, Resu
 
         if (validationResult.IsFailure)
             return validationResult;
+
+        credentials.Update(request.Email, request.Password);
+
+        await _credentialsRepository.Update(credentials, cancellationToken);
+
+        return Result.Success();
+    }
+
+    public async Task<Result> Handle(ChangePasswordCommand request, CancellationToken cancellationToken)
+    {
+        var validationResult = request.Validation();
+        if (validationResult.IsFailure)
+            return validationResult;
+
+        var credentialsDto = await _credentialsQueries.GetDataCredentialsByEmail(request.Email, cancellationToken);
+        if (credentialsDto == null)
+            return Result.Failure("Usuário não cadastrado");
+
+        Credentials credentials = new(credentialsDto.Id, credentialsDto.Email.Trim('"'), credentialsDto.Password);
 
         credentials.Update(request.Email, request.Password);
 

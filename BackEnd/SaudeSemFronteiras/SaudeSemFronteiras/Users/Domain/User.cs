@@ -9,11 +9,12 @@ public class User
     public string MotherName { get; private set; } = string.Empty;
     public DateTime DateBirth { get; private set; }
     public DateTime DateOfCreation { get; private set; }
+    public string Gender { get; private set; } = string.Empty;
     public string Language { get; private set; } = string.Empty;
     public bool IsActive { get; private set; }
     public long CredentialsId { get; private set; }
 
-    public User(long id, string name, string cPF, string motherName, DateTime dateBirth, DateTime dateOfCreation, string language, bool isActive, long credentialsId)
+    public User(long id, string name, string cPF, string motherName, DateTime dateBirth, DateTime dateOfCreation, string gender, string language, bool isActive, long credentialsId)
     {
         Id = id;
         Name = name;
@@ -21,20 +22,34 @@ public class User
         MotherName = motherName;
         DateBirth = dateBirth;
         DateOfCreation = dateOfCreation;
+        Gender = gender;
         Language = language;
         IsActive = isActive;
         CredentialsId = credentialsId;
     }
 
-    public static User Create(string name, string cpf, string motherName, DateTime dateBirth, DateTime dateOfCreation, string language, bool isActive, long credentialsId) =>
-        new(0, name, cpf, motherName, dateBirth, DateTime.Now, language, isActive, credentialsId);
+    public User(long id, string name, string cPF, string motherName, DateTime dateBirth, string gender, string language, bool isActive)
+    {
+        Id = id;
+        Name = name;
+        CPF = cPF;
+        MotherName = motherName;
+        DateBirth = dateBirth;
+        Gender = gender;
+        Language = language;
+        IsActive = isActive;
+    }
 
-    public void Update(string name, string cpf, string motherName, DateTime dateBirth, string language, bool isActive)
+    public static User Create(string name, string cpf, string motherName, DateTime dateBirth, DateTime dateOfCreation, string gender, string language, bool isActive, long credentialsId) =>
+        new(0, name, cpf, motherName, dateBirth, DateTime.Now, gender, language, isActive, credentialsId);
+
+    public void Update(string name, string cpf, string motherName, DateTime dateBirth, string gender, string language, bool isActive)
     {
         Name = name;
         CPF = cpf;
         MotherName = motherName;
         DateBirth = dateBirth;
+        Gender = gender;
         Language = language;
         IsActive = isActive;
     }

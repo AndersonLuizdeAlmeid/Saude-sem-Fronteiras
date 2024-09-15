@@ -37,14 +37,15 @@ public class AddressHandler : IRequestHandler<CreateAddressCommand, Result>,
     }
     public async Task<Result> Handle(ChangeAddressCommand request, CancellationToken cancellationToken)
     {
-        var address = await _addressQueries.GetById(request.Id, cancellationToken);
-        if (address == null)
+        var addressDto = await _addressQueries.GetByUserId(request.UserId, cancellationToken);
+        if (addressDto == null)
             return Result.Failure("Endereço não encontrado");
 
         var validationResult = request.Validation();
-
         if (validationResult.IsFailure)
             return validationResult;
+
+        var address = new Address(addressDto.Id, request.District, request.Street, request.Number, request.Complement, request.CityId, request.UserId);
 
         address.Update(request.District, request.Street, request.Number, request.Complement, request.CityId, request.UserId);
 

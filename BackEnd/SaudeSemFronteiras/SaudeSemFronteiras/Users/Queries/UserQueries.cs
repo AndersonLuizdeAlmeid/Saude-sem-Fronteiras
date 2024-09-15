@@ -15,6 +15,7 @@ public class UserQueries(IDatabaseFactory databaseFactory) : IUserQueries
                            cpf as CPF,
                            motherName as MotherName,
                            dateBirth as DateBirth,
+                           gender as Gender,
                            language as Language,
                            is_active as IsActive,
                            credentials_id as CredentialsId
@@ -24,7 +25,7 @@ public class UserQueries(IDatabaseFactory databaseFactory) : IUserQueries
         return await LocalDatabase.Connection.QueryAsync<UserDto>(command);
     }
 
-    public async Task<User?> GetByID(long iD, CancellationToken cancellationToken)
+    public async Task<UserDto?> GetByID(long iD, CancellationToken cancellationToken)
     {
         var sql = @"select id as Id, 
                            name as Name, 
@@ -32,14 +33,15 @@ public class UserQueries(IDatabaseFactory databaseFactory) : IUserQueries
                            mother_name as MotherName,
                            date_birth as DateBirth,
                            date_of_creation as DateOfCreation,
+                           gender as Gender,
                            language as Language,
                            is_active as IsActive,
                            credentials_id as CredentialsId
                       from users
-                     where credentials_id = @iD";
+                     where id = @iD";
 
         var command = new CommandDefinition(sql, new { iD }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
-        return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<User>(command);
+        return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<UserDto>(command);
     }
 
     public async Task<long> GetIdByCpf(string cpf, CancellationToken cancellationToken)
@@ -68,6 +70,7 @@ public class UserQueries(IDatabaseFactory databaseFactory) : IUserQueries
                            cpf as CPF, 
                            mother_name as MotherName,
                            date_birth as DateBirth,
+                           gender as Gender,
                            language as Language,
                            is_active as IsActive,
                            credentials_id as CredentialsId

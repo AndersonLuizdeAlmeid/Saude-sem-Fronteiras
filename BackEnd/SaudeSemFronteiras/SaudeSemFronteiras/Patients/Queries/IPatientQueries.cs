@@ -6,4 +6,6 @@ public interface IPatientQueries
 {
     Task<IEnumerable<PatientDto>> GetAll(CancellationToken cancellationToken);
     Task<Patient?> GetById(long iD, CancellationToken cancellationToken);
+    Task<Patient?> GetByUserIdChange(long iD, CancellationToken cancellationToken);
+    Task<PatientDto?> GetByUserId(long iD, CancellationToken cancellationToken);
 }

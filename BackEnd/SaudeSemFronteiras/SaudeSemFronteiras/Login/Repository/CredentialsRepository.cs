@@ -16,10 +16,11 @@ public class CredentialsRepository(IDatabaseFactory LocalDatabase) : ICredential
 
     public async Task Update(Credentials credentials, CancellationToken cancellationToken)
     {
+        credentials.Email = credentials.Email.Trim('"');
         var sql = @"update credentials
                        set email = @Email,
                            password = @Password
-                     where id = @ID";
+                     where id = @Id";
 
         var command = new CommandDefinition(sql, credentials, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         await LocalDatabase.Connection.ExecuteAsync(command);

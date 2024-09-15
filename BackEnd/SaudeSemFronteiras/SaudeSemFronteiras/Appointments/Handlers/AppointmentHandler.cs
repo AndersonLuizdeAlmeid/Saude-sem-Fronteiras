@@ -4,6 +4,7 @@ using SaudeSemFronteiras.Application.Appointments.Commands;
 using SaudeSemFronteiras.Application.Appointments.Domain;
 using SaudeSemFronteiras.Application.Appointments.Queries;
 using SaudeSemFronteiras.Application.Appointments.Repository;
+using System;
 
 namespace SaudeSemFronteiras.Application.Appointments.Handlers;
 public class AppointmentHandler : IRequestHandler<CreateAppointmentCommand, Result>,
@@ -24,6 +25,10 @@ public class AppointmentHandler : IRequestHandler<CreateAppointmentCommand, Resu
 
         if (validationResult.IsFailure)
             return validationResult;
+
+        var appointmentCount = _appointmentQueries.GetAppointmentByDate(request.Date, cancellationToken);
+        if (appointmentCount.Result > 0)
+            return Result.Failure("Já existe consulta para essa data.");
 
         var appointment = Appointment.Create(request.Date, request.Duration, request.DoctorId, request.PatientId);
 

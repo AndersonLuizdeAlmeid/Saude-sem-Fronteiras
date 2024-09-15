@@ -6,4 +6,5 @@ public interface IAddressQueries
 {
     Task<IEnumerable<AddressDto>> GetAll(CancellationToken cancellationToken);
     Task<Address?> GetById(long iD, CancellationToken cancellationToken);
+    Task<AddressDto?> GetByUserId(long iD, CancellationToken cancellationToken);
 }

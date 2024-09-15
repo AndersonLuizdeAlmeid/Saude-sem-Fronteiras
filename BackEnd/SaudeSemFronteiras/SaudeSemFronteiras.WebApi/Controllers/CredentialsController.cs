@@ -1,7 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using SaudeSemFronteiras.Application.Login.Commands;
 using SaudeSemFronteiras.Application.Login.Queries;
+using SaudeSemFronteiras.Application.Login.Services;
 using SaudeSemFronteiras.WebApi.Authorizations;
 
 namespace SaudeSemFronteiras.WebApi.Controllers;
@@ -18,8 +20,28 @@ public class CredentialsController(IMediator _mediator, ICredentialsQueries _cre
         return Ok(credentials);
     }
 
+    [HttpGet("RecoveryPassword/{email}")]
+    public async Task<IActionResult> RecoveryPassword(string email, CancellationToken cancellationToken)
+    {
+        var result = CredentialsService.SendConfirmationEmail(email, cancellationToken);
+        if (result.IsNullOrEmpty())
+            return BadRequest();
+
+        return Ok(result);
+    }
+
     [HttpPost]
     public async Task<IActionResult> CreateCredentials([FromBody] CreateCredentialsCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        if (result.IsFailure)
+            return BadRequest(result.Error);
+
+        return Ok();
+    }
+
+    [HttpPut("Password")]
+    public async Task<IActionResult> ChangeCredentialsByPassword([FromBody] ChangePasswordCommand command, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(command, cancellationToken);
         if (result.IsFailure)

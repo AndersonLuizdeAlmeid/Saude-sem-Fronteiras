@@ -9,7 +9,7 @@ public class CityQueries(IDatabaseFactory databaseFactory) : ICityQueries
 
     public async Task<IEnumerable<CityDto>> GetAll(CancellationToken cancellationToken)
     {
-        var sql = @"SELECT id as ID, 
+        var sql = @"SELECT id as Id, 
                            description as Description,
                            state_id as StateId
                       FROM cities ";
@@ -18,23 +18,23 @@ public class CityQueries(IDatabaseFactory databaseFactory) : ICityQueries
         return await _databaseFactory.Connection.QueryAsync<CityDto>(command);
     }
 
-    public async Task<CityDto> GetById(long iD, CancellationToken cancellationToken)
+    public async Task<CityDto?> GetById(long iD, CancellationToken cancellationToken)
     {
-        var sql = @"SELECT id as ID, 
+        var sql = @"SELECT id as Id, 
                            description as Description,
-                           id_state as StateId
+                           state_id as StateId
                       FROM cities
                      WHERE id = @iD ";
 
         var command = new CommandDefinition(sql, new { iD }, transaction: _databaseFactory.Transaction, cancellationToken: cancellationToken);
-        return await _databaseFactory.Connection.QueryFirstAsync<CityDto>(command);
+        return await _databaseFactory.Connection.QueryFirstOrDefaultAsync<CityDto>(command);
     }
 
     public async Task<IEnumerable<CityDto>> GetByStateId(long stateId, CancellationToken cancellationToken)
     {
-        var sql = @"SELECT id as ID, 
+        var sql = @"SELECT id as Id, 
                            description as Description,
-                           id_state as StateId
+                           state_id as StateId
                       FROM cities
                      WHERE id_state = @stateId ";
 

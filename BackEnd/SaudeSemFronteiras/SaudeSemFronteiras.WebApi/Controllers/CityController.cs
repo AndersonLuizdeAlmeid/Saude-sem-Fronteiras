@@ -27,4 +27,13 @@ public class CityController : ControllerBase
         return Ok(cities);
     }
 
+    [HttpGet("id/{id}")]
+    public async Task<IActionResult> GetCityByAddressId(long iD, CancellationToken cancellationToken)
+    {
+        var city = _cityQueries.GetById(iD, cancellationToken);
+        if (city.Result == null)
+            return BadRequest("Cidade não encontrada.");
+
+        return Ok(city.Result);
+    }
 }

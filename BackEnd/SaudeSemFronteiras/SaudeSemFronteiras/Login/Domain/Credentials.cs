@@ -2,7 +2,7 @@
 public class Credentials
 {
     public long Id { get; private set; }
-    public string Email { get; private set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
     public string Password { get; private set; } = string.Empty;
 
     public Credentials(long id, string email, string password)

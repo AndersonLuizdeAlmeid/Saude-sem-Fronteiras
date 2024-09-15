@@ -5,4 +5,5 @@ public interface ISpecialityRepository
 {
     Task Insert(Speciality speciality, CancellationToken cancellationToken);
     Task Update(Speciality speciality, CancellationToken cancellationToken);
+    Task Delete(long iD, CancellationToken cancellationToken);
 }

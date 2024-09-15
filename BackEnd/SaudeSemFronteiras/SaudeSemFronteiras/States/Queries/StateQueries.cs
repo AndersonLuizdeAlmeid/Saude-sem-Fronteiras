@@ -9,7 +9,7 @@ public class StateQueries(IDatabaseFactory databaseFactory) :IStateQueries
 
     public async Task<IEnumerable<StateDto>> GetAll(CancellationToken cancellationToken)
     {
-        var sql = @"SELECT id as ID, 
+        var sql = @"SELECT id as Id, 
                            description as Description,
                            country_id as CountryId
                       FROM states ";
@@ -20,9 +20,9 @@ public class StateQueries(IDatabaseFactory databaseFactory) :IStateQueries
 
     public async Task<StateDto> GetById(long iD, CancellationToken cancellationToken)
     {
-        var sql = @"SELECT id as ID, 
+        var sql = @"SELECT id as Id, 
                            description as Description,
-                           id_country as CountryId
+                           country_id as CountryId
                       FROM states
                      WHERE id = @iD ";
 
@@ -32,11 +32,11 @@ public class StateQueries(IDatabaseFactory databaseFactory) :IStateQueries
 
     public async Task<IEnumerable<StateDto>> GetByCountryId(long countryId, CancellationToken cancellationToken)
     {
-        var sql = @"SELECT id as ID, 
+        var sql = @"SELECT id as Id, 
                            description as Description,
-                           id_country as CountryId
+                           country_id as CountryId
                       FROM states
-                     WHERE id_country = @countryId ";
+                     WHERE country_id = @countryId ";
 
         var command = new CommandDefinition(sql, new { countryId }, transaction: _databaseFactory.Transaction, cancellationToken: cancellationToken);
         return await _databaseFactory.Connection.QueryAsync<StateDto>(command);

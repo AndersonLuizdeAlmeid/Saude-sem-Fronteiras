@@ -25,4 +25,14 @@ public class StateController : ControllerBase
         return Ok(countries);
     }
 
+    [HttpGet("id/{id}")]
+    public async Task<IActionResult> GetById(long iD, CancellationToken cancellationToken)
+    {
+        var state = _stateQueries.GetById(iD, cancellationToken);
+        if (state.Result == null)
+            return BadRequest("Estado não encontrado.");
+
+        return Ok(state.Result);
+    }
+
 }

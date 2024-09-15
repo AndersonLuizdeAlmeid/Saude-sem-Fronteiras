@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SaudeSemFronteiras.Application.Doctors.Commands;
+using SaudeSemFronteiras.Application.Doctors.Queries;
 
 namespace SaudeSemFronteiras.WebApi.Controllers;
 
@@ -9,10 +10,32 @@ namespace SaudeSemFronteiras.WebApi.Controllers;
 public class DoctorController : ControllerBase
 {
     private readonly IMediator _mediator;
+    private readonly IDoctorQueries _doctorQueries;
 
-    public DoctorController(IMediator mediator)
+    public DoctorController(IMediator mediator, IDoctorQueries doctorQueries)
     {
         _mediator = mediator;
+        _doctorQueries = doctorQueries;
+    }
+
+    [HttpGet("id/{id}")]
+    public async Task<IActionResult> GetDoctorByUserCode(long iD, CancellationToken cancellationToken)
+    {
+        var doctor = _doctorQueries.GetByUserId(iD, cancellationToken);
+        if (doctor.Result == null)
+            return BadRequest("Endereço não encontrado.");
+
+        return Ok(doctor.Result);
+    }
+
+    [HttpGet("specialityId/{speciality_id}")]
+    public async Task<IActionResult> GetDoctorsBySpeciality(long speciality_id, CancellationToken cancellationToken)
+    {
+        var doctor = _doctorQueries.GetAllDoctorsBySpeciality(speciality_id, cancellationToken);
+        if (doctor.Result == null)
+            return BadRequest("Endereço não encontrado.");
+
+        return Ok(doctor.Result);
     }
 
     [HttpPost]

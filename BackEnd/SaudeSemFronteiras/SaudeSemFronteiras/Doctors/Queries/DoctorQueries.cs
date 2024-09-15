@@ -13,7 +13,10 @@ public class DoctorQueries(IDatabaseFactory databaseFactory) : IDoctorQueries
         var sql = @"SELECT id as Id, 
                            registry_number as RegistryNumber, 
                            avaibality_hours as AvaibalityHours, 
-                           consultation_price as ConsultationPrince,
+                           initial_hour as InitialHour,
+                           final_hour as FinalHour,
+                           consultation_price as ConsultationPrice,
+                           days as Days,
                            user_id as UserId
                       FROM doctors ";
 
@@ -25,13 +28,60 @@ public class DoctorQueries(IDatabaseFactory databaseFactory) : IDoctorQueries
     {
         var sql = @"select id as Id, 
                            registry_number as RegistryNumber, 
-                           avaibality_hours as AvaibalityHours, 
-                           consultation_price as ConsultationPrince,
+                           initial_hour as InitialHour,
+                           final_hour as FinalHour,
+                           consultation_price as ConsultationPrice,
+                           days as Days,
                            user_id as UserId
                       from doctors
                      where id = @iD";
 
         var command = new CommandDefinition(sql, new { iD }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<Doctor>(command);
+    }
+
+    public async Task<DoctorDto?> GetDtoById(long iD, CancellationToken cancellationToken)
+    {
+        var sql = @"select id as Id, 
+                           registry_number as RegistryNumber, 
+                           initial_hour as InitialHour,
+                           final_hour as FinalHour,
+                           consultation_price as ConsultationPrice,
+                           days as Days,
+                           user_id as UserId
+                      from doctors
+                     where id = @iD";
+
+        var command = new CommandDefinition(sql, new { iD }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
+        return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<DoctorDto>(command);
+    }
+
+    public async Task<DoctorDto?> GetByUserId(long iD, CancellationToken cancellationToken)
+    {
+        var sql = @"select id as Id, 
+                           registry_number as RegistryNumber, 
+                           initial_hour as InitialHour,
+                           final_hour as FinalHour,
+                           consultation_price as ConsultationPrice,
+                           days as Days,
+                           user_id as UserId
+                      from doctors
+                     where user_id = @iD";
+
+        var command = new CommandDefinition(sql, new { iD }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
+        return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<DoctorDto>(command);
+    }
+
+    public async Task<IEnumerable<DoctorComboboxDto>> GetAllDoctorsBySpeciality(long specialityId, CancellationToken cancellationToken)
+    {
+        var sql = @"SELECT doctors.id AS Id,
+                           users.name AS Name
+                      FROM doctors
+                           INNER JOIN users ON users.id = doctors.user_id
+                           inner join specialities on doctors.id = specialities.doctor_id 
+                     WHERE specialities.id = @specialityId";
+
+        var command = new CommandDefinition(sql, new { specialityId }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
+        return await LocalDatabase.Connection.QueryAsync<DoctorComboboxDto>(command);
     }
 }

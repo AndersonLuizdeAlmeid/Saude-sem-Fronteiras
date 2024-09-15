@@ -19,7 +19,9 @@ public class CredentialsQueries(IDatabaseFactory _databaseFactory) : ICredential
 
     public async Task<CredentialsDto?> GetCredentialsByEmailAndPassword(string email, string password, CancellationToken cancellationToken)
     {
-        var sql = @"SELECT id as ID, 
+        email = email.Trim('"');
+        password = password.Trim('"');
+        var sql = @"SELECT id as Id, 
                            email as Email, 
                            password as Password
                       FROM credentials
@@ -32,7 +34,7 @@ public class CredentialsQueries(IDatabaseFactory _databaseFactory) : ICredential
 
     public async Task<Credentials?> GetById(long iD, CancellationToken cancellationToken)
     {
-        var sql = @"select id as ID, 
+        var sql = @"select id as Id, 
                            email as Email, 
                            password as Password
                       from credentials
@@ -40,5 +42,19 @@ public class CredentialsQueries(IDatabaseFactory _databaseFactory) : ICredential
 
         var command = new CommandDefinition(sql, new { iD }, transaction: _databaseFactory.Transaction, cancellationToken: cancellationToken);
         return await _databaseFactory.Connection.QueryFirstOrDefaultAsync<Credentials>(command);
+    }
+
+    public async Task<CredentialsDto?> GetDataCredentialsByEmail(string email, CancellationToken cancellationToken)
+    {
+        email = email.Trim('"');
+
+        var sql = @"SELECT id as Id, 
+                           email as Email, 
+                           password as Password
+                      FROM credentials
+                     where email = @email";
+
+        var command = new CommandDefinition(sql, new { email }, transaction: _databaseFactory.Transaction, cancellationToken: cancellationToken);
+        return await _databaseFactory.Connection.QueryFirstOrDefaultAsync<CredentialsDto>(command);
     }
 }

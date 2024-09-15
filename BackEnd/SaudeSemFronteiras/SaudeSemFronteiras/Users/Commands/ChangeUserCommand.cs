@@ -10,6 +10,7 @@ public class ChangeUserCommand : IRequest<Result>
     public string CPF { get; set; } = string.Empty;
     public string MotherName { get; set; } = string.Empty;
     public DateTime DateBirth { get; set; }
+    public string Gender { get; set; } = string.Empty;
     public string Language { get; set; } = string.Empty;
     public bool IsActive { get; set; }
 
@@ -23,6 +24,8 @@ public class ChangeUserCommand : IRequest<Result>
             return Result.Failure("CPF não pode ser nulo");
         if (string.IsNullOrEmpty(MotherName))
             return Result.Failure("Nome da mãe não pode ser nulo");
+        if (string.IsNullOrEmpty(Gender))
+            return Result.Failure("Genêro não pode ser nulo");
         if (string.IsNullOrEmpty(Language))
             return Result.Failure("Linguagem não pode ser nulo");
 

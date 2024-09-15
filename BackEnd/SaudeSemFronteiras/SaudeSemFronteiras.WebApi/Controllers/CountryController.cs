@@ -25,4 +25,14 @@ public class CountryController : ControllerBase
         return Ok(countries);
     }
 
+    [HttpGet("id/{id}")]
+    public async Task<IActionResult> GetById(long iD, CancellationToken cancellationToken)
+    {
+        var country = _countryQueries.GetById(iD, cancellationToken);
+        if (country.Result == null)
+            return BadRequest("País não encontrado.");
+
+        return Ok(country.Result);
+    }
+
 }

@@ -8,16 +8,26 @@ public class SpecialityQueries(IDatabaseFactory databaseFactory) : ISpecialityQu
 {
     private readonly IDatabaseFactory LocalDatabase = databaseFactory;
    
-    public async Task<IEnumerable<SpecialityDto>> GetAll(CancellationToken cancellationToken)
+    public async Task<IEnumerable<SpecilitiesShowDto>> GetAll(CancellationToken cancellationToken)
     {
-        var sql = @"SELECT id as ID,
-                           description as Description,
-                           is_active as IsActive,
-                           doctor_id as DoctorId
-                      FROM specialities ";
+        var sql = @"SELECT id as Id,
+                           description as Description
+                      FROM specialities 
+                     WHERE is_active = 'true'";
 
         var command = new CommandDefinition(sql, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
-        return await LocalDatabase.Connection.QueryAsync<SpecialityDto>(command);
+        return await LocalDatabase.Connection.QueryAsync<SpecilitiesShowDto>(command);
+    }
+
+    public async Task<IEnumerable<SpecilitiesShowDto>> GetAllSpecialitiesByDoctorId(long doctorId, CancellationToken cancellationToken)
+    {
+        var sql = @"SELECT id as Id,
+                           description as Description
+                      FROM specialities 
+                     WHERE doctor_id = @doctorId";
+
+        var command = new CommandDefinition(sql, new { doctorId }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
+        return await LocalDatabase.Connection.QueryAsync<SpecilitiesShowDto>(command);
     }
 
     public async Task<Speciality?> GetById(long iD, CancellationToken cancellationToken)
