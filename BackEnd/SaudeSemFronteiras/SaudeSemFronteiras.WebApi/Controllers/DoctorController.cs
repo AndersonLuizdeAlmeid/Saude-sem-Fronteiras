@@ -23,7 +23,27 @@ public class DoctorController : ControllerBase
     {
         var doctor = _doctorQueries.GetByUserId(iD, cancellationToken);
         if (doctor.Result == null)
-            return BadRequest("Endereço não encontrado.");
+            return BadRequest("Médico não encontrado.");
+
+        return Ok(doctor.Result);
+    }
+
+    [HttpGet("doctorId/{doctorId}")]
+    public async Task<IActionResult> GetDoctorById(long doctorId, CancellationToken cancellationToken)
+    {
+        var doctor = _doctorQueries.GetDtoById(doctorId, cancellationToken);
+        if (doctor.Result == null)
+            return BadRequest("Médico não encontrado.");
+
+        return Ok(doctor.Result);
+    }
+
+    [HttpGet("price/{doctorId}")]
+    public async Task<IActionResult> GetPriceByDoctorId(long doctorId, CancellationToken cancellationToken)
+    {
+        var doctor = _doctorQueries.GetPriceByDoctorIdQuery(doctorId, cancellationToken);
+        if (doctor.Result == null)
+            return BadRequest("Médico não encontrado.");
 
         return Ok(doctor.Result);
     }
@@ -33,7 +53,7 @@ public class DoctorController : ControllerBase
     {
         var doctor = _doctorQueries.GetAllDoctorsBySpeciality(speciality_id, cancellationToken);
         if (doctor.Result == null)
-            return BadRequest("Endereço não encontrado.");
+            return BadRequest("Médico não encontrado.");
 
         return Ok(doctor.Result);
     }

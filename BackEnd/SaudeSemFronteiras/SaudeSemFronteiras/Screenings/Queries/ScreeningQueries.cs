@@ -11,7 +11,6 @@ public class ScreeningQueries(IDatabaseFactory databaseFactory) : IScreeningQuer
     public async Task<IEnumerable<ScreeningDto>> GetAll(CancellationToken cancellationToken)
     {
         var sql = @"SELECT id as Id, 
-                           degree_severity as DegreeSeverity, 
                            symptons as Symptons,
                            date_symptons as DateSymptons,
                            continuos_medicine as ContinuosMedicine,
@@ -26,7 +25,6 @@ public class ScreeningQueries(IDatabaseFactory databaseFactory) : IScreeningQuer
     public async Task<Screening?> GetById(long iD, CancellationToken cancellationToken)
     {
         var sql = @"select id as Id, 
-                           degree_severity as DegreeSeverity, 
                            symptons as Symptons,
                            date_symptons as DateSymptons,
                            continuos_medicine as ContinuosMedicine,

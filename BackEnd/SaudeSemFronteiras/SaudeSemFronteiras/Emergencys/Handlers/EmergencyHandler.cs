@@ -25,7 +25,9 @@ public class EmergencyHandler : IRequestHandler<CreateEmergencyCommand, Result>,
         if (validationResult.IsFailure)
             return validationResult;
 
-        var emergency = Emergency.Create(request.Value, request.WaitTime, request.AppointmentId);
+        var dateNow = DateTime.Now.ToString();
+
+        var emergency = Emergency.Create(request.Price, dateNow, request.AppointmentId);
 
         await _emergencyRepository.Insert(emergency, cancellationToken);
         return Result.Success();
@@ -33,8 +35,8 @@ public class EmergencyHandler : IRequestHandler<CreateEmergencyCommand, Result>,
 
     public async Task<Result> Handle(ChangeEmergencyCommand request, CancellationToken cancellationToken)
     {
-        var Emergency = await _emergencyQueries.GetById(request.Id, cancellationToken);
-        if (Emergency == null)
+        var emergencyDto = await _emergencyQueries.GetById(request.Id, cancellationToken);
+        if (emergencyDto == null)
             return Result.Failure("Consulta emergencial não encontrada");
 
         var validationResult = request.Validation();
@@ -42,9 +44,18 @@ public class EmergencyHandler : IRequestHandler<CreateEmergencyCommand, Result>,
         if (validationResult.IsFailure)
             return validationResult;
 
-        Emergency.Update(request.Value, request.WaitTime, request.IsActive, request.AppointmentId);
+        Emergency emergency = new Emergency(emergencyDto.Id,
+                                            emergencyDto.Price,
+                                            emergencyDto.WaitTime,
+                                            emergencyDto.Status,
+                                            emergencyDto.AppointmentId);
 
-        await _emergencyRepository.Update(Emergency, cancellationToken);
+        if (request.Status != 3)
+            request.Price = emergency.Price;
+
+        emergency.Update(request.Price, request.WaitTime, request.Status, emergencyDto.AppointmentId);
+
+        await _emergencyRepository.Update(emergency, cancellationToken);
 
         return Result.Success();
     }

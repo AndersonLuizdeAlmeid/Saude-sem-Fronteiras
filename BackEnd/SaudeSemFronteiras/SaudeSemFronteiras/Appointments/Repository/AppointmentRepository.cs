@@ -26,4 +26,13 @@ public class AppointmentRepository(IDatabaseFactory LocalDatabase) : IAppointmen
         var command = new CommandDefinition(sql, appointment, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         await LocalDatabase.Connection.ExecuteAsync(command);
     }
+
+    public async Task Delete(long iD, CancellationToken cancellationToken)
+    {
+        var sql = @"delete from appointments
+                     where id = @iD";
+
+        var command = new CommandDefinition(sql, new { iD }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
+        await LocalDatabase.Connection.ExecuteAsync(command);
+    }
 }

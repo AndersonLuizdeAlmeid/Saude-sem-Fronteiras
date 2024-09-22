@@ -37,7 +37,7 @@ public class SpecialityController : ControllerBase
         if (result.IsFailure)
             return BadRequest(result.Error);
 
-        return Ok(result);
+        return Ok();
     }
 
     [HttpPut]

@@ -7,8 +7,8 @@ public class ScheduleRepository(IDatabaseFactory LocalDatabase) : IScheduleRepos
 {
     public async Task Insert(Schedule schedule, CancellationToken cancellationToken)
     {
-        var sql = @"insert into scheduled(value, scheduled_date, is_active, appointment_id) 
-                                 values (@Value, @ScheduledDate, @IsActive, @AppointmentId)";
+        var sql = @"insert into scheduled(price, scheduled_date, status, appointment_id) 
+                                 values (@Price, @ScheduledDate, @Status, @AppointmentId)";
         var command = new CommandDefinition(sql, schedule, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         await LocalDatabase.Connection.ExecuteAsync(command);
     }
@@ -16,10 +16,9 @@ public class ScheduleRepository(IDatabaseFactory LocalDatabase) : IScheduleRepos
     public async Task Update(Schedule schedule, CancellationToken cancellationToken)
     {
         var sql = @"update scheduled
-                       set value = @Value, 
+                       set price = @Price,
                            scheduled_date = @ScheduledDate,
-                           is_active = @IsActive,
-                           appointment_id = @AppointmentId
+                           status = @Status
                      where id = @Id";
 
         var command = new CommandDefinition(sql, schedule, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);

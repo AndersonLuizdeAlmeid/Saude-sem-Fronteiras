@@ -9,5 +9,6 @@ public class UserDto
     public string Gender { get; set; } = string.Empty;
     public string Language { get; set; } = string.Empty;
     public bool IsActive { get; set; }
+    public string Phone { get; set; } = string.Empty;
     public long CredentialsId {  get; set; }
 }

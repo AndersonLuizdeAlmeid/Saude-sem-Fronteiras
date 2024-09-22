@@ -25,7 +25,7 @@ public class ScreeningHandler : IRequestHandler<CreateScreeningCommand, Result>,
         if (validationResult.IsFailure)
             return validationResult;
 
-        var screening = Screening.Create(request.DegreeSeverity, request.Symptons, request.DateSymptons, request.ContinuosMedicine, request.Allergies, request.EmergencyId);
+        var screening = Screening.Create(request.Symptons, request.DateSymptons, request.ContinuosMedicine, request.Allergies, request.Observations, request.EmergencyId);
 
         await _screeningRepository.Insert(screening, cancellationToken);
         return Result.Success();
@@ -42,7 +42,7 @@ public class ScreeningHandler : IRequestHandler<CreateScreeningCommand, Result>,
         if (validationResult.IsFailure)
             return validationResult;
 
-        screening.Update(request.DegreeSeverity, request.Symptons, request.DateSymptons, request.ContinuosMedicine, request.Allergies, request.EmergencyId);
+        screening.Update(request.Symptons, request.DateSymptons, request.ContinuosMedicine, request.Allergies, request.Observations, request.EmergencyId);
 
         await _screeningRepository.Update(screening, cancellationToken);
 

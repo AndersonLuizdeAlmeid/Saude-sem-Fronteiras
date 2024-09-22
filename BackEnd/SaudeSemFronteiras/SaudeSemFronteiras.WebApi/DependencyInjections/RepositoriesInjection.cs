@@ -11,7 +11,6 @@ using SaudeSemFronteiras.Application.Invoices.Repository;
 using SaudeSemFronteiras.Application.Login.Repository;
 using SaudeSemFronteiras.Application.Messages.Repository;
 using SaudeSemFronteiras.Application.Patients.Repository;
-using SaudeSemFronteiras.Application.Phones.Repository;
 using SaudeSemFronteiras.Application.Prescriptions.Repository;
 using SaudeSemFronteiras.Application.Scheduled.Repository;
 using SaudeSemFronteiras.Application.Screenings.Repository;
@@ -35,7 +34,6 @@ public static class RepositoriesInjection
                 .AddScoped<IInvoiceRepository, InvoiceRepository>()
                 .AddScoped<IMessageRepository, MessageRepository>()
                 .AddScoped<IPatientRepository, PatientRepository>()
-                .AddScoped<IPhoneRepository, PhoneRepository>()
                 .AddScoped<IPrescriptionRepository, PrescriptionRepository>()
                 .AddScoped<IScheduleRepository, ScheduleRepository>()
                 .AddScoped<IScreeningRepository, ScreeningRepository>()

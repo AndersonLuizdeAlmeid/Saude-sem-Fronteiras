@@ -1,6 +1,5 @@
 ﻿using CSharpFunctionalExtensions;
 using MediatR;
-using SaudeSemFronteiras.Application.Phones.Commands;
 using SaudeSemFronteiras.Application.Specialities.Commands;
 using SaudeSemFronteiras.Application.Specialities.Domain;
 using SaudeSemFronteiras.Application.Specialities.Queries;

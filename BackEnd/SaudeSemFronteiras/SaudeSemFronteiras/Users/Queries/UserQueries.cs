@@ -18,6 +18,7 @@ public class UserQueries(IDatabaseFactory databaseFactory) : IUserQueries
                            gender as Gender,
                            language as Language,
                            is_active as IsActive,
+                           phone as Phone,
                            credentials_id as CredentialsId
                       FROM users ";
 
@@ -36,6 +37,7 @@ public class UserQueries(IDatabaseFactory databaseFactory) : IUserQueries
                            gender as Gender,
                            language as Language,
                            is_active as IsActive,
+                           phone as Phone,
                            credentials_id as CredentialsId
                       from users
                      where id = @iD";
@@ -73,9 +75,29 @@ public class UserQueries(IDatabaseFactory databaseFactory) : IUserQueries
                            gender as Gender,
                            language as Language,
                            is_active as IsActive,
+                           phone as Phone,
                            credentials_id as CredentialsId
                       from users
                      where credentials_id = @id";
+
+        var command = new CommandDefinition(sql, new { id }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
+        return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<UserDto>(command);
+    }
+
+    public async Task<UserDto?> GetUserByUserId(long id, CancellationToken cancellationToken)
+    {
+        var sql = @"select id as Id, 
+                           name as Name, 
+                           cpf as CPF, 
+                           mother_name as MotherName,
+                           date_birth as DateBirth,
+                           gender as Gender,
+                           language as Language,
+                           is_active as IsActive,
+                           phone as Phone,
+                           credentials_id as CredentialsId
+                      from users
+                     where id = @id";
 
         var command = new CommandDefinition(sql, new { id }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<UserDto>(command);

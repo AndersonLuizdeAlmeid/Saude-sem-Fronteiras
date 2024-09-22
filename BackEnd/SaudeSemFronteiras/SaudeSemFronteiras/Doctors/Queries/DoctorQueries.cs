@@ -84,4 +84,14 @@ public class DoctorQueries(IDatabaseFactory databaseFactory) : IDoctorQueries
         var command = new CommandDefinition(sql, new { specialityId }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         return await LocalDatabase.Connection.QueryAsync<DoctorComboboxDto>(command);
     }
+
+    public async Task<decimal?> GetPriceByDoctorIdQuery(long iD, CancellationToken cancellationToken)
+    {
+        var sql = @"select consultation_price as ConsultationPrice
+                      from doctors
+                     where id = @iD";
+
+        var command = new CommandDefinition(sql, new { iD }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
+        return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<decimal>(command);
+    }
 }

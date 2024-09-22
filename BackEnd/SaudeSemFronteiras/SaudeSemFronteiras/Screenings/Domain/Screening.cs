@@ -2,34 +2,34 @@
 public class Screening
 {
     public long Id { get; private set; }
-    public string DegreeSeverity { get; private set; } = string.Empty;
     public string Symptons { get; private set; } = string.Empty;
-    public DateTime DateSymptons { get; private set; }
+    public string DateSymptons { get; private set; }
     public string ContinuosMedicine { get; private set; } = string.Empty;
     public string Allergies { get; private set; } = string.Empty;
+    public string Observations { get; private set; } = string.Empty;
     public long EmergencyId { get; private set; }
 
-    public Screening(long id, string degreeSeverity, string symptons, DateTime dateSymptons, string continuosMedicine, string allergies, long emergencyId)
+    public Screening(long id, string symptons, string dateSymptons, string continuosMedicine, string allergies, string observations, long emergencyId)
     {
         Id = id;
-        DegreeSeverity = degreeSeverity;
         Symptons = symptons;
         DateSymptons = dateSymptons;
         ContinuosMedicine = continuosMedicine;
         Allergies = allergies;
+        Observations = observations;
         EmergencyId = emergencyId;
     }
 
-    public static Screening Create(string degreeSeverity, string symptons, DateTime dateSymptons, string continuosMedicine, string allergies, long emergencyId) =>
-        new(0, degreeSeverity, symptons, dateSymptons, continuosMedicine, allergies, emergencyId);
+    public static Screening Create(string symptons, string dateSymptons, string continuosMedicine, string allergies, string observations, long emergencyId) =>
+        new(0, symptons, dateSymptons, continuosMedicine, allergies, observations, emergencyId);
 
-    public void Update(string degreeSeverity, string symptons, DateTime dateSymptons, string continuosMedicine, string allergies, long emergencyId)
+    public void Update(string symptons, string dateSymptons, string continuosMedicine, string allergies, string observations, long emergencyId)
     {
-        DegreeSeverity = degreeSeverity;
         Symptons = symptons;
         DateSymptons = dateSymptons;
         ContinuosMedicine = continuosMedicine;
         Allergies = allergies;
+        Observations = observations;
         EmergencyId = emergencyId;
     }
 }

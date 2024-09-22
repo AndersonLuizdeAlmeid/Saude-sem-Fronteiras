@@ -13,6 +13,7 @@ public class ChangeUserCommand : IRequest<Result>
     public string Gender { get; set; } = string.Empty;
     public string Language { get; set; } = string.Empty;
     public bool IsActive { get; set; }
+    public string Phone {  get; set; } = string.Empty;
 
     public Result Validation()
     {
@@ -28,6 +29,8 @@ public class ChangeUserCommand : IRequest<Result>
             return Result.Failure("Genêro não pode ser nulo");
         if (string.IsNullOrEmpty(Language))
             return Result.Failure("Linguagem não pode ser nulo");
+        if (string.IsNullOrEmpty(Phone))
+            return Result.Failure("Telefone não pode ser nulo");
 
         return Result.Success();
     }

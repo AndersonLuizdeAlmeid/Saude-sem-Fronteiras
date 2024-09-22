@@ -7,8 +7,8 @@ public class EmergencyRepository(IDatabaseFactory LocalDatabase) : IEmergencyRep
 {
     public async Task Insert(Emergency emergency, CancellationToken cancellationToken)
     {
-        var sql = @"insert into emergencies(value, wait_time, is_active, appointment_id) 
-                                 values (@Value, @WaitTime, @IsActive, @AppointmentId)";
+        var sql = @"insert into emergencies(price, wait_time, status, appointment_id) 
+                                 values (@Price, @WaitTime, @Status, @AppointmentId)";
         var command = new CommandDefinition(sql, emergency, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         await LocalDatabase.Connection.ExecuteAsync(command);
     }
@@ -16,9 +16,9 @@ public class EmergencyRepository(IDatabaseFactory LocalDatabase) : IEmergencyRep
     public async Task Update(Emergency emergency, CancellationToken cancellationToken)
     {
         var sql = @"update emergencies
-                       set value = @Value, 
+                       set price = @Price, 
                            wait_time = @WaitTime,
-                           is_active = @IsActive,
+                           status = @Status,
                            appointment_id = @AppointmentId
                      where id = @Id";
 

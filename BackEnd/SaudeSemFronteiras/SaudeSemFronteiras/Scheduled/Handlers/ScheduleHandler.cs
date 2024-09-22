@@ -4,6 +4,7 @@ using SaudeSemFronteiras.Application.Scheduled.Commands;
 using SaudeSemFronteiras.Application.Scheduled.Domain;
 using SaudeSemFronteiras.Application.Scheduled.Queries;
 using SaudeSemFronteiras.Application.Scheduled.Repository;
+using System.Diagnostics;
 
 namespace SaudeSemFronteiras.Application.Scheduled.Handlers;
 public class ScheduleHandler : IRequestHandler<CreateScheduleCommand, Result>,
@@ -25,7 +26,7 @@ public class ScheduleHandler : IRequestHandler<CreateScheduleCommand, Result>,
         if (validationResult.IsFailure)
             return validationResult;
 
-        var schedule = Schedule.Create(request.Value, request.ScheduledDate, request.AppointmentId);
+        var schedule = Schedule.Create(request.Price, request.ScheduledDate, request.AppointmentId);
 
         await _scheduleRepository.Insert(schedule, cancellationToken);
         return Result.Success();
@@ -33,8 +34,8 @@ public class ScheduleHandler : IRequestHandler<CreateScheduleCommand, Result>,
 
     public async Task<Result> Handle(ChangeScheduleCommand request, CancellationToken cancellationToken)
     {
-        var schedule = await _scheduleQueries.GetById(request.Id, cancellationToken);
-        if (schedule == null)
+        var scheduleDto = await _scheduleQueries.GetById(request.Id, cancellationToken);
+        if (scheduleDto == null)
             return Result.Failure("Consulta agendada não encontrada");
 
         var validationResult = request.Validation();
@@ -42,7 +43,16 @@ public class ScheduleHandler : IRequestHandler<CreateScheduleCommand, Result>,
         if (validationResult.IsFailure)
             return validationResult;
 
-        schedule.Update(request.Value, request.ScheduledDate, request.IsActive, request.AppointmentId);
+        Schedule schedule = new Schedule(scheduleDto.Id,
+                                         scheduleDto.Price,
+                                         scheduleDto.ScheduledDate,
+                                         scheduleDto.Status,
+                                         scheduleDto.AppointmentId);
+
+        if (request.Status != 3)
+            request.Price = scheduleDto.Price;
+
+        schedule.Update(request.Price, request.Status);
 
         await _scheduleRepository.Update(schedule, cancellationToken);
 

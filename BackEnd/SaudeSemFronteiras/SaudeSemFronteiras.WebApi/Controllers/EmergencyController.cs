@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SaudeSemFronteiras.Application.Emergencys.Commands;
+using SaudeSemFronteiras.Application.Emergencys.Queries;
 
 namespace SaudeSemFronteiras.WebApi.Controllers;
 
@@ -9,10 +10,28 @@ namespace SaudeSemFronteiras.WebApi.Controllers;
 public class EmergencyController : ControllerBase
 {
     private readonly IMediator _mediator;
+    private readonly IEmergencyQueries _emergencyQueries;
 
-    public EmergencyController(IMediator mediator)
+    public EmergencyController(IMediator mediator, IEmergencyQueries emergencyQueries)
     {
         _mediator = mediator;
+        _emergencyQueries = emergencyQueries;
+    }
+
+    [HttpGet("patient/{patientId}")]
+    public async Task<IActionResult> GetScheduleByPatientId(long patientId, CancellationToken cancellationToken)
+    {
+        var emergencies = await _emergencyQueries.GetEmergenciesByPatientId(patientId, cancellationToken);
+
+        return Ok(emergencies);
+    }
+
+    [HttpGet("lastEmergency/patient/{patientId}")]
+    public async Task<IActionResult> GetLastAppointmentByPatient(long patientId, CancellationToken cancellationToken)
+    {
+        var appointment = await _emergencyQueries.GetLastEmergencyByPatientQuery(patientId, cancellationToken);
+
+        return Ok(appointment);
     }
 
     [HttpPost]

@@ -12,7 +12,6 @@ using SaudeSemFronteiras.Application.Invoices.Queries;
 using SaudeSemFronteiras.Application.Login.Queries;
 using SaudeSemFronteiras.Application.Messages.Queries;
 using SaudeSemFronteiras.Application.Patients.Queries;
-using SaudeSemFronteiras.Application.Phones.Queries;
 using SaudeSemFronteiras.Application.Prescriptions.Queries;
 using SaudeSemFronteiras.Application.Scheduled.Queries;
 using SaudeSemFronteiras.Application.Screenings.Queries;
@@ -43,7 +42,6 @@ public static class QueriesInjection
                 .AddScoped<IInvoiceQueries, InvoiceQueries>()
                 .AddScoped<IMessageQueries, MessageQueries>()
                 .AddScoped<IPatientQueries, PatientQueries>()
-                .AddScoped<IPhoneQueries, PhoneQueries>()
                 .AddScoped<IPrescriptionQueries, PrescriptionQueries>()
                 .AddScoped<IScheduleQueries, ScheduleQueries>()
                 .AddScoped<IScreeningQueries, ScreeningQueries>()

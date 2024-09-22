@@ -9,4 +9,5 @@ public interface IUserQueries
     Task<long> GetIdByCpf(string cpf, CancellationToken cancellationToken);
     Task<long> GetLastCreateId(CancellationToken cancellationToken);
     Task<UserDto?> GetUserByCredentialsId(long iD, CancellationToken cancellationToken);
+    Task<UserDto?> GetUserByUserId(long iD, CancellationToken cancellationToken);
 }

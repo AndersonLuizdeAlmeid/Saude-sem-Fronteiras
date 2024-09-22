@@ -74,6 +74,7 @@ public class DatabaseRepository : IDatabaseRepository
                             gender VARCHAR(50) NOT NULL,
                             language VARCHAR(50) NOT NULL,
                             is_active BOOLEAN NOT NULL,
+                            phone VARCHAR(25) NOT NULL,
                             credentials_id BIGINT,
                             FOREIGN KEY (credentials_id) REFERENCES credentials(id)
                         )";
@@ -93,19 +94,6 @@ public class DatabaseRepository : IDatabaseRepository
                             city_id BIGINT,
                             user_id BIGINT,
                             FOREIGN KEY (city_id) REFERENCES cities(id),
-                            FOREIGN KEY (user_id) REFERENCES users(id)
-                        )";
-
-        await LocalDatabase.Connection.ExecuteAsync(sql, transaction: LocalDatabase.Transaction);
-    }
-
-    public async Task CreatePhonesTable()
-    {
-        var sql = @"CREATE TABLE IF NOT EXISTS 
-                        phones (
-                            id SERIAL PRIMARY KEY NOT NULL,
-                            number VARCHAR(25) NOT NULL,
-                            user_id BIGINT,
                             FOREIGN KEY (user_id) REFERENCES users(id)
                         )";
 
@@ -301,9 +289,9 @@ public class DatabaseRepository : IDatabaseRepository
         var sql = @"CREATE TABLE IF NOT EXISTS 
                         scheduled (
                             id SERIAL PRIMARY KEY NOT NULL,
-                            value VARCHAR(25) NOT NULL,
+                            price VARCHAR(25) NOT NULL,
                             scheduled_date TIMESTAMP NOT NULL,
-                            is_active VARCHAR(14) NOT NULL,
+                            status SMALLINT NOT NULL,
                             appointment_id BIGINT,
                             FOREIGN KEY (appointment_id) REFERENCES appointments(id)
                         )";
@@ -316,9 +304,9 @@ public class DatabaseRepository : IDatabaseRepository
         var sql = @"CREATE TABLE IF NOT EXISTS 
                         emergencies (
                             id SERIAL PRIMARY KEY NOT NULL,
-                            value VARCHAR(25) NOT NULL,
-                            wait_time TIMESTAMP,
-                            is_active VARCHAR(14) NOT NULL,
+                            price DECIMAL NOT NULL,
+                            wait_time VARCHAR(255),
+                            status SMALLINT NOT NULL,
                             appointment_id BIGINT,
                             FOREIGN KEY (appointment_id) REFERENCES appointments(id)
                         )";
@@ -331,11 +319,11 @@ public class DatabaseRepository : IDatabaseRepository
         var sql = @"CREATE TABLE IF NOT EXISTS 
                         screenings (
                             id SERIAL PRIMARY KEY NOT NULL,
-                            degree_severity VARCHAR(255) NOT NULL,
                             symptons VARCHAR(255) NOT NULL,
-                            date_symptons TIMESTAMP NOT NULL,
+                            date_symptons VARCHAR(255) NOT NULL,
                             continuos_medicine VARCHAR(255),
-                            Allergies VARCHAR(255),
+                            allergies VARCHAR(255),
+                            observations VARCHAR(255),
                             emergency_id BIGINT,
                             FOREIGN KEY (emergency_id) REFERENCES emergencies(id)
                         )";

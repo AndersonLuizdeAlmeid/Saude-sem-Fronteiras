@@ -2,28 +2,26 @@
 public class Schedule
 {
     public long Id { get; private set; }
-    public string Value { get; private set; } = string.Empty;
+    public decimal Price {  get; private set; }
     public DateTime ScheduledDate { get; private set; }
-    public bool IsActive { get; private set; }
+    public short Status { get; private set; }
     public long AppointmentId { get; private set; }
 
-    public Schedule(long id, string value, DateTime scheduledDate, bool isActive, long appointmentId)
+    public Schedule(long id, decimal price, DateTime scheduledDate, short status, long appointmentId)
     {
         Id = id;
-        Value = value;
+        Price = price;
         ScheduledDate = scheduledDate;
-        IsActive = isActive;
+        Status = status;
         AppointmentId = appointmentId;
     }
 
-    public static Schedule Create(string value, DateTime scheduledDate, long appointmentId) =>
-        new (0, value, scheduledDate, true, appointmentId);
+    public static Schedule Create(decimal price, DateTime scheduledDate, long appointmentId) =>
+        new (0, price, scheduledDate, 1, appointmentId);
 
-    public void Update(string value, DateTime scheduledDate, bool isActive, long appointmentId)
+    public void Update(decimal price, short status)
     {
-        Value = value;
-        ScheduledDate = scheduledDate;
-        IsActive = isActive;
-        AppointmentId = appointmentId;
+        Price = price;
+        Status = status;
     }
 }

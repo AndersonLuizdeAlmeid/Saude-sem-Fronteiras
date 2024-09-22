@@ -53,6 +53,14 @@ public class UsersController(IMediator _mediator, IUserQueries _usersQueries, IP
         return Ok(user);
     }
 
+    [HttpGet("userId/{id}")]
+    public async Task<IActionResult> GetUserByUserId(long id, CancellationToken cancellationToken)
+    {
+        var user = await _usersQueries.GetUserByUserId(id, cancellationToken);
+
+        return Ok(user);
+    }
+
     [HttpPost]
     public async Task<IActionResult> CreateUser([FromBody] CreateUserCommand command, CancellationToken cancellationToken)
     {

@@ -7,8 +7,8 @@ public class ScreeningRepository(IDatabaseFactory LocalDatabase) : IScreeningRep
 {
     public async Task Insert(Screening screening, CancellationToken cancellationToken)
     {
-        var sql = @"insert into screenings(degree_severity, symptons, date_symptons, continuos_medicine, allergies, emergency_id) 
-                                   values (@DegreeSeverity, @Symptons, @DateSymptons, @ContinuosMedicine, @Allergies, @EmergencyId)";
+        var sql = @"insert into screenings(symptons, date_symptons, continuos_medicine, allergies, observations, emergency_id) 
+                                   values (@Symptons, @DateSymptons, @ContinuosMedicine, @Allergies, @Observations, @EmergencyId)";
         var command = new CommandDefinition(sql, screening, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         await LocalDatabase.Connection.ExecuteAsync(command);
     }
@@ -16,11 +16,11 @@ public class ScreeningRepository(IDatabaseFactory LocalDatabase) : IScreeningRep
     public async Task Update(Screening screening, CancellationToken cancellationToken)
     {
         var sql = @"update screenings
-                       set degree_severity = @DegreeSeverity, 
-                           symptons = @Symptons,
+                       set symptons = @Symptons,
                            date_symptons = @DateSymptons,
                            continuos_medicine = @ContinuosMedicine,
                            allergies = @Allergies,
+                           observations = @Observations,
                            emergency_id = @EmergencyId
                      where id = @Id";
 
