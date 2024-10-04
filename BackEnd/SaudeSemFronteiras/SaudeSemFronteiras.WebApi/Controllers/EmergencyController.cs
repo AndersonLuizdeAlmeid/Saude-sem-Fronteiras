@@ -18,7 +18,15 @@ public class EmergencyController : ControllerBase
         _emergencyQueries = emergencyQueries;
     }
 
-    [HttpGet("patient/{patientId}")]
+    [HttpGet("doctor/{doctorId}")]
+    public async Task<IActionResult> GetEmergenciesByDoctorId(long doctorId, CancellationToken cancellationToken)
+    {
+        var patientIdByAppointment = await _emergencyQueries.GetEmergenciesByDoctorIdQuery(doctorId, cancellationToken);
+
+        return Ok(patientIdByAppointment);
+    }
+
+    [HttpGet("patient/list/{patientId}")]
     public async Task<IActionResult> GetScheduleByPatientId(long patientId, CancellationToken cancellationToken)
     {
         var emergencies = await _emergencyQueries.GetEmergenciesByPatientId(patientId, cancellationToken);
@@ -32,6 +40,22 @@ public class EmergencyController : ControllerBase
         var appointment = await _emergencyQueries.GetLastEmergencyByPatientQuery(patientId, cancellationToken);
 
         return Ok(appointment);
+    }
+
+    [HttpGet("patient/phone/{emergencyId}")]
+    public async Task<IActionResult> GetPhoneByPatient(long emergencyId, CancellationToken cancellationToken)
+    {
+        var phone = _emergencyQueries.GetPhoneByPatientQuery(emergencyId, cancellationToken);
+
+        return Ok(phone.Result);
+    }
+
+    [HttpGet("patient/{patientId}")]
+    public async Task<IActionResult> GetAppointmentByEmergencyId(long patientId, CancellationToken cancellationToken)
+    {
+        var emergencies = await _emergencyQueries.GetAppointmentByEmergencyIdQuery(patientId, cancellationToken);
+
+        return Ok(emergencies);
     }
 
     [HttpPost]

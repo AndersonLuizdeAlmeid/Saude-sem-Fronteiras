@@ -27,6 +27,22 @@ public class PatientController : ControllerBase
         return Ok(patient.Result);
     }
 
+    [HttpGet("name/id/{id}")]
+    public IActionResult GetUserNameByPatientId(long iD, CancellationToken cancellationToken)
+    {
+        var name = _patientQueries.GetUserNameByPatientIdQuery(iD, cancellationToken);
+
+        return Ok(name.Result);
+    }
+
+    [HttpGet("cpf/id/{id}")]
+    public IActionResult GetUserCpfByPatientId(long iD, CancellationToken cancellationToken)
+    {
+        var name = _patientQueries.GetUserCpfByPatientIdQuery(iD, cancellationToken);
+
+        return Ok(name.Result);
+    }
+
     [HttpPost]
     public async Task<IActionResult> CreatePatient([FromBody] CreatePatientCommand command, CancellationToken cancellationToken)
     {

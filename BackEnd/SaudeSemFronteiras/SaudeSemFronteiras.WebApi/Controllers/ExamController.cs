@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SaudeSemFronteiras.Application.Exams.Commands;
+using SaudeSemFronteiras.Application.Exams.Queries;
 
 namespace SaudeSemFronteiras.WebApi.Controllers;
 
@@ -9,10 +10,20 @@ namespace SaudeSemFronteiras.WebApi.Controllers;
 public class ExamController : ControllerBase
 {
     private readonly IMediator _mediator;
+    private readonly IExamQueries _examQueries;
 
-    public ExamController(IMediator mediator)
+    public ExamController(IMediator mediator, IExamQueries examQueries)
     {
         _mediator = mediator;
+        _examQueries = examQueries;
+    }
+
+    [HttpGet("document/{documentId}")]
+    public async Task<IActionResult> GetExamByDocumentId(long documentId, CancellationToken cancellationToken)
+    {
+        var exam = _examQueries.GetExamByDocumentIdQuery(documentId, cancellationToken);
+
+        return Ok(exam.Result);
     }
 
     [HttpPost]

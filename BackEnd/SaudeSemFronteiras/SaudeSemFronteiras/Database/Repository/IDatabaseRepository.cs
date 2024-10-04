@@ -14,11 +14,10 @@ public interface IDatabaseRepository : ILocalDatabaseRepository
     Task CreateSpecialitiesTable();
     Task CreateAppointmentsTable();
     Task CreateInvoicesTable();
-    Task CreateChatsTable();
-    Task CreateMessagesTable();
     Task CreateDocumentsTable();
     Task CreateExamsTable();
     Task CreatePrescriptionsTable();
+    Task CreateMedicinesTable();
     Task CreateCertificatesTable();
     Task CreateScheduledTable();
     Task CreateEmergenciesTable();

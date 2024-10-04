@@ -159,7 +159,6 @@ public class DatabaseRepository : IDatabaseRepository
                             patient_id BIGINT,
                             doctor_id BIGINT,
                             FOREIGN KEY (patient_id) REFERENCES patients(id),
-                            FOREIGN KEY (doctor_id) REFERENCES doctors(id)
                         )";
 
         await LocalDatabase.Connection.ExecuteAsync(sql, transaction: LocalDatabase.Transaction);
@@ -185,43 +184,13 @@ public class DatabaseRepository : IDatabaseRepository
         await LocalDatabase.Connection.ExecuteAsync(sql, transaction: LocalDatabase.Transaction);
     }
 
-    public async Task CreateChatsTable()
-    {
-        var sql = @"CREATE TABLE IF NOT EXISTS 
-                        chats (
-                            id SERIAL PRIMARY KEY NOT NULL,
-                            chat_date TIMESTAMP NOT NULL,
-                            status VARCHAR(25) NOT NULL,
-                            appointment_id BIGINT,
-                            FOREIGN KEY (appointment_id) REFERENCES appointments(id)
-                        )";
-
-        await LocalDatabase.Connection.ExecuteAsync(sql, transaction: LocalDatabase.Transaction);
-    }
-
-    public async Task CreateMessagesTable()
-    {
-        var sql = @"CREATE TABLE IF NOT EXISTS 
-                        messages (
-                            id SERIAL PRIMARY KEY NOT NULL,
-                            message_date TIMESTAMP NOT NULL,
-                            description VARCHAR(255) NOT NULL,
-                            chat_id BIGINT,
-                            FOREIGN KEY (chat_id) REFERENCES chats(id)
-                        )";
-
-        await LocalDatabase.Connection.ExecuteAsync(sql, transaction: LocalDatabase.Transaction);
-    }
-
     public async Task CreateDocumentsTable()
     {
         var sql = @"CREATE TABLE IF NOT EXISTS 
                         documents (
                             id SERIAL PRIMARY KEY NOT NULL,
-                            description VARCHAR(255) NOT NULL,
                             type_document VARCHAR(15) NOT NULL,
                             date_document TIMESTAMP NOT NULL,
-                            digitally_signed VARCHAR(255),
                             appointment_id BIGINT,
                             FOREIGN KEY (appointment_id) REFERENCES appointments(id)
                         )";
@@ -234,9 +203,9 @@ public class DatabaseRepository : IDatabaseRepository
         var sql = @"CREATE TABLE IF NOT EXISTS 
                         exams (
                             id SERIAL PRIMARY KEY NOT NULL,
-                            title VARCHAR(255) NOT NULL,
                             description VARCHAR(255) NOT NULL,
-                            date_exam TIMESTAMP NOT NULL,
+                            justification VARCHAR(255) NOT NULL,
+                            date_exam TIMESTAMP,
                             local_exam VARCHAR(255) NOT NULL,
                             results VARCHAR(255),
                             comments VARCHAR(255),
@@ -252,15 +221,25 @@ public class DatabaseRepository : IDatabaseRepository
         var sql = @"CREATE TABLE IF NOT EXISTS 
                         prescriptions (
                             id SERIAL PRIMARY KEY NOT NULL,
-                            issuance_date TIMESTAMP NOT NULL,
-                            title VARCHAR(255) NOT NULL,
-                            description VARCHAR(255) NOT NULL,
-                            instructions VARCHAR(255) NOT NULL,
-                            final_date TIMESTAMP,
-                            observations VARCHAR(255),
-                            prescription_validate TIMESTAMP NOT NULL,
+                            description VARCHAR(2550) NOT NULL,
                             document_id BIGINT,
                             FOREIGN KEY (document_id) REFERENCES documents(id)
+                        )";
+
+        await LocalDatabase.Connection.ExecuteAsync(sql, transaction: LocalDatabase.Transaction);
+    }
+
+    public async Task CreateMedicinesTable()
+    {
+        var sql = @"CREATE TABLE IF NOT EXISTS 
+                        medicines (
+                            id SERIAL PRIMARY KEY NOT NULL,
+                            description VARCHAR(2550) NOT NULL,
+                            quantity VARCHAR(2550) NOT NULL,
+                            dosage VARCHAR(2550) NOT NULL,
+                            observation VARCHAR(2550) NOT NULL,
+                            prescription_id SERIAL NOT NULL,
+                            FOREIGN KEY (prescription_id) REFERENCES prescriptions(id)
                         )";
 
         await LocalDatabase.Connection.ExecuteAsync(sql, transaction: LocalDatabase.Transaction);
@@ -271,12 +250,10 @@ public class DatabaseRepository : IDatabaseRepository
         var sql = @"CREATE TABLE IF NOT EXISTS 
                         certificates (
                             id SERIAL PRIMARY KEY NOT NULL,
-                            issuance_date TIMESTAMP NOT NULL,
-                            title VARCHAR(255) NOT NULL,
-                            description VARCHAR(255) NOT NULL,
-                            start_date TIMESTAMP NOT NULL,
-                            final_date TIMESTAMP NOT NULL,
-                            observations VARCHAR(255),
+                            name VARCHAR(255) NOT NULL,
+                            cpf VARCHAR(255) NOT NULL,
+                            days SMALLINT NOT NULL,
+                            cid BIGINT,
                             document_id BIGINT,
                             FOREIGN KEY (document_id) REFERENCES documents(id)
                         )";

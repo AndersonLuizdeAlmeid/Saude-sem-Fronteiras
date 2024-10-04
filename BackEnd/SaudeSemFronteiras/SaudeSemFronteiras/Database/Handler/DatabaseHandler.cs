@@ -33,11 +33,10 @@ public class DatabaseHandler : IRequestHandler<CreateTablesCommand, Result>
         await _databaseRepository.CreateSpecialitiesTable();
         await _databaseRepository.CreateAppointmentsTable();
         await _databaseRepository.CreateInvoicesTable();
-        await _databaseRepository.CreateChatsTable();
-        await _databaseRepository.CreateMessagesTable();
         await _databaseRepository.CreateDocumentsTable();
         await _databaseRepository.CreateExamsTable();
         await _databaseRepository.CreatePrescriptionsTable();
+        await _databaseRepository.CreateMedicinesTable();
         await _databaseRepository.CreateCertificatesTable();
         await _databaseRepository.CreateScheduledTable();
         await _databaseRepository.CreateEmergenciesTable();

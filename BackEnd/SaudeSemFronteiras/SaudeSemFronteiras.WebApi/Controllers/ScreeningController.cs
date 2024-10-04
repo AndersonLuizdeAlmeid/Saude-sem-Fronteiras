@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SaudeSemFronteiras.Application.Screenings.Commands;
+using SaudeSemFronteiras.Application.Screenings.Queries;
 
 namespace SaudeSemFronteiras.WebApi.Controllers;
 
@@ -9,10 +10,22 @@ namespace SaudeSemFronteiras.WebApi.Controllers;
 public class ScreeningController : ControllerBase
 {
     private readonly IMediator _mediator;
+    private readonly IScreeningQueries _screeningQueries;
 
-    public ScreeningController(IMediator mediator)
+    public ScreeningController(IMediator mediator, IScreeningQueries screeningQueries)
     {
         _mediator = mediator;
+        _screeningQueries = screeningQueries;
+    }
+
+    [HttpGet("{emergencyId}")]
+    public async Task<IActionResult> GetDataOfScreeningByEmergencyId(long emergencyId, CancellationToken cancellationToken)
+    {
+        var screening = await _screeningQueries.GetDataOfScreeningByEmergencyIdQuery(emergencyId, cancellationToken);
+        if (screening == null)
+            return Ok(null);
+
+        return Ok(screening);
     }
 
     [HttpPost]

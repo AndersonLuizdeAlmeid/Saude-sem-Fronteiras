@@ -7,8 +7,8 @@ public class DocumentRepository(IDatabaseFactory LocalDatabase) : IDocumentRepos
 {
     public async Task Insert(Document document, CancellationToken cancellationToken)
     {
-        var sql = @"insert into documents(description, type_document, date_document, digitally_signed, appointment_id) 
-                                 values (@Description, @TypeDocument, @DateDocument, @DigitallySigned, @AppointmentId)";
+        var sql = @"insert into documents(type_document, date_document, appointment_id) 
+                                 values (@TypeDocument, @DateDocument, @AppointmentId)";
         var command = new CommandDefinition(sql, document, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         await LocalDatabase.Connection.ExecuteAsync(command);
     }
@@ -16,14 +16,21 @@ public class DocumentRepository(IDatabaseFactory LocalDatabase) : IDocumentRepos
     public async Task Update(Document document, CancellationToken cancellationToken)
     {
         var sql = @"update documents
-                       set description = @Description,
-                           type_document = @TypeDocument
+                       set type_document = @TypeDocument
                            date_document = @DateDocument,
-                           digitally_signed = @DigitallySigned,
                            appointment_id = @AppointmentId
                      where id = @Id";
 
         var command = new CommandDefinition(sql, document, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
+        await LocalDatabase.Connection.ExecuteAsync(command);
+    }
+
+    public async Task Delete(long iD, CancellationToken cancellationToken)
+    {
+        var sql = @"delete from documents
+                     where id = @iD";
+
+        var command = new CommandDefinition(sql, new { iD }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         await LocalDatabase.Connection.ExecuteAsync(command);
     }
 }

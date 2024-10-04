@@ -5,4 +5,5 @@ public class EmergencyShowDto
     public decimal Price { get; set; }
     public short Status { get; set; }
     public DateTime Date { get; set; }
+    public long DoctorId { get; set; }
 }

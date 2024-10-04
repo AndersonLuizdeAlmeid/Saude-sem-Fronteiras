@@ -35,6 +35,14 @@ public class AppointmentController : ControllerBase
         return Ok(free_time);
     }
 
+    [HttpGet("id/{appointmentId}")]
+    public async Task<IActionResult> GetByAppointmentId(long appointmentId, CancellationToken cancellationToken)
+    {
+        var phone = _appointmentQueries.GetByAppointmentIdQuery(appointmentId, cancellationToken);
+
+        return Ok(phone.Result);
+    }
+
     [HttpGet("patient/phone/{appointmentId}/{patientId}")]
     public async Task<IActionResult> GetPhoneByPatient(long appointmentId, long patientId, CancellationToken cancellationToken)
     {
@@ -49,6 +57,22 @@ public class AppointmentController : ControllerBase
         var dateString = await _appointmentQueries.GetDateByEmergencyIdQuery(emergencyId, cancellationToken);
 
         return Ok(dateString);
+    }
+
+    [HttpGet("scheduled/validation/{scheduleId}")]
+    public async Task<IActionResult> ValidateDateToAppointmentScheduled(long scheduleId, CancellationToken cancellationToken)
+    {
+        var canStartAppointment = await _appointmentQueries.ValidateDateToAppointmentScheduledQuery(scheduleId, cancellationToken);
+
+        return Ok(canStartAppointment);
+    }
+
+    [HttpGet("emergency/validation/{emergencyId}")]
+    public async Task<IActionResult> ValidateDateToAppointmentEmergency(long emergencyId, CancellationToken cancellationToken)
+    {
+        var canStartAppointment = await _appointmentQueries.ValidateDateToAppointmentEmergencyQuery(emergencyId, cancellationToken);
+
+        return Ok(canStartAppointment);
     }
 
     [HttpGet("patient/{patientId}")]
@@ -89,6 +113,30 @@ public class AppointmentController : ControllerBase
         var appointmentId = await _appointmentQueries.GetLastAppointmentByPatientAndDoctor(doctorId, patientId, cancellationToken);
 
         return Ok(appointmentId);
+    }
+
+    [HttpGet("doctor/patient/{doctorId}/{patientId}")]
+    public async Task<IActionResult> GetAppointmentsByDoctorAndPatientId(long doctorId, long patientId, CancellationToken cancellationToken)
+    {
+        var appointments = await _appointmentQueries.GetAppointmentsByDoctorAndPatientIdQuery(doctorId, patientId, cancellationToken);
+
+        return Ok(appointments);
+    }
+
+    [HttpGet("patients/doctor/{doctorId}")]
+    public async Task<IActionResult> GetPatientsOfAppointmentsByDoctor(long doctorId, CancellationToken cancellationToken)
+    {
+        var appointmentId = await _appointmentQueries.GetPatientsOfAppointmentsByDoctorQuery(doctorId, cancellationToken);
+
+        return Ok(appointmentId);
+    }
+
+    [HttpGet("emergencyId/{emergencyId}")]
+    public async Task<IActionResult> GetAppointmentByEmergencyId(long emergencyId, CancellationToken cancellationToken)
+    {
+        var appointment = await _appointmentQueries.GetAppointmentByEmergencyIdQuery(emergencyId, cancellationToken);
+
+        return Ok(appointment);
     }
 
     [HttpPost]

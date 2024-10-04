@@ -4,10 +4,12 @@ using SaudeSemFronteiras.Application.Certificates.Commands;
 using SaudeSemFronteiras.Application.Certificates.Domain;
 using SaudeSemFronteiras.Application.Certificates.Queries;
 using SaudeSemFronteiras.Application.Certificates.Repository;
+using SaudeSemFronteiras.Application.Documents.Commands;
 
 namespace SaudeSemFronteiras.Application.Certificates.Handlers;
 public class CertificateHandler : IRequestHandler<CreateCertificateCommand, Result>,
-                                  IRequestHandler<ChangeCertificateCommand, Result>
+                                  IRequestHandler<ChangeCertificateCommand, Result>,
+                                  IRequestHandler<DeleteCertificateCommand, Result>
 {
     private readonly ICertificateRepository _certificateRepository;
     private readonly ICertificateQueries _certificateQueries;
@@ -25,7 +27,7 @@ public class CertificateHandler : IRequestHandler<CreateCertificateCommand, Resu
         if (validationResult.IsFailure)
             return validationResult;
 
-        var certificate = Certificate.Create(request.Title, request.Description, request.StartDate, request.FinalDate, request.Observations, request.DocumentId);
+        var certificate = Certificate.Create(request.Name, request.Cpf, request.Days, request.Cid, request.DocumentId);
 
         await _certificateRepository.Insert(certificate, cancellationToken);
 
@@ -44,9 +46,21 @@ public class CertificateHandler : IRequestHandler<CreateCertificateCommand, Resu
         if (validationResult.IsFailure)
             return validationResult;
 
-        certificate.Update(request.IssuanceDate, request.Title, request.Description, request.StartDate, request.FinalDate, request.Observations, request.DocumentId);
+        certificate.Update(request.Name, request.Cpf, request.Days, request.Cid, request.DocumentId);
 
         await _certificateRepository.Update(certificate, cancellationToken);
+
+        return Result.Success();
+    }
+
+    public async Task<Result> Handle(DeleteCertificateCommand request, CancellationToken cancellationToken)
+    {
+        var validationResult = request.Validation();
+
+        if (validationResult.IsFailure)
+            return validationResult;
+
+        await _certificateRepository.Delete(request.Id, cancellationToken);
 
         return Result.Success();
     }

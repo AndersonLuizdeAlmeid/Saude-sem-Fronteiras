@@ -32,7 +32,7 @@ public class AppointmentHandler : IRequestHandler<CreateAppointmentCommand, Resu
         if (appointmentCount.Result > 0)
             return Result.Failure("Já existe consulta para essa data.");
 
-        if (request.Date < DateTime.Now)
+        if (request.Date < DateTime.Now && request.DoctorId != 0)
             return Result.Failure("Não é possível agendar com data anterior a hoje.");
 
         var appointment = Appointment.Create(request.Date, request.Duration, request.DoctorId, request.PatientId);
@@ -45,14 +45,20 @@ public class AppointmentHandler : IRequestHandler<CreateAppointmentCommand, Resu
     public async Task<Result> Handle(ChangeAppointmentCommand request, CancellationToken cancellationToken)
     {
         //TODO Ver possibilidade de bloquear quando tiver consultas abertas.
-        var appointment = await _appointmentQueries.GetById(request.Id, cancellationToken);
-        if (appointment == null)
+        var appointmentDto = await _appointmentQueries.GetById(request.Id, cancellationToken);
+        if (appointmentDto == null)
             return Result.Failure("Consulta não encontrada");
 
         var validationResult = request.Validation();
 
         if (validationResult.IsFailure)
             return validationResult;
+
+        Appointment appointment = new Appointment(request.Id, 
+                                                  appointmentDto.Date, 
+                                                  appointmentDto.Duration, 
+                                                  request.DoctorId, 
+                                                  request.PatientId);
 
         appointment.Update(request.Date, request.Duration,request.DoctorId, request.PatientId);
 

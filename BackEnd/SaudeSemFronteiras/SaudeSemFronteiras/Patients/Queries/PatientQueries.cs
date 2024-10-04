@@ -74,4 +74,26 @@ public class PatientQueries(IDatabaseFactory databaseFactory) : IPatientQueries
         var command = new CommandDefinition(sql, new { iD }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<PatientDto>(command);
     }
+
+    public async Task<string?> GetUserNameByPatientIdQuery(long iD, CancellationToken cancellationToken)
+    {
+        var sql = @"SELECT users.name
+                      FROM users INNER JOIN patients
+                                         ON patients.user_id = users.id
+                     WHERE patients.id = @iD";
+
+        var command = new CommandDefinition(sql, new { iD }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
+        return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<string>(command);
+    }
+
+    public async Task<string?> GetUserCpfByPatientIdQuery(long iD, CancellationToken cancellationToken)
+    {
+        var sql = @"SELECT users.cpf
+                      FROM users INNER JOIN patients
+                                         ON patients.user_id = users.id
+                     WHERE patients.id = @iD";
+
+        var command = new CommandDefinition(sql, new { iD }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
+        return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<string>(command);
+    }
 }

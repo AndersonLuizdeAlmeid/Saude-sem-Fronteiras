@@ -5,8 +5,8 @@ using Microsoft.IdentityModel.Tokens;
 namespace SaudeSemFronteiras.Application.Exams.Commands;
 public class CreateExamCommand : IRequest<Result>
 {
-    public string Title { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
+    public string Justification { get; set; } = string.Empty;
     public string LocalExam { get; set; } = string.Empty;
     public string Results { get; set; } = string.Empty;
     public string Comments { get; set; } = string.Empty;
@@ -14,8 +14,8 @@ public class CreateExamCommand : IRequest<Result>
 
     public Result Validation()
     {
-        if (Title.IsNullOrEmpty())
-            return Result.Failure("Título do exame não pode ser nulo.");
+        if (Justification.IsNullOrEmpty())
+            return Result.Failure("Justificativa do exame não pode ser nulo.");
         if (Description.IsNullOrEmpty())
             return Result.Failure("Descrição do exame não pode ser nulo.");
         if (LocalExam.IsNullOrEmpty())

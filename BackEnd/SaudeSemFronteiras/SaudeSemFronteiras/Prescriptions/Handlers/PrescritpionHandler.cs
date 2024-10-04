@@ -25,7 +25,7 @@ public class PrescritpionHandler : IRequestHandler<CreatePrescriptionCommand, Re
         if (validationResult.IsFailure)
             return validationResult;
 
-        var prescription = Prescription.Create(request.Title, request.Description, request.Instructions, request.FinalDate, request.Observations, request.PrescriptionValidate, request.DocumentId);
+        var prescription = Prescription.Create(request.Description, request.DocumentId);
 
         await _prescriptionRepository.Insert(prescription, cancellationToken);
 
@@ -44,7 +44,7 @@ public class PrescritpionHandler : IRequestHandler<CreatePrescriptionCommand, Re
         if (validationResult.IsFailure)
             return validationResult;
 
-        prescription.Update(request.IssuanceDate, request.Title, request.Description, request.Instructions, request.FinalDate, request.Observations, request.PrescriptionValidate, request.DocumentId);
+        prescription.Update(request.Description, request.DocumentId);
 
         await _prescriptionRepository.Update(prescription, cancellationToken);
 

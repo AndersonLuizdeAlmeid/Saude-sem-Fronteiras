@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using SaudeSemFronteiras.Application.Appointments.Domain;
 using SaudeSemFronteiras.Application.Appointments.Dtos;
+using SaudeSemFronteiras.Application.Users.Dtos;
 using SaudeSemFronteiras.Common.Factory.Interfaces;
 
 namespace SaudeSemFronteiras.Application.Appointments.Queries;
@@ -22,7 +23,7 @@ public class AppointmentQueries(IDatabaseFactory databaseFactory) : IAppointment
         return await LocalDatabase.Connection.QueryAsync<AppointmentDto>(command);
     }
 
-    public async Task<Appointment?> GetById(long iD, CancellationToken cancellationToken)
+    public async Task<AppointmentDto?> GetById(long iD, CancellationToken cancellationToken)
     {
         var sql = @"select id as Id, 
                            date as Date,
@@ -33,8 +34,23 @@ public class AppointmentQueries(IDatabaseFactory databaseFactory) : IAppointment
                      where id = @iD";
 
         var command = new CommandDefinition(sql, new { iD }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
-        return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<Appointment>(command);
+        return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<AppointmentDto>(command);
     }
+
+    public async Task<AppointmentDto?> GetByAppointmentIdQuery(long appointmentId, CancellationToken cancellationToken)
+    {
+        var sql = @"select id as Id, 
+                           date as Date,
+                           duration as Duration,
+                           doctor_id as DoctorId,
+                           patient_id as PatientId
+                      from appointments
+                     where id = @appointmentId";
+
+        var command = new CommandDefinition(sql, new { appointmentId }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
+        return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<AppointmentDto>(command);
+    }
+
     public async Task<long?> GetPatientIdByAppointmentId(long iD, CancellationToken cancellationToken)
     {
         var sql = @"select patient_id as PatientId
@@ -140,5 +156,82 @@ public class AppointmentQueries(IDatabaseFactory databaseFactory) : IAppointment
 
         var command = new CommandDefinition(sql, new { emergencyId }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken); 
         return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<string>(command);
+    }
+
+    public async Task<short?> ValidateDateToAppointmentScheduledQuery(long scheduleId, CancellationToken cancellationToken)
+    {
+        var sql = @"SELECT count(scheduled.id)
+                      FROM appointments INNER JOIN scheduled
+                                                ON appointments.id = scheduled.appointment_id
+                     WHERE scheduled.id = @scheduleId 
+                        AND appointments.date BETWEEN 
+                      (SELECT CURRENT_TIMESTAMP - INTERVAL '1 hour' FROM appointments WHERE id = scheduled.appointment_id) 
+                      AND 
+                      (SELECT CURRENT_TIMESTAMP + INTERVAL '1 hour' FROM appointments WHERE id = scheduled.appointment_id)";
+
+        var command = new CommandDefinition(sql, new { scheduleId }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
+        return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<short>(command);
+    }
+
+    public async Task<short?> ValidateDateToAppointmentEmergencyQuery(long emergencyId, CancellationToken cancellationToken)
+    {
+        var sql = @"SELECT count(emergencies.id)
+                      FROM appointments INNER JOIN emergencies
+                                                ON appointments.id = emergencies.appointment_id
+                     WHERE emergencies.id = @emergencyId 
+                        AND appointments.date BETWEEN 
+                      (SELECT CURRENT_TIMESTAMP - INTERVAL '24 hour' FROM appointments WHERE id = emergencies.appointment_id) 
+                      AND 
+                      (SELECT CURRENT_TIMESTAMP + INTERVAL '1 hour' FROM appointments WHERE id = emergencies.appointment_id)";
+
+        var command = new CommandDefinition(sql, new { emergencyId }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
+        return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<short>(command);
+    }
+
+    public async Task<IEnumerable<UserShowDto?>> GetPatientsOfAppointmentsByDoctorQuery(long doctorId, CancellationToken cancellationToken)
+    {
+        var sql = @"SELECT distinct patients.id as Id, 
+                                    users.name as Name
+                      FROM users INNER JOIN patients
+				                         ON users.id = patients.user_id 
+		                         INNER JOIN appointments
+		   		                         ON appointments.patient_id = patients.id
+                     WHERE appointments.doctor_id = @doctorId
+                     ORDER BY Name ";
+   //     AND appointments.date BETWEEN
+   //(SELECT CURRENT_TIMESTAMP -INTERVAL '100 hour' FROM appointments WHERE id = emergencies.appointment_id) 
+   //                       AND
+   //                       (SELECT CURRENT_TIMESTAMP + INTERVAL '1 hour' FROM appointments WHERE id = emergencies.appointment_id)
+
+        var command = new CommandDefinition(sql, new { doctorId }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
+        return await LocalDatabase.Connection.QueryAsync<UserShowDto>(command);
+    }
+
+    public async Task<IEnumerable<AppointmentShowDto?>> GetAppointmentsByDoctorAndPatientIdQuery(long doctorId, long patientId, CancellationToken cancellationToken)
+    {
+        var sql = @"SELECT id as Id, 
+                           TO_CHAR(date, 'YYYY-MM-DD HH24:MI:SS') as Date
+                      FROM appointments
+                     WHERE patient_id = @patientId
+                       AND doctor_id  = @doctorId
+                     ORDER BY Date DESC";
+
+        var command = new CommandDefinition(sql, new { doctorId, patientId }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
+        return await LocalDatabase.Connection.QueryAsync<AppointmentShowDto>(command);
+    }
+
+    public async Task<AppointmentDto?> GetAppointmentByEmergencyIdQuery(long emergencyId, CancellationToken cancellationToken)
+    {
+        var sql = @"SELECT appointments.id as Id, 
+                           date as Date,
+                           duration as Duration,
+                           doctor_id as DoctorId,
+                           patient_id as PatientId
+                      FROM appointments INNER JOIN emergencies
+                                                ON appointments.id = emergencies.appointment_id
+                     WHERE emergencies.id = @emergencyId ";
+
+        var command = new CommandDefinition(sql, new { emergencyId }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
+        return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<AppointmentDto>(command);
     }
 }

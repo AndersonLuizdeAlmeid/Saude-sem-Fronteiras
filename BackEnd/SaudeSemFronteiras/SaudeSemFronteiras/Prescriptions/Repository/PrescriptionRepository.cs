@@ -7,8 +7,8 @@ public class PrescriptionRepository(IDatabaseFactory LocalDatabase) : IPrescript
 {
     public async Task Insert(Prescription prescription, CancellationToken cancellationToken)
     {
-        var sql = @"insert into prescriptions(issuance_date, title, description, final_date, observations, prescritpion_validate, document_id) 
-                    values (@IssuanceDate, @Title, @Description, @FinalDate, @Observations, @PrescriptionValidate, @DocumentId)";
+        var sql = @"insert into prescriptions(description, document_id) 
+                    values (@Description, @DocumentId)";
 
         var command = new CommandDefinition(sql, prescription, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         await LocalDatabase.Connection.ExecuteAsync(command);
@@ -17,12 +17,7 @@ public class PrescriptionRepository(IDatabaseFactory LocalDatabase) : IPrescript
     public async Task Update(Prescription prescription, CancellationToken cancellationToken)
     {
         var sql = @"update prescriptions
-                       set issuance_date = @IssuanceDate, 
-                           title = @Title, 
-                           description = @Description,
-                           final_date = @FinalDate,
-                           observations = @Observations,
-                           prescritpion_validate = @PrescriptionValidate,
+                       set description = @Description,
                            document_id = @DocumentId
                      where id = @Id";
 

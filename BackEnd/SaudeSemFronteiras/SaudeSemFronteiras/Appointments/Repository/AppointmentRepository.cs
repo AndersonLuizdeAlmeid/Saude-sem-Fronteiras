@@ -18,8 +18,8 @@ public class AppointmentRepository(IDatabaseFactory LocalDatabase) : IAppointmen
     {
         var sql = @"update appointments
                        set date = @Date,
-                           duration = @Duration
-                           doctor_id = @DoctorId
+                           duration = @Duration,
+                           doctor_id = @DoctorId,
                            patient_id = @PatientId
                      where id = @Id";
 
