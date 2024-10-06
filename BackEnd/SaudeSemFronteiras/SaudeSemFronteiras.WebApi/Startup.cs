@@ -17,6 +17,18 @@ public class Startup
         {
             options.Filters.Add(typeof(ExceptionFilter));
         });
+
+        services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAllOrigins",
+                builder =>
+                {
+                    builder.AllowAnyOrigin()
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
+                });
+        });
+
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -27,6 +39,8 @@ public class Startup
         {
             app.UseDeveloperExceptionPage();
         }
+
+        app.UseCors("AllowAllOrigins");
 
         app.UseEndpoints(endpoints =>
         {
