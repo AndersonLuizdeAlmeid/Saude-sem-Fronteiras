@@ -22,25 +22,25 @@ public class DocumentController : ControllerBase
     [HttpGet("doctor/{doctorId}")]
     public async Task<IActionResult> GetDocumentsByDoctorId(long doctorId, CancellationToken cancellationToken)
     {
-        var documents = _documentQueries.GetDocumentsByDoctorIdQuery(doctorId, cancellationToken);
+        var documents = await _documentQueries.GetDocumentsByDoctorIdQuery(doctorId, cancellationToken);
 
-        return Ok(documents.Result);
+        return Ok(documents);
     }
 
     [HttpGet("patient/{doctorId}")]
     public async Task<IActionResult> GetDocumentsByPatientId(long doctorId, CancellationToken cancellationToken)
     {
-        var documentId = _documentQueries.GetDocumentsByPatientIdQuery(doctorId, cancellationToken);
+        var documentId = await _documentQueries.GetDocumentsByPatientIdQuery(doctorId, cancellationToken);
 
-        return Ok(documentId.Result);
+        return Ok(documentId);
     }
 
     [HttpGet("last/{appointmentId}")]
     public async Task<IActionResult>GetLastDocumentIdByAppointmentId(long appointmentId, CancellationToken cancellationToken)
     {
-        var documentId = _documentQueries.GetLastDocumentIdByAppointmentIdQuery(appointmentId, cancellationToken);
+        var documentId = await _documentQueries.GetLastDocumentIdByAppointmentIdQuery(appointmentId, cancellationToken);
 
-        return Ok(documentId.Result);
+        return Ok(documentId);
     }
 
     [HttpPost]

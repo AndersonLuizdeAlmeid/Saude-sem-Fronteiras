@@ -28,11 +28,11 @@ public class CountryController : ControllerBase
     [HttpGet("id/{id}")]
     public async Task<IActionResult> GetById(long iD, CancellationToken cancellationToken)
     {
-        var country = _countryQueries.GetById(iD, cancellationToken);
-        if (country.Result == null)
+        var country = await _countryQueries.GetById(iD, cancellationToken);
+        if (country == null)
             return BadRequest("País não encontrado.");
 
-        return Ok(country.Result);
+        return Ok(country);
     }
 
 }

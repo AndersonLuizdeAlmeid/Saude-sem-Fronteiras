@@ -28,11 +28,11 @@ public class StateController : ControllerBase
     [HttpGet("id/{id}")]
     public async Task<IActionResult> GetById(long iD, CancellationToken cancellationToken)
     {
-        var state = _stateQueries.GetById(iD, cancellationToken);
-        if (state.Result == null)
+        var state = await _stateQueries.GetById(iD, cancellationToken);
+        if (state == null)
             return BadRequest("Estado não encontrado.");
 
-        return Ok(state.Result);
+        return Ok(state);
     }
 
 }

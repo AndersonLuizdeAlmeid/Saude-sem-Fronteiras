@@ -1,0 +1,17 @@
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\UsersMicroDesktopappbuild\SaudeSemFronteiras.Application.deps.json
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\UsersMicroDesktopappbuild\SaudeSemFronteiras.Application.dll
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\UsersMicroDesktopappbuild\SaudeSemFronteiras.Application.pdb
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Application\obj\Release\net8.0\SaudeSemFronteiras.Application.csproj.AssemblyReference.cache
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Application\obj\Release\net8.0\SaudeSemFronteiras.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Application\obj\Release\net8.0\SaudeSemFronteiras.Application.AssemblyInfoInputs.cache
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Application\obj\Release\net8.0\SaudeSemFronteiras.Application.AssemblyInfo.cs
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Application\obj\Release\net8.0\SaudeSemFronteiras.Application.csproj.CoreCompileInputs.cache
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Application\obj\Release\net8.0\SaudeSemFronteiras.Application.sourcelink.json
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Application\obj\Release\net8.0\SaudeSem.05BE003C.Up2Date
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Application\obj\Release\net8.0\SaudeSemFronteiras.Application.dll
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Application\obj\Release\net8.0\refint\SaudeSemFronteiras.Application.dll
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Application\obj\Release\net8.0\SaudeSemFronteiras.Application.pdb
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\SaudeSemFronteiras.Application\obj\Release\net8.0\ref\SaudeSemFronteiras.Application.dll
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\UsersMicroDesktopSaudeSemFronteirasappbuild\SaudeSemFronteiras.Application.deps.json
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\UsersMicroDesktopSaudeSemFronteirasappbuild\SaudeSemFronteiras.Application.dll
+C:\Users\Micro\Desktop\Projeto final\Saude-sem-Fronteiras\BackEnd\Saude-sem-Fronteiras\BackEnd\SaudeSemFronteiras\UsersMicroDesktopSaudeSemFronteirasappbuild\SaudeSemFronteiras.Application.pdb

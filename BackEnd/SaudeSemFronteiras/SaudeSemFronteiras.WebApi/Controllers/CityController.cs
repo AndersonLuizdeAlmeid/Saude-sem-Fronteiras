@@ -30,10 +30,10 @@ public class CityController : ControllerBase
     [HttpGet("id/{id}")]
     public async Task<IActionResult> GetCityByAddressId(long iD, CancellationToken cancellationToken)
     {
-        var city = _cityQueries.GetById(iD, cancellationToken);
-        if (city.Result == null)
+        var city = await _cityQueries.GetById(iD, cancellationToken);
+        if (city == null)
             return BadRequest("Cidade não encontrada.");
 
-        return Ok(city.Result);
+        return Ok(city);
     }
 }

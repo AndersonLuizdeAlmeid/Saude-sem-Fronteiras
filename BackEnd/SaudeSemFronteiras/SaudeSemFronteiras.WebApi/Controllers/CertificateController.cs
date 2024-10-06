@@ -22,17 +22,17 @@ public class CertificateController : ControllerBase
     [HttpGet("id/{id}")]
     public async Task<IActionResult> GetByIdDto(long id, CancellationToken cancellationToken)
     {
-        var certificate = _certificateQueries.GetByIdDtoQuery(id, cancellationToken);
+        var certificate = await _certificateQueries.GetByIdDtoQuery(id, cancellationToken);
 
-        return Ok(certificate.Result);
+        return Ok(certificate);
     }
 
     [HttpGet("document/{documentId}")]
     public async Task<IActionResult> GetCertificateByDocumentId(long documentId, CancellationToken cancellationToken)
     {
-        var certificate = _certificateQueries.GetCertificateByDocumentIdQuery(documentId, cancellationToken);
+        var certificate = await _certificateQueries.GetCertificateByDocumentIdQuery(documentId, cancellationToken);
 
-        return Ok(certificate.Result);
+        return Ok(certificate);
     }
 
     [HttpPost]

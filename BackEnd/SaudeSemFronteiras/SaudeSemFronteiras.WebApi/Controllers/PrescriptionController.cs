@@ -21,25 +21,25 @@ public class PrescriptionController : ControllerBase
     [HttpGet("document/{documentId}")]
     public async Task<IActionResult> GetPrescriptionByDocumentId(long documentId, CancellationToken cancellationToken)
     {
-        var prescription = _prescriptionQueries.GetPrescriptionByDocumentIdQuery(documentId, cancellationToken);
+        var prescription = await _prescriptionQueries.GetPrescriptionByDocumentIdQuery(documentId, cancellationToken);
 
-        return Ok(prescription.Result);
+        return Ok(prescription);
     }
 
     [HttpGet("id/{documentId}")]
     public async Task<IActionResult> GetPrescriptionIdByDocumentId(long documentId, CancellationToken cancellationToken)
     {
-        var prescription = _prescriptionQueries.GetPrescriptionIdByDocumentIdQuery(documentId, cancellationToken);
+        var prescription = await _prescriptionQueries.GetPrescriptionIdByDocumentIdQuery(documentId, cancellationToken);
 
-        return Ok(prescription.Result);
+        return Ok(prescription);
     }
 
     [HttpGet("documentId/{documentId}")]
     public async Task<IActionResult> GetPrescriptionShowByDocumentIdQuery(long documentId, CancellationToken cancellationToken)
     {
-        var prescription = _prescriptionQueries.GetPrescriptionShowByDocumentIdQuery(documentId, cancellationToken);
+        var prescription = await _prescriptionQueries.GetPrescriptionShowByDocumentIdQuery(documentId, cancellationToken);
 
-        return Ok(prescription.Result);
+        return Ok(prescription);
     }
 
     [HttpPost]

@@ -21,9 +21,9 @@ public class ExamController : ControllerBase
     [HttpGet("document/{documentId}")]
     public async Task<IActionResult> GetExamByDocumentId(long documentId, CancellationToken cancellationToken)
     {
-        var exam = _examQueries.GetExamByDocumentIdQuery(documentId, cancellationToken);
+        var exam = await _examQueries.GetExamByDocumentIdQuery(documentId, cancellationToken);
 
-        return Ok(exam.Result);
+        return Ok(exam);
     }
 
     [HttpPost]

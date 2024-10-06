@@ -34,12 +34,12 @@ public class UsersController(IMediator _mediator, IUserQueries _usersQueries, IP
     [HttpGet("id/{id}")]
     public async Task<IActionResult> GetTypeUserById(long iD, CancellationToken cancellationToken)
     {
-        var doctor = _doctorQueries.GetByUserId(iD, cancellationToken);
-        if (doctor.Result != null)
+        var doctor = await _doctorQueries.GetByUserId(iD, cancellationToken);
+        if (doctor != null)
             return Ok(1);
 
-        var patient = _patientQueries.GetByUserId(iD, cancellationToken);
-        if (patient.Result != null)
+        var patient = await _patientQueries.GetByUserId(iD, cancellationToken);
+        if (patient != null)
             return Ok(2);
 
         return Ok(0);

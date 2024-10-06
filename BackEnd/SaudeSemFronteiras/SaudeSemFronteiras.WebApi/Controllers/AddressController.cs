@@ -22,11 +22,11 @@ public class AddressController : ControllerBase
     [HttpGet("id/{id}")]
     public async Task<IActionResult> GetAddressByUserCode(long iD, CancellationToken cancellationToken)
     {
-        var address = _addressQueries.GetByUserId(iD, cancellationToken);
-        if(address.Result == null)
+        var address = await _addressQueries.GetByUserId(iD, cancellationToken);
+        if(address == null)
             return BadRequest("Endereço não encontrado.");
 
-        return Ok(address.Result);
+        return Ok(address);
     }
 
     [HttpPost]

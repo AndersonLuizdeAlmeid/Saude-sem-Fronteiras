@@ -38,17 +38,17 @@ public class AppointmentController : ControllerBase
     [HttpGet("id/{appointmentId}")]
     public async Task<IActionResult> GetByAppointmentId(long appointmentId, CancellationToken cancellationToken)
     {
-        var phone = _appointmentQueries.GetByAppointmentIdQuery(appointmentId, cancellationToken);
+        var phone = await _appointmentQueries.GetByAppointmentIdQuery(appointmentId, cancellationToken);
 
-        return Ok(phone.Result);
+        return Ok(phone);
     }
 
     [HttpGet("patient/phone/{appointmentId}/{patientId}")]
     public async Task<IActionResult> GetPhoneByPatient(long appointmentId, long patientId, CancellationToken cancellationToken)
     {
-        var phone = _appointmentQueries.GetPhoneByPatient(appointmentId, patientId, cancellationToken);
+        var phone = await _appointmentQueries.GetPhoneByPatient(appointmentId, patientId, cancellationToken);
 
-        return Ok(phone.Result);
+        return Ok(phone);
     }
 
     [HttpGet("dateAppointment/emergencyId/{emergencyId}")]

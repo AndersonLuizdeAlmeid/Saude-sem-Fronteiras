@@ -20,27 +20,27 @@ public class PatientController : ControllerBase
     [HttpGet("id/{id}")]
     public async Task<IActionResult> GetPatientByUserCode(long iD, CancellationToken cancellationToken)
     {
-        var patient = _patientQueries.GetByUserId(iD, cancellationToken);
+        var patient = await _patientQueries.GetByUserId(iD, cancellationToken);
         if (patient == null)
             return BadRequest("Endereço não encontrado.");
 
-        return Ok(patient.Result);
+        return Ok(patient);
     }
 
     [HttpGet("name/id/{id}")]
-    public IActionResult GetUserNameByPatientId(long iD, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetUserNameByPatientId(long iD, CancellationToken cancellationToken)
     {
-        var name = _patientQueries.GetUserNameByPatientIdQuery(iD, cancellationToken);
+        var name = await _patientQueries.GetUserNameByPatientIdQuery(iD, cancellationToken);
 
-        return Ok(name.Result);
+        return Ok(name);
     }
 
     [HttpGet("cpf/id/{id}")]
-    public IActionResult GetUserCpfByPatientId(long iD, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetUserCpfByPatientId(long iD, CancellationToken cancellationToken)
     {
-        var name = _patientQueries.GetUserCpfByPatientIdQuery(iD, cancellationToken);
+        var name = await _patientQueries.GetUserCpfByPatientIdQuery(iD, cancellationToken);
 
-        return Ok(name.Result);
+        return Ok(name);
     }
 
     [HttpPost]

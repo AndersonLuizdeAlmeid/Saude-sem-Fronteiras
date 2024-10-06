@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34714.143
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaudeSemFronteiras.Application", "SaudeSemFronteiras\SaudeSemFronteiras.Application.csproj", "{D8D39A77-28EA-48FC-AAE3-AB05D23C82EF}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaudeSemFronteiras.Common", "SaudeSemFronteiras.Common\SaudeSemFronteiras.Common.csproj", "{8994213D-DCA9-40E5-82C6-B6759F1718F0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaudeSemFronteiras.WebApi", "SaudeSemFronteiras.WebApi\SaudeSemFronteiras.WebApi.csproj", "{1E5C3324-DF7B-4934-AB33-845F93981F73}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaudeSemFronteiras.Application", "SaudeSemFronteiras.Application\SaudeSemFronteiras.Application.csproj", "{F0FC51FB-4D23-4334-ACD2-2E0A7AE66A55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D8D39A77-28EA-48FC-AAE3-AB05D23C82EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D8D39A77-28EA-48FC-AAE3-AB05D23C82EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D8D39A77-28EA-48FC-AAE3-AB05D23C82EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D8D39A77-28EA-48FC-AAE3-AB05D23C82EF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8994213D-DCA9-40E5-82C6-B6759F1718F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8994213D-DCA9-40E5-82C6-B6759F1718F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8994213D-DCA9-40E5-82C6-B6759F1718F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +23,10 @@ Global
 		{1E5C3324-DF7B-4934-AB33-845F93981F73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E5C3324-DF7B-4934-AB33-845F93981F73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E5C3324-DF7B-4934-AB33-845F93981F73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0FC51FB-4D23-4334-ACD2-2E0A7AE66A55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0FC51FB-4D23-4334-ACD2-2E0A7AE66A55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0FC51FB-4D23-4334-ACD2-2E0A7AE66A55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0FC51FB-4D23-4334-ACD2-2E0A7AE66A55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

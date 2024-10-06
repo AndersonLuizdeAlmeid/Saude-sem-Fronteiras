@@ -27,11 +27,7 @@ public static class Program
                 .ReadFrom.Services(services)
                 .Enrich.FromLogContext()
                 .Enrich.WithExceptionDetails()
-#if (DEBUG)
                 .WriteTo.Console())
-#else
-                .WriteTo.Console(new JsonFormatter(renderMessage: true)))
-#endif
             .ConfigureWebHostDefaults(webBuilder =>
             {
                 webBuilder.UseStartup<Startup>();

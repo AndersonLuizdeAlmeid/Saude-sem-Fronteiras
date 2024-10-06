@@ -21,41 +21,41 @@ public class DoctorController : ControllerBase
     [HttpGet("id/{id}")]
     public async Task<IActionResult> GetDoctorByUserCode(long iD, CancellationToken cancellationToken)
     {
-        var doctor = _doctorQueries.GetByUserId(iD, cancellationToken);
-        if (doctor.Result == null)
+        var doctor = await _doctorQueries.GetByUserId(iD, cancellationToken);
+        if (doctor == null)
             return BadRequest("Médico não encontrado.");
 
-        return Ok(doctor.Result);
+        return Ok(doctor);
     }
 
     [HttpGet("doctorId/{doctorId}")]
     public async Task<IActionResult> GetDoctorById(long doctorId, CancellationToken cancellationToken)
     {
-        var doctor = _doctorQueries.GetDtoById(doctorId, cancellationToken);
-        if (doctor.Result == null)
+        var doctor = await _doctorQueries.GetDtoById(doctorId, cancellationToken);
+        if (doctor == null)
             return BadRequest("Médico não encontrado.");
 
-        return Ok(doctor.Result);
+        return Ok(doctor);
     }
 
     [HttpGet("price/{doctorId}")]
     public async Task<IActionResult> GetPriceByDoctorId(long doctorId, CancellationToken cancellationToken)
     {
-        var doctor = _doctorQueries.GetPriceByDoctorIdQuery(doctorId, cancellationToken);
-        if (doctor.Result == null)
+        var doctor = await _doctorQueries.GetPriceByDoctorIdQuery(doctorId, cancellationToken);
+        if (doctor == null)
             return BadRequest("Médico não encontrado.");
 
-        return Ok(doctor.Result);
+        return Ok(doctor);
     }
 
     [HttpGet("specialityId/{speciality_id}")]
     public async Task<IActionResult> GetDoctorsBySpeciality(long speciality_id, CancellationToken cancellationToken)
     {
-        var doctor = _doctorQueries.GetAllDoctorsBySpeciality(speciality_id, cancellationToken);
-        if (doctor.Result == null)
+        var doctor = await _doctorQueries.GetAllDoctorsBySpeciality(speciality_id, cancellationToken);
+        if (doctor == null)
             return BadRequest("Médico não encontrado.");
 
-        return Ok(doctor.Result);
+        return Ok(doctor);
     }
 
     [HttpPost]

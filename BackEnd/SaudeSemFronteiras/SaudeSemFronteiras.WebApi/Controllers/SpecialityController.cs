@@ -23,6 +23,7 @@ public class SpecialityController : ControllerBase
         var specialities = await _specialityQueries.GetAllSpecialitiesByDoctorId(doctorId, cancellationToken);
         return Ok(specialities);
     }
+
     [HttpGet("all")]
     public async Task<IActionResult> GetAll(long doctorId, CancellationToken cancellationToken)
     {
