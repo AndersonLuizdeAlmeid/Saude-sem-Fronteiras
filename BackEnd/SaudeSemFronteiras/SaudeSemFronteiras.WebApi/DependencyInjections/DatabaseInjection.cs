@@ -6,7 +6,7 @@ public static class DatabaseInjection
 {
     public static IServiceCollection AddDatabaseInjection(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddScoped<IDatabaseFactory, DatabaseFactory>(sr => new DatabaseFactory(configuration.GetConnectionString("Npgsql")!));
+        services.AddScoped<IDatabaseFactory, DatabaseFactory>(sr => new DatabaseFactory(configuration.GetConnectionString("DefaultConnection")!));
 
         return services;
     }
