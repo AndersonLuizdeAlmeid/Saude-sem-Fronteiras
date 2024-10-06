@@ -158,7 +158,7 @@ public class DatabaseRepository : IDatabaseRepository
                             duration VARCHAR(8),
                             patient_id BIGINT,
                             doctor_id BIGINT,
-                            FOREIGN KEY (patient_id) REFERENCES patients(id),
+                            FOREIGN KEY (patient_id) REFERENCES patients(id)
                         )";
 
         await LocalDatabase.Connection.ExecuteAsync(sql, transaction: LocalDatabase.Transaction);
