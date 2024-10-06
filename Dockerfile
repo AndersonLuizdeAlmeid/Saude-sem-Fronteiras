@@ -10,7 +10,7 @@ COPY ["BackEnd/SaudeSemFronteiras/SaudeSemFronteiras.Application/SaudeSemFrontei
 RUN dotnet restore "SaudeSemFronteiras.WebApi/SaudeSemFronteiras.WebApi.csproj"
 
 # Copiar todo o código-fonte e compilar o projeto
-COPY . .
+COPY BackEnd/SaudeSemFronteiras/ ./
 RUN dotnet build "SaudeSemFronteiras.WebApi/SaudeSemFronteiras.WebApi.csproj" -c Release -o /app/build
 
 # Etapa 2: Publicação da aplicação
@@ -20,5 +20,5 @@ RUN dotnet publish "SaudeSemFronteiras.WebApi/SaudeSemFronteiras.WebApi.csproj" 
 # Etapa 3: Execução da aplicação
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=publish /app/publish ./
 ENTRYPOINT ["dotnet", "SaudeSemFronteiras.WebApi.dll"]
