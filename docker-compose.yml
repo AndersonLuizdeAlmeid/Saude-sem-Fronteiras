@@ -1,16 +1,15 @@
-version: "3.4"
+version: "3.8"
 
 services:
   webapi:
-    image: api-render:latest
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
     environment:
-      - ASPNETCORE_ENVIRONMENT=Production
-      - ConnectionStrings__DefaultConnection=Server=db;Port=5432;Database=yourdb;User Id=postgres;Password=yourpassword;
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__Npgsql=Host=db;Port=5432;Database=saude;Username=postgres;Password=1234
     depends_on:
       - db
 
