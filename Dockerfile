@@ -7,15 +7,15 @@ COPY ["BackEnd/SaudeSemFronteiras/SaudeSemFronteiras.WebApi/SaudeSemFronteiras.W
 COPY ["BackEnd/SaudeSemFronteiras/SaudeSemFronteiras.Common/SaudeSemFronteiras.Common.csproj", "SaudeSemFronteiras.Common/"]
 COPY ["BackEnd/SaudeSemFronteiras/SaudeSemFronteiras.Application/SaudeSemFronteiras.Application.csproj", "SaudeSemFronteiras.Application/"]
 
-RUN dotnet restore "BackEnd/SaudeSemFronteiras/SaudeSemFronteiras.WebApi/SaudeSemFronteiras.WebApi.csproj"
+RUN dotnet restore "SaudeSemFronteiras.WebApi/SaudeSemFronteiras.WebApi.csproj"
 
 # Copiar todo o código-fonte e compilar o projeto
 COPY . .
-RUN dotnet build "BackEnd/SaudeSemFronteiras/SaudeSemFronteiras.WebApi/SaudeSemFronteiras.WebApi.csproj" -c Release -o /app/build
+RUN dotnet build "SaudeSemFronteiras.WebApi/SaudeSemFronteiras.WebApi.csproj" -c Release -o /app/build
 
 # Etapa 2: Publicação da aplicação
 FROM build AS publish
-RUN dotnet publish "BackEnd/SaudeSemFronteiras/SaudeSemFronteiras.WebApi/SaudeSemFronteiras.WebApi.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "SaudeSemFronteiras.WebApi/SaudeSemFronteiras.WebApi.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 # Etapa 3: Execução da aplicação
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
