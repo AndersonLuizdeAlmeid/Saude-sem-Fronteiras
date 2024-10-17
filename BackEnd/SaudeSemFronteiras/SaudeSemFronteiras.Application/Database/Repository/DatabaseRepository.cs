@@ -29,6 +29,7 @@ public class DatabaseRepository : IDatabaseRepository
                         states (
                             id SERIAL PRIMARY KEY NOT NULL,
                             description VARCHAR(255) NOT NULL,
+                            uf VARCHAR(5) NOT NULL,
                             country_id BIGINT,
                             FOREIGN KEY (country_id) REFERENCES countries(id)
                         )";
@@ -42,6 +43,7 @@ public class DatabaseRepository : IDatabaseRepository
                         cities (
                             id SERIAL PRIMARY KEY NOT NULL,
                             description VARCHAR(255) NOT NULL,
+                            cep VARCHAR(25) NOT NULL,
                             state_id BIGINT,
                             FOREIGN KEY (state_id) REFERENCES states(id)
                         )";
@@ -171,12 +173,15 @@ public class DatabaseRepository : IDatabaseRepository
                             id SERIAL PRIMARY KEY NOT NULL,
                             issuance_date TIMESTAMP NOT NULL,
                             due_date TIMESTAMP NOT NULL,
+                            value DECIMAL NOT NULL,
+                            status SMALLINT NOT NULL,
                             description VARCHAR(255) NOT NULL,
-                            status VARCHAR(25) NOT NULL,
-                            value VARCHAR(25) NOT NULL,
-                            tax VARCHAR(25),
-                            discount VARCHAR(25),
-                            terms VARCHAR(255),
+                            agency VARCHAR(255) NOT NULL,
+                            account VARCHAR(255) NOT NULL,
+                            digit VARCHAR(255) NOT NULL,
+                            standard_wallet VARCHAR(255) NOT NULL,
+                            patient_id BIGINT,
+                            doctor_id BIGINT,
                             appointment_id BIGINT,
                             FOREIGN KEY (appointment_id) REFERENCES appointments(id)
                         )";
@@ -266,7 +271,7 @@ public class DatabaseRepository : IDatabaseRepository
         var sql = @"CREATE TABLE IF NOT EXISTS 
                         scheduled (
                             id SERIAL PRIMARY KEY NOT NULL,
-                            price VARCHAR(25) NOT NULL,
+                            price DECIMAL NOT NULL,
                             scheduled_date TIMESTAMP NOT NULL,
                             status SMALLINT NOT NULL,
                             appointment_id BIGINT,

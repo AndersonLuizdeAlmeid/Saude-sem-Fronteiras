@@ -1,6 +1,6 @@
 ﻿{
   "profiles": {
-    "storage_manager": {
+    "SaudeSemFronteiras": {
       "commandName": "Project",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

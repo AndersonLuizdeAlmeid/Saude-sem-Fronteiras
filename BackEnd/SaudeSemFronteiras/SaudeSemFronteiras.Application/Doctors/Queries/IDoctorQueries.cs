@@ -10,4 +10,5 @@ public interface IDoctorQueries
     Task<DoctorDto?> GetByUserId(long iD, CancellationToken cancellationToken);
     Task<IEnumerable<DoctorComboboxDto>> GetAllDoctorsBySpeciality(long specialityId, CancellationToken cancellationToken);
     Task<decimal?> GetPriceByDoctorIdQuery(long iD, CancellationToken cancellationToken);
+    Task<decimal> GetPriceByAppointmentQuery(long appointmentIdEmergencies, long appointmentIdScheduled, CancellationToken cancellationToken);
 }

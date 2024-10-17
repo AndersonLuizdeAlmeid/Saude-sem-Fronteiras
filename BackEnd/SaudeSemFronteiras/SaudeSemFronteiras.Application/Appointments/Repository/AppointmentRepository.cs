@@ -7,8 +7,8 @@ public class AppointmentRepository(IDatabaseFactory LocalDatabase) : IAppointmen
 {
     public async Task Insert(Appointment appointment, CancellationToken cancellationToken)
     {
-        var sql = @"insert into appointments(date, duration, doctor_id, patient_id) 
-                    values (@Date, @Duration, @DoctorId, @PatientId)";
+        var sql = @"insert into appointments(date, duration, patient_id, doctor_id) 
+                    values (@Date, @Duration, @PatientId, @DoctorId)";
 
         var command = new CommandDefinition(sql, appointment, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         await LocalDatabase.Connection.ExecuteAsync(command);
@@ -19,8 +19,8 @@ public class AppointmentRepository(IDatabaseFactory LocalDatabase) : IAppointmen
         var sql = @"update appointments
                        set date = @Date,
                            duration = @Duration,
-                           doctor_id = @DoctorId,
-                           patient_id = @PatientId
+                           patient_id = @PatientId,
+                           doctor_id = @DoctorId
                      where id = @Id";
 
         var command = new CommandDefinition(sql, appointment, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);

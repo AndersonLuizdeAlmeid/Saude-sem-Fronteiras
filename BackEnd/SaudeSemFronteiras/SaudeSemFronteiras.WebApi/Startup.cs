@@ -33,12 +33,12 @@ public class Startup
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
-        app.UseRouting();
-
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
         }
+
+        app.UseRouting();
 
         app.UseCors("AllowAllOrigins");
 
@@ -47,5 +47,6 @@ public class Startup
             endpoints.MapControllers();
             endpoints.MapHealthChecks("/health");
         });
+
     }
 }

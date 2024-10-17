@@ -54,13 +54,29 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "BoletoNetCore": {
+              "target": "Package",
+              "version": "[3.0.1.446, )"
+            },
             "Dapper": {
               "target": "Package",
               "version": "[2.1.35, )"
             },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "[7.3.1, )"
+            },
+            "ZXing.Net": {
+              "target": "Package",
+              "version": "[0.16.9, )"
+            },
+            "itext7": {
+              "target": "Package",
+              "version": "[8.0.5, )"
             }
           },
           "imports": [

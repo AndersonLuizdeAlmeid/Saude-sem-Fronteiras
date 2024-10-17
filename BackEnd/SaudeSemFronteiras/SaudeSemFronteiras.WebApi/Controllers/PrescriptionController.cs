@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SaudeSemFronteiras.Application.Medicines.Commands;
 using SaudeSemFronteiras.Application.Prescriptions.Commands;
 using SaudeSemFronteiras.Application.Prescriptions.Queries;
 
@@ -55,6 +56,17 @@ public class PrescriptionController : ControllerBase
     [HttpPut]
     public async Task<IActionResult> ChangePrescription([FromBody] ChangePrescriptionCommand command, CancellationToken cancellationToken)
     {
+        var result = await _mediator.Send(command, cancellationToken);
+        if (result.IsFailure)
+            return BadRequest(result.Error);
+
+        return Ok();
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteMedicine(long id, CancellationToken cancellationToken)
+    {
+        var command = new DeletePrescriptionCommand { Id = id };
         var result = await _mediator.Send(command, cancellationToken);
         if (result.IsFailure)
             return BadRequest(result.Error);

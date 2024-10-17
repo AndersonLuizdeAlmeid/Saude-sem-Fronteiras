@@ -22,4 +22,8 @@
 		<ProjectReference Include="..\SaudeSemFronteiras.Application\SaudeSemFronteiras.Application.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="wwwroot\" />
+	</ItemGroup>
+
 </Project>

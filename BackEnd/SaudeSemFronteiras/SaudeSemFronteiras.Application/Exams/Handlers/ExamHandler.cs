@@ -7,7 +7,8 @@ using SaudeSemFronteiras.Application.Exams.Repository;
 
 namespace SaudeSemFronteiras.Application.Exams.Handlers;
 public class ExamHandler : IRequestHandler<CreateExamCommand, Result>,
-                           IRequestHandler<ChangeExamCommand, Result>
+                           IRequestHandler<ChangeExamCommand, Result>,
+                           IRequestHandler<DeleteExamCommand, Result>
 {
     private readonly IExamRepository _examRepository;
     private readonly IExamQueries _examQueries;
@@ -45,6 +46,18 @@ public class ExamHandler : IRequestHandler<CreateExamCommand, Result>,
         exam.Update(request.Description, request.Justification, DateTime.Now, request.LocalExam, request.Results, request.Comments, request.DocumentId);
 
         await _examRepository.Update(exam, cancellationToken);
+
+        return Result.Success();
+    }
+
+    public async Task<Result> Handle(DeleteExamCommand request, CancellationToken cancellationToken)
+    {
+        var validationResult = request.Validation();
+
+        if (validationResult.IsFailure)
+            return validationResult;
+
+        await _examRepository.Delete(request.Id, cancellationToken);
 
         return Result.Success();
     }

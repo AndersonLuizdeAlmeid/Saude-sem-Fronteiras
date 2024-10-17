@@ -7,7 +7,8 @@ using SaudeSemFronteiras.Application.Prescriptions.Repository;
 
 namespace SaudeSemFronteiras.Application.Prescriptions.Handlers;
 public class PrescritpionHandler : IRequestHandler<CreatePrescriptionCommand, Result>,
-                                   IRequestHandler<ChangePrescriptionCommand, Result>
+                                   IRequestHandler<ChangePrescriptionCommand, Result>,
+                                   IRequestHandler<DeletePrescriptionCommand, Result>
 {
     private readonly IPrescriptionRepository _prescriptionRepository;
     private readonly IPrescriptionQueries _prescriptionQueries;
@@ -47,6 +48,18 @@ public class PrescritpionHandler : IRequestHandler<CreatePrescriptionCommand, Re
         prescription.Update(request.Description, request.DocumentId);
 
         await _prescriptionRepository.Update(prescription, cancellationToken);
+
+        return Result.Success();
+    }
+
+    public async Task<Result> Handle(DeletePrescriptionCommand request, CancellationToken cancellationToken)
+    {
+        var validationResult = request.Validation();
+
+        if (validationResult.IsFailure)
+            return validationResult;
+
+        await _prescriptionRepository.Delete(request.Id, cancellationToken);
 
         return Result.Success();
     }

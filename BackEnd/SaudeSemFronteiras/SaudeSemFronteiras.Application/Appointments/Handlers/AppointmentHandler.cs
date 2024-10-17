@@ -35,7 +35,7 @@ public class AppointmentHandler : IRequestHandler<CreateAppointmentCommand, Resu
         if (request.Date < DateTime.Now && request.DoctorId != 0)
             return Result.Failure("Não é possível agendar com data anterior a hoje.");
 
-        var appointment = Appointment.Create(request.Date, request.Duration, request.DoctorId, request.PatientId);
+        var appointment = Appointment.Create(request.Date, request.Duration, request.PatientId, request.DoctorId);
 
         await _appointmentRepository.Insert(appointment, cancellationToken);
 
@@ -56,9 +56,9 @@ public class AppointmentHandler : IRequestHandler<CreateAppointmentCommand, Resu
 
         Appointment appointment = new Appointment(request.Id, 
                                                   appointmentDto.Date, 
-                                                  appointmentDto.Duration, 
-                                                  request.DoctorId, 
-                                                  request.PatientId);
+                                                  appointmentDto.Duration,
+                                                  request.PatientId,
+                                                  request.DoctorId);
 
         appointment.Update(request.Date, request.Duration,request.DoctorId, request.PatientId);
 

@@ -11,6 +11,7 @@ public class StateQueries(IDatabaseFactory databaseFactory) :IStateQueries
     {
         var sql = @"SELECT id as Id, 
                            description as Description,
+                           uf as Uf,
                            country_id as CountryId
                       FROM states ";
 
@@ -22,6 +23,7 @@ public class StateQueries(IDatabaseFactory databaseFactory) :IStateQueries
     {
         var sql = @"SELECT id as Id, 
                            description as Description,
+                           uf as Uf,
                            country_id as CountryId
                       FROM states
                      WHERE id = @iD ";
@@ -34,6 +36,7 @@ public class StateQueries(IDatabaseFactory databaseFactory) :IStateQueries
     {
         var sql = @"SELECT id as Id, 
                            description as Description,
+                           uf as Uf,
                            country_id as CountryId
                       FROM states
                      WHERE country_id = @countryId ";

@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SaudeSemFronteiras.Application.Certificates.Commands;
 using SaudeSemFronteiras.Application.Exams.Commands;
 using SaudeSemFronteiras.Application.Exams.Queries;
 
@@ -39,6 +40,17 @@ public class ExamController : ControllerBase
     [HttpPut]
     public async Task<IActionResult> ChangeExam([FromBody] ChangeExamCommand command, CancellationToken cancellationToken)
     {
+        var result = await _mediator.Send(command, cancellationToken);
+        if (result.IsFailure)
+            return BadRequest(result.Error);
+
+        return Ok();
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteExam(long id, CancellationToken cancellationToken)
+    {
+        var command = new DeleteExamCommand { Id = id };
         var result = await _mediator.Send(command, cancellationToken);
         if (result.IsFailure)
             return BadRequest(result.Error);

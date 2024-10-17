@@ -5,28 +5,23 @@ using Microsoft.IdentityModel.Tokens;
 namespace SaudeSemFronteiras.Application.Invoices.Commands;
 public class CreateInvoiceCommand : IRequest<Result>
 {
-    public DateTime IssuanceDate { get; set; }
     public DateTime DueDate { get; set; }
     public string Description { get; set; } = string.Empty;
-    public string Status { get; set; } = string.Empty;
-    public string Value { get; set; } = string.Empty;
-    public string Tax { get; set; } = string.Empty;
-    public string Discount { get; set; } = string.Empty;
-    public string Terms { get; set; } = string.Empty;
+    public string Agency { get; set; } = string.Empty;
+    public string Account { get; set; } = string.Empty;
+    public string Digit { get; set; } = string.Empty;
+    public long PatientId { get; set; }
+    public long DoctorId { get; set; }
     public long AppointmentId { get; set; }
 
     public Result Validation()
     {
-        if (IssuanceDate.ToString().IsNullOrEmpty())
-            return Result.Failure("Data de emissão da fatura não pode ser nula.");
         if (DueDate.ToString().IsNullOrEmpty())
             return Result.Failure("Data de vencimento da fatura não pode ser nula.");
-        if (Description.IsNullOrEmpty())
-            return Result.Failure("Descrição da fatura não pode ser nula.");
-        if (Status.IsNullOrEmpty())
-            return Result.Failure("Status da fatura não pode ser nulo.");
-        if (Value.IsNullOrEmpty())
-            return Result.Failure("Valor da fatura não pode ser nulo.");
+        if (DoctorId.ToString().IsNullOrEmpty())
+            return Result.Failure("Médico não pode ser nulo.");
+        if (PatientId.ToString().IsNullOrEmpty())
+            return Result.Failure("Paciente não pode ser nulo.");
         if (AppointmentId.ToString().IsNullOrEmpty())
             return Result.Failure("Código da consulta não pode ser nulo.");
 

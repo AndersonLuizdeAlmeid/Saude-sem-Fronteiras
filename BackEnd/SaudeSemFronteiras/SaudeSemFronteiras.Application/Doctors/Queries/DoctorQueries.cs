@@ -94,4 +94,20 @@ public class DoctorQueries(IDatabaseFactory databaseFactory) : IDoctorQueries
         var command = new CommandDefinition(sql, new { iD }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<decimal>(command);
     }
+
+    public async Task<decimal> GetPriceByAppointmentQuery(long appointmentIdEmergencies, long appointmentIdScheduled, CancellationToken cancellationToken)
+    {
+        var sql = @"SELECT emergencies.price
+                      FROM emergencies INNER JOIN appointments 
+  						                       ON appointments.id  = emergencies.appointment_id 
+                     WHERE appointments.id = @appointmentIdEmergencies
+                     UNION 
+                    SELECT scheduled.price 
+                      FROM scheduled INNER JOIN appointments 
+  						                     ON appointments.id  = scheduled.appointment_id 
+                     WHERE appointments.id = @appointmentIdScheduled";
+
+        var command = new CommandDefinition(sql, new { appointmentIdEmergencies, appointmentIdScheduled }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
+        return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<decimal>(command);
+    }
 }

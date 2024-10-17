@@ -28,4 +28,13 @@ public class ExamRepository(IDatabaseFactory LocalDatabase) : IExamRepository
         var command = new CommandDefinition(sql, exam, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         await LocalDatabase.Connection.ExecuteAsync(command);
     }
+
+    public async Task Delete(long iD, CancellationToken cancellationToken)
+    {
+        var sql = @"delete from exams
+                     where exams.document_id = @iD";
+
+        var command = new CommandDefinition(sql, new { iD }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
+        await LocalDatabase.Connection.ExecuteAsync(command);
+    }
 }

@@ -11,6 +11,7 @@ public class CityQueries(IDatabaseFactory databaseFactory) : ICityQueries
     {
         var sql = @"SELECT id as Id, 
                            description as Description,
+                           cep as Cep,
                            state_id as StateId
                       FROM cities ";
 
@@ -22,6 +23,7 @@ public class CityQueries(IDatabaseFactory databaseFactory) : ICityQueries
     {
         var sql = @"SELECT id as Id, 
                            description as Description,
+                           cep as Cep,
                            state_id as StateId
                       FROM cities
                      WHERE id = @iD ";
@@ -34,6 +36,7 @@ public class CityQueries(IDatabaseFactory databaseFactory) : ICityQueries
     {
         var sql = @"SELECT id as Id, 
                            description as Description,
+                           cep as Cep,
                            state_id as StateId
                       FROM cities
                      WHERE id_state = @stateId ";
