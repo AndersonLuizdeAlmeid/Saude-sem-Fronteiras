@@ -1,98 +1,100 @@
 ﻿using SaudeSemFronteiras.Application.Invoices.Dtos;
 using SaudeSemFronteiras.Application.Invoices.Queries;
+using SaudeSemFronteiras.Application.Invoices.Repository;
 using System.Drawing;
 using System.Drawing.Imaging;
 using ZXing;
 using ZXing.Common;
 
-namespace SaudeSemFronteiras.Application.Invoices.Services
+namespace SaudeSemFronteiras.Application.Invoices.Services;
+public class InvoiceService
 {
-    public class InvoiceService
+    private readonly IInvoiceQueries _invoiceQueries;
+    private readonly IInvoiceRepository _invoiceRepository;
+
+    public InvoiceService(IInvoiceQueries invoiceQueries, IInvoiceRepository invoiceRepository)
     {
-        private readonly IInvoiceQueries _invoiceQueries;
+        _invoiceQueries = invoiceQueries;
+        _invoiceRepository = invoiceRepository;
+    }
 
-        public InvoiceService(IInvoiceQueries invoiceQueries)
+    public string GetBoleto(long invoiceId, CancellationToken cancellationToken)
+    {
+        if (invoiceId == 0)
+            return null;
+
+        var invoiceCompleteDto = _invoiceQueries.GetDataToBoleto(invoiceId, cancellationToken);
+
+        if (invoiceCompleteDto.Result == null)
+            return null;
+
+        var html = GenerateInvoiceHtml(invoiceCompleteDto.Result);
+        return html;
+    }
+
+    public string GenerateLineDigitavel(long invoiceId, CancellationToken cancellationToken)
+    {
+        var invoiceCompleteDto = _invoiceQueries.GetDataToBoleto(invoiceId, cancellationToken);
+
+        if (invoiceCompleteDto.Result == null)
+            return null;
+
+        string banco = "123";
+        string moeda = "9";
+        string valor = ((long)(invoiceCompleteDto.Result.Value * 100)).ToString("D10"); // Valor em centavos
+        string dataVencimento = invoiceCompleteDto.Result.DueDate.ToString("yyMMdd"); // Data de vencimento
+
+        string linhaDigitavel = $"{banco}{moeda}{valor}{dataVencimento}";
+
+        return linhaDigitavel;
+    }
+
+
+    public string GenerateInvoiceHtml(InvoiceCompleteDto invoice)
+    {
+        string banco = "123";
+        string moeda = "9";
+        string valor = ((long)(invoice.Value * 100)).ToString("D10"); // Valor em centavos
+        string dataVencimento = invoice.DueDate.ToString("yyMMdd"); // Data de vencimento
+
+        string linhaDigitavel = $"{banco}{moeda}{valor}{dataVencimento}";
+
+        // Gera o código de barras
+        var barcodeWriter = new BarcodeWriterPixelData
         {
-            _invoiceQueries = invoiceQueries;
-        }
-
-        public string GetBoleto(long invoiceId, CancellationToken cancellationToken)
-        {
-            if (invoiceId == 0)
-                return null;
-
-            var invoiceCompleteDto = _invoiceQueries.GetDataToBoleto(invoiceId, cancellationToken);
-
-            if (invoiceCompleteDto.Result == null)
-                return null;
-
-            var html = GenerateInvoiceHtml(invoiceCompleteDto.Result);
-            return html;
-        }
-
-        public string GenerateLineDigitavel(long invoiceId, CancellationToken cancellationToken)
-        {
-            var invoiceCompleteDto = _invoiceQueries.GetDataToBoleto(invoiceId, cancellationToken);
-
-            if (invoiceCompleteDto.Result == null)
-                return null;
-
-            string banco = "123";
-            string moeda = "9";
-            string valor = ((long)(invoiceCompleteDto.Result.Value * 100)).ToString("D10"); // Valor em centavos
-            string dataVencimento = invoiceCompleteDto.Result.DueDate.ToString("yyMMdd"); // Data de vencimento
-
-            string linhaDigitavel = $"{banco}{moeda}{valor}{dataVencimento}";
-
-            return linhaDigitavel;
-        }
-
-
-        public string GenerateInvoiceHtml(InvoiceCompleteDto invoice)
-        {
-            string banco = "123";
-            string moeda = "9";
-            string valor = ((long)(invoice.Value * 100)).ToString("D10"); // Valor em centavos
-            string dataVencimento = invoice.DueDate.ToString("yyMMdd"); // Data de vencimento
-
-            string linhaDigitavel = $"{banco}{moeda}{valor}{dataVencimento}";
-
-            // Gera o código de barras
-            var barcodeWriter = new BarcodeWriterPixelData
+            Format = BarcodeFormat.CODE_128,
+            Options = new EncodingOptions
             {
-                Format = BarcodeFormat.CODE_128,
-                Options = new EncodingOptions
-                {
-                    Height = 100,  // Altura do código de barras
-                    Width = 290,   // Largura do código de barras
-                    Margin = 0    // Margem em torno do código
-                }
-            };
-
-            var pixelData = barcodeWriter.Write(linhaDigitavel.ToString());  // Gere o código de barras com base no Id da fatura
-            using var bitmap = new Bitmap(pixelData.Width, pixelData.Height, PixelFormat.Format32bppRgb);
-            using var ms = new MemoryStream();
-
-            var bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.WriteOnly, PixelFormat.Format32bppRgb);
-            try
-            {
-                System.Runtime.InteropServices.Marshal.Copy(pixelData.Pixels, 0, bitmapData.Scan0, pixelData.Pixels.Length);
+                Height = 100,  // Altura do código de barras
+                Width = 290,   // Largura do código de barras
+                Margin = 0    // Margem em torno do código
             }
-            finally
-            {
-                bitmap.UnlockBits(bitmapData);
-            }
+        };
 
-            // Salva o código de barras em um stream de memória
-            bitmap.Save(ms, ImageFormat.Png);
-            var base64Barcode = Convert.ToBase64String(ms.ToArray());
+        var pixelData = barcodeWriter.Write(linhaDigitavel.ToString());  // Gere o código de barras com base no Id da fatura
+        using var bitmap = new Bitmap(pixelData.Width, pixelData.Height, PixelFormat.Format32bppRgb);
+        using var ms = new MemoryStream();
 
-            // Converte a logo em Base64
-            var base64Logo = ConvertImageToBase64("C:\\Users\\Micro\\Desktop\\Projeto final\\Saude-sem-Fronteiras\\BackEnd\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras.Common\\Utils\\logo_inverted.png");
-            var base64Banco = ConvertImageToBase64("C:\\Users\\Micro\\Desktop\\Projeto final\\Saude-sem-Fronteiras\\BackEnd\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras.Common\\Utils\\Nubank.png");
+        var bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.WriteOnly, PixelFormat.Format32bppRgb);
+        try
+        {
+            System.Runtime.InteropServices.Marshal.Copy(pixelData.Pixels, 0, bitmapData.Scan0, pixelData.Pixels.Length);
+        }
+        finally
+        {
+            bitmap.UnlockBits(bitmapData);
+        }
 
-            // Incorpora as imagens no HTML como Base64
-            return $@"
+        // Salva o código de barras em um stream de memória
+        bitmap.Save(ms, ImageFormat.Png);
+        var base64Barcode = Convert.ToBase64String(ms.ToArray());
+
+        // Converte a logo em Base64
+        var base64Logo = ConvertImageToBase64("C:\\Users\\Micro\\Desktop\\Projeto final\\Saude-sem-Fronteiras\\BackEnd\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras.Common\\Utils\\logo_inverted.png");
+        var base64Banco = ConvertImageToBase64("C:\\Users\\Micro\\Desktop\\Projeto final\\Saude-sem-Fronteiras\\BackEnd\\Saude-sem-Fronteiras\\BackEnd\\SaudeSemFronteiras\\SaudeSemFronteiras.Common\\Utils\\Nubank.png");
+
+        // Incorpora as imagens no HTML como Base64
+        return $@"
                     <!DOCTYPE html>
                     <html lang='pt-BR'>
                     <head>
@@ -243,13 +245,24 @@ namespace SaudeSemFronteiras.Application.Invoices.Services
                         </div>
                     </body>
                     </html>";
-        }
+    }
 
-        // Função auxiliar para converter imagem para Base64
-        public string ConvertImageToBase64(string imagePath)
+    // Função auxiliar para converter imagem para Base64
+    public string ConvertImageToBase64(string imagePath)
+    {
+        byte[] imageBytes = System.IO.File.ReadAllBytes(imagePath);
+        return Convert.ToBase64String(imageBytes);
+    }
+
+    public void VerifyInvoices(long id, short isDoctor, CancellationToken cancellationToken)
+    {
+        if (isDoctor == 1)
         {
-            byte[] imageBytes = System.IO.File.ReadAllBytes(imagePath);
-            return Convert.ToBase64String(imageBytes);
+            _invoiceRepository.UpdateDoctorInvoices(id, cancellationToken);
+        }
+        else
+        {
+            _invoiceRepository.UpdatePatientInvoices(id, cancellationToken);
         }
     }
 }

@@ -144,4 +144,24 @@ public class InvoiceQueries(IDatabaseFactory databaseFactory) : IInvoiceQueries
         var command = new CommandDefinition(sql, new { invoiceId }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         return await LocalDatabase.Connection.QueryFirstAsync<InvoiceCompleteDto>(command);
     }
+
+    public async Task<IEnumerable<InvoiceShowDto?>> GetPatientsInvoicesByDoctorQuery(long doctorId, long patientId, CancellationToken cancellationToken)
+    {
+        var sql = @"SELECT invoices.id as Id,
+                           users.name as Name, 
+                           invoices.status as Status, 
+                           TO_CHAR(invoices.due_date , 'YYYY-MM-DD HH24:MI:SS') as Date
+                      FROM invoices INNER JOIN appointments 
+ 					 	                     ON invoices.appointment_id  = appointments.id
+ 				                     INNER JOIN patients 
+ 					 	                     ON patients.id = appointments.patient_id 
+ 				                     INNER JOIN users
+ 					 	                     ON users.id = patients.user_id
+                     WHERE appointments.doctor_id = @doctorId
+                       AND appointments.patient_id = @patientId 
+                     ORDER BY Date ";
+
+        var command = new CommandDefinition(sql, new { doctorId, patientId }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
+        return await LocalDatabase.Connection.QueryAsync<InvoiceShowDto>(command);
+    }
 }

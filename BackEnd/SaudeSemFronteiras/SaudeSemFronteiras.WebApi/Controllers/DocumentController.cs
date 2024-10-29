@@ -19,6 +19,14 @@ public class DocumentController : ControllerBase
         _documentQueries = documentQueries;
     }
 
+    [HttpGet("patients/doctor/{doctorId}/{patientId}")]
+    public async Task<IActionResult> GetPatientsOfAppointmentsByDoctor(long doctorId, long patientId, CancellationToken cancellationToken)
+    {
+        var documents = await _documentQueries.GetPatientsDocumentsByDoctorQuery(doctorId, patientId, cancellationToken);
+
+        return Ok(documents);
+    }
+
     [HttpGet("doctor/{doctorId}")]
     public async Task<IActionResult> GetDocumentsByDoctorId(long doctorId, CancellationToken cancellationToken)
     {

@@ -9,4 +9,5 @@ public interface IInvoiceQueries
     Task<IEnumerable<InvoiceShowDto?>> GetInvoiceByDoctorIdQuery(long doctorId, CancellationToken cancellationToken);
     Task<IEnumerable<InvoiceShowDto?>> GetInvoiceByPatientQuery(long patientId, CancellationToken cancellationToken);
     Task<InvoiceCompleteDto?> GetDataToBoleto(long iD, CancellationToken cancellationToken);
+    Task<IEnumerable<InvoiceShowDto?>> GetPatientsInvoicesByDoctorQuery(long doctorId, long patientId, CancellationToken cancellationToken);
 }

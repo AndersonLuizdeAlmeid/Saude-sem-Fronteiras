@@ -26,7 +26,7 @@ public class UserRepository(IDatabaseFactory LocalDatabase) : IUserRepository
                            gender = @Gender,
                            language = @Language,
                            is_active = @IsActive,
-                           phonme = @Phone
+                           phone = @Phone
                      where id = @Id";
 
         var command = new CommandDefinition(sql, user, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);

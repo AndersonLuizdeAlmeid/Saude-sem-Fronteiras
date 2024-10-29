@@ -78,4 +78,23 @@ public class DocumentQueries(IDatabaseFactory databaseFactory) : IDocumentQuerie
         var command = new CommandDefinition(sql, new { patientId }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         return await LocalDatabase.Connection.QueryAsync<DocumentShowDto>(command);
     }
+
+    public async Task<IEnumerable<DocumentShowDto?>> GetPatientsDocumentsByDoctorQuery(long doctorId, long patientId, CancellationToken cancellationToken)
+    {
+        var sql = @"SELECT documents.id as Id,
+                           users.name as Name, 
+                           documents.type_document as Type, 
+                           TO_CHAR(documents.date_document, 'YYYY-MM-DD HH24:MI:SS') as Date
+                      FROM documents INNER JOIN appointments 
+ 					 	                     ON documents.appointment_id  = appointments.id
+ 				                     INNER JOIN patients 
+ 					 	                     ON patients.id = appointments.patient_id 
+ 				                     INNER JOIN users
+ 					 	                     ON users.id = patients.user_id
+                     WHERE appointments.patient_id = @patientId
+                       AND appointments.doctor_id = @doctorId";
+
+        var command = new CommandDefinition(sql, new { patientId, doctorId }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
+        return await LocalDatabase.Connection.QueryAsync<DocumentShowDto>(command);
+    }
 }

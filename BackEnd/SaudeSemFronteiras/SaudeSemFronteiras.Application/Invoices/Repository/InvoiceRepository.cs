@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using SaudeSemFronteiras.Application.Invoices.Domain;
 using SaudeSemFronteiras.Common.Factory.Interfaces;
+using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
 
 namespace SaudeSemFronteiras.Application.Invoices.Repository;
 public class InvoiceRepository(IDatabaseFactory LocalDatabase) : IInvoiceRepository
@@ -43,6 +44,34 @@ public class InvoiceRepository(IDatabaseFactory LocalDatabase) : IInvoiceReposit
                      where id = @iD";
 
         var command = new CommandDefinition(sql, new { iD }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
+        await LocalDatabase.Connection.ExecuteAsync(command);
+    }
+
+    public async Task UpdatePatientInvoices(long Id, CancellationToken cancellationToken)
+    {
+        const short statusExpired = 3;
+
+        var sql = @" UPDATE invoices
+                        SET status = @statusExpired
+                      WHERE patient_id = @Id
+                        AND status = 1
+                        AND due_date < CURRENT_DATE ";
+
+        var command = new CommandDefinition(sql, new { statusExpired, Id }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
+        await LocalDatabase.Connection.ExecuteAsync(command);
+    }
+
+    public async Task UpdateDoctorInvoices(long Id, CancellationToken cancellationToken)
+    {
+        const short statusExpired = 3;
+
+        var sql = @" UPDATE invoices
+                        SET status = @statusExpired
+                      WHERE doctor_id = @Id
+                        AND status = 1
+                        AND due_date < CURRENT_DATE ";
+
+        var command = new CommandDefinition(sql, new { statusExpired, Id }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         await LocalDatabase.Connection.ExecuteAsync(command);
     }
 }

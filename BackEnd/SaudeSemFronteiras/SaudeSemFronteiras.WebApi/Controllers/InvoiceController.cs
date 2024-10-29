@@ -5,6 +5,7 @@ using SaudeSemFronteiras.Application.Documents.Commands;
 using SaudeSemFronteiras.Application.Invoices.Commands;
 using SaudeSemFronteiras.Application.Invoices.Queries;
 using SaudeSemFronteiras.Application.Invoices.Services;
+using SaudeSemFronteiras.Application.Patients.Domain;
 
 namespace SaudeSemFronteiras.WebApi.Controllers;
 
@@ -21,6 +22,41 @@ public class InvoiceController : ControllerBase
         _mediator = mediator;
         _invoiceQueries = invoiceQueries;
         _invoiceService = invoiceService;
+    }
+
+    [HttpGet("verify/invoices/patient/{patientId}")]
+    public async Task<IActionResult> VerifyPatientInvoices(long patientId, CancellationToken cancellationToken)
+    {
+        try
+        {
+            _invoiceService.VerifyInvoices(patientId, 0, cancellationToken);
+            return Ok("Tudo certo");
+        } catch(Exception e)
+        {
+            return BadRequest(null);
+        }
+    }
+
+    [HttpGet("verify/invoices/doctor/{doctorId}")]
+    public async Task<IActionResult> VerifyDoctorInvoices(long doctorId, CancellationToken cancellationToken)
+    {
+        try
+        {
+            _invoiceService.VerifyInvoices(doctorId, 1, cancellationToken);
+            return Ok("Tudo certo");
+        }
+        catch (Exception e)
+        {
+            return BadRequest(null);
+        }
+    }
+
+    [HttpGet("patients/doctor/{doctorId}/{patientId}")]
+    public async Task<IActionResult> GetPatientsOfAppointmentsByDoctor(long doctorId, long patientId, CancellationToken cancellationToken)
+    {
+        var invoices = await _invoiceQueries.GetPatientsInvoicesByDoctorQuery(doctorId, patientId, cancellationToken);
+
+        return Ok(invoices);
     }
 
     [HttpGet("ticket/html/{invoiceId}")]
