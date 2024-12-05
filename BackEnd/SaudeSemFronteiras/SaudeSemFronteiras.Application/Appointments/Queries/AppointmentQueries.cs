@@ -165,9 +165,9 @@ public class AppointmentQueries(IDatabaseFactory databaseFactory) : IAppointment
                                                 ON appointments.id = scheduled.appointment_id
                      WHERE scheduled.id = @scheduleId 
                         AND appointments.date BETWEEN 
-                      (SELECT CURRENT_TIMESTAMP - INTERVAL '1 hour' FROM appointments WHERE id = scheduled.appointment_id) 
+                      (SELECT CURRENT_TIMESTAMP - INTERVAL '24 hour' FROM appointments WHERE id = scheduled.appointment_id) 
                       AND 
-                      (SELECT CURRENT_TIMESTAMP + INTERVAL '1 hour' FROM appointments WHERE id = scheduled.appointment_id)";
+                      (SELECT CURRENT_TIMESTAMP + INTERVAL '24 hour' FROM appointments WHERE id = scheduled.appointment_id)";
 
         var command = new CommandDefinition(sql, new { scheduleId }, transaction: LocalDatabase.Transaction, cancellationToken: cancellationToken);
         return await LocalDatabase.Connection.QueryFirstOrDefaultAsync<short>(command);
